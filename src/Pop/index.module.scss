@@ -1,0 +1,45 @@
+$shadow-color: rgba(0, 0, 0, 0.18);
+$border-color: #d2d6ea;
+$font-color: #0a1633;
+$background-color: #ffffff;
+
+.wrapper {
+    position: relative;
+    font-size: 0;
+}
+.trigger {
+    display: inline-block;
+}
+.popup {
+    position: absolute;
+    z-index: 10;
+    top: 100%;
+    font-size: 14px;
+    .popup-wrapper {
+        box-shadow: 0px 8px 12px 4px $shadow-color;
+        border: 1px solid $border-color;
+        border-radius: 4px;
+        background: $background-color;
+        padding: 1em;
+        margin-top: 0.5em;
+        .triangle,
+        .triangle::before {
+            position: absolute;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0.5em 0.5em 0.5em;
+            border-color: transparent transparent $background-color transparent;
+        }
+        .triangle {
+            border-color: transparent transparent $border-color transparent;
+            left: 1em;
+        }
+        .triangle::before {
+            content: ' ';
+            top: 1px;
+            left: -0.5em;
+        }
+    }
+}
