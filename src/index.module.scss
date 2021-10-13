@@ -1,10 +1,9 @@
-.container {
+@import './variables.scss';
+@import './mixins.scss';
+
+.main {
     font-size: 14px;
     color: #526075;
-    background: white;
-    width: 410px;
-    box-shadow: 0px 8px 12px 4px rgba(0, 0, 0, 0.05);
-
     ul,
     li {
         list-style-type: none;
@@ -16,6 +15,63 @@
     h3 {
         margin: 0;
     }
+}
+
+.wrapper:not([hidden]) {
+    display: flex;
+    align-items: flex-start;
+    .right {
+        width: 410px;
+        background: #ffffff;
+        box-shadow: 0px 8px 12px 4px rgba(0, 0, 0, 0.05);
+        margin-left: 24px;
+    }
+    .left {
+        flex: 1;
+    }
+}
+
+.back {
+    width: 24px;
+    height: 24px;
+    border-radius: 2px;
+    border: 1px solid $color-border;
+    background: $color-background;
+    margin-bottom: 24px;
+    cursor: pointer;
+}
+
+.component-list {
+    .component-wrapper {
+        @include card;
+        padding: 24px;
+        position: relative;
+        .title {
+            font-size: 20px;
+            font-weight: 400;
+            color: $color-font;
+            line-height: 32px;
+        }
+        .edit-button {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 22px;
+            cursor: pointer;
+            position: absolute;
+            right: 24px;
+            top: 24px;
+            &:hover {
+                color: $color-font-primary;
+            }
+        }
+    }
+    .component-wrapper + .component-wrapper {
+        margin-top: 24px;
+    }
+}
+
+.token-editor {
+    @include card;
 
     .panel {
         padding: 1.5em;
@@ -28,14 +84,14 @@
             flex: 1 1 auto;
             text-align: center;
             line-height: 2.2em;
-            color: #7a8baa;
+            color: $color-remark;
             cursor: pointer;
 
             &[data-active='false'] {
                 background: #fafafc;
             }
             &[data-active='true'] {
-                color: #3860f4;
+                color: $color-font-primary;
                 font-weight: 600;
             }
             &[data-disabled='true'] {
@@ -52,7 +108,7 @@
     }
     .panel {
         max-height: 60vmin;
-        min-height: 10vmin;
+        min-height: 30vmin;
         overflow: auto;
     }
     .token-list {
@@ -65,5 +121,63 @@
         > li + li {
             margin-top: 1em;
         }
+    }
+}
+
+.bi-list {
+    flex: 1;
+    .color-group-list {
+        .group + .group {
+            margin-top: 24px;
+        }
+        .group {
+            padding: 24px;
+            background: #ffffff;
+            box-shadow: 0px 8px 12px 4px $color-shadow;
+            .group-name {
+                line-height: 32px;
+                font-weight: 400;
+                color: $color-font;
+                font-size: 20px;
+                margin-bottom: 16px;
+            }
+            .color-list {
+                display: grid;
+                grid-template-columns: repeat(9, 32px);
+                grid-row-gap: 16px;
+                grid-column-gap: 4px;
+                margin-bottom: 16px;
+                .color-square {
+                    position: relative;
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 2px;
+                    border: 1px solid $color-border;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+.bi-token-editor {
+    padding: 24px;
+    .title {
+        font-size: 16px;
+        font-weight: 600;
+        color: $color-font;
+        line-height: 32px;
+    }
+    .divider {
+        height: 1px;
+        background: $color-border;
+        margin: 24px 0;
+    }
+    .sub-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: $color-font;
+        line-height: 24px;
+        margin-top: 32px;
     }
 }

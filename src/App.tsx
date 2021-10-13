@@ -1,253 +1,40 @@
-import './App.css';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 
-import React, {
-    MouseEvent,
-    useCallback,
-    useContext,
-    useEffect,
-    useMemo,
-    useRef,
-    useState,
-} from 'react';
+import cls from './index.module.scss';
 
 import bi from '../dt/bi.json';
 import dt from '../dt/dt.json';
 import dtc from '../dt/dtc.json';
-import external from '../dt/external.json';
-import Color from './Editor/Color';
-import Input from './Editor/Input';
-import Shadow from './Editor/Shadow';
-import Size from './Editor/Size';
-import cls from './index.module.scss';
-import noop from './utils/noop';
-import DesignTokenContext from './DesignTokenContext';
-import ColorChooser from './Editor/ColorChooser';
-
-const ComponentPanel = () => {
-    return <div className={cls.panel}></div>;
-};
-
-type TokenType = 'COLOR' | 'SHADOW' | 'INPUT';
-
-interface TokenDefine {
-    value: string;
-    comment: string;
-    type?: TokenType;
-    deprecated?: boolean;
-}
-
-interface Token {
-    value: string;
-    comment: string;
-    type?: TokenType;
-    target: string[];
-}
-
-const EditContext = React.createContext<{
-    handleChange: (target: string[], value: string) => boolean;
-}>({ handleChange: () => false });
-
-const targetToName = (target: string[]) => {
-    return target.join(',');
-};
-const nameToTarget = (name: string) => {
-    return name.split(',');
-};
-
-const Editor = React.memo(
-    ({
-        value: _value,
-        name,
-        type,
-    }: {
-        value: string;
-        name: string;
-        type?: TokenType;
-    }) => {
-        const [value, setValue] = useState(_value);
-        type = useMemo(() => {
-            if (type) return type;
-            const target = nameToTarget(name);
-            if (target.includes('shadow')) return 'SHADOW';
-            if (target.includes('color')) return 'COLOR';
-            return 'INPUT';
-        }, []);
-        const { handleChange } = useContext(EditContext);
-        const onChange = useCallback((v: string) => {
-            const target = nameToTarget(name);
-            if (handleChange(target, v)) {
-                setValue(v);
-            }
-        }, []);
-        switch (type) {
-            case 'COLOR':
-                return <ColorChooser value={value} onChange={onChange} />;
-            case 'SHADOW':
-                return <Shadow value={value} onChange={onChange} />;
-            case 'INPUT':
-            default:
-                return <Input value={value} onChange={onChange} />;
-        }
-    },
-);
-
-const CommonPanel = ({ commonDesignTokens }: { commonDesignTokens: typeof dtc }) => {
-    const items = useMemo(() => {
-        const itemsGroup: Record<string, Token[]> = {};
-        const dig = (obj: any, parent: string[], group?: string) => {
-            if (obj._meta) {
-                if (obj._meta.group) {
-                    if (group) {
-                        console.error(
-                            `Group hierarchy disorder: ${group} ${obj._meta.group}`,
-                        );
-                    }
-                    group = obj._meta.group as string;
-                    if (!(group in itemsGroup)) {
-                        itemsGroup[group] = [];
-                    }
-                }
-            }
-            for (const key in obj) {
-                if (key === '_meta') continue;
-                const info = obj[key];
-                if ('value' in info) {
-                    if (!group) {
-                        console.error(`Can't find group for`, info);
-                        break;
-                    }
-                    const { value, comment, type, isDeprecated } = info;
-                    if (isDeprecated) return;
-                    const target = [...parent, key];
-                    itemsGroup[group].push({
-                        value,
-                        type: type?.toUpperCase(),
-                        comment,
-                        target,
-                    });
-                } else {
-                    dig(info, [...parent, key], group);
-                }
-            }
-        };
-        dig(commonDesignTokens, []);
-        const items: {
-            name: string;
-            items: Token[];
-        }[] = [];
-        for (const group in itemsGroup) {
-            const groupInfo = itemsGroup[group];
-            items.push({
-                name: group,
-                items: groupInfo,
-            });
-        }
-        return items;
-    }, [commonDesignTokens]);
-
-    return (
-        <div className={cls.panel}>
-            <ul className={cls['group-list']}>
-                {items.map((group) => {
-                    return (
-                        <li key={group.name}>
-                            <h2 className={cls['group-name']}>{group.name}</h2>
-                            <ul className={cls['token-list']}>
-                                {group.items.map((token) => {
-                                    const { comment, value, type, target } = token;
-                                    return (
-                                        <li key={target.join('_')}>
-                                            <h3 className={cls.comment}>{comment}</h3>
-                                            <div className={cls.key}>
-                                                {['t', ...target].join('_').toUpperCase()}
-                                            </div>
-                                            <div className={cls.editor}>
-                                                <Editor
-                                                    value={value}
-                                                    name={targetToName(target)}
-                                                    type={type}
-                                                />
-                                            </div>
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                        </li>
-                    );
-                })}
-            </ul>
-        </div>
-    );
-};
-
-type TabType = 'component' | 'common';
-
-const Container = ({
-    component,
-    commonDesignTokens,
-}: {
-    component: string;
-    commonDesignTokens: typeof dtc;
-}) => {
-    const [tab, setTab] = useState<TabType>('component');
-    const isComponentValid = useMemo(() => component in dt, [component]);
-    useEffect(() => {
-        if (isComponentValid) {
-            setTab('component');
-        } else {
-            setTab('common');
-        }
-    }, [component, isComponentValid]);
-    const handleTab = useCallback((e: MouseEvent) => {
-        if (!e.currentTarget) return;
-        const dataset = (e.currentTarget as HTMLElement).dataset;
-        if (dataset.disabled === 'true' || dataset.active === 'true') {
-            return;
-        }
-        setTab(dataset.tab as TabType);
-    }, []);
-    return (
-        <div className={cls.container}>
-            <nav>
-                <ul>
-                    <li
-                        data-active={tab === 'component'}
-                        data-disabled={!isComponentValid}
-                        data-tab="component"
-                        onClick={handleTab}
-                    >
-                        组件变量
-                    </li>
-                    <li
-                        data-active={tab === 'common'}
-                        data-tab="common"
-                        onClick={handleTab}
-                    >
-                        通用变量
-                    </li>
-                </ul>
-            </nav>
-            <div hidden={tab !== 'component'}>
-                <ComponentPanel />
-            </div>
-            <div hidden={tab !== 'common'}>
-                <CommonPanel commonDesignTokens={commonDesignTokens} />
-            </div>
-        </div>
-    );
-};
-
-const clone = function <T>(json: T): T {
-    return JSON.parse(JSON.stringify(json));
-};
+// import external from '../dt/external.json';
+import EditContext from './EditContext';
+import BIList from './BIList';
+import BITokenEditor from './BITokenEditor';
+import ComponentList from './ComponentList';
+import TokenEditor from './TokenEditor';
+import { clone, get } from './utils';
 
 function App() {
     const [component, setComponent] = useState('button');
     const commonDesignTokens = useMemo(() => clone(dtc), []);
     const commonDesignTokensRef = useRef(commonDesignTokens);
+    const componentDesignTokens = useMemo(() => clone(dt), []);
+    const componentDesignTokensRef = useRef(componentDesignTokens);
+    const [panel, setPanel] = useState('default');
+    const [currentBI, setBI] = useState<string[]>(['base', 'environment']);
 
-    const handleChange = useCallback((target: string[], value: string) => {
-        let to: any = commonDesignTokensRef.current;
+    const currentBIInfo = useMemo(() => {
+        return get(bi.color, currentBI);
+    }, [currentBI]);
+
+    const handleCommonTokenChange = useCallback((target: string[], value: string) => {
+        const to = get(commonDesignTokensRef.current, target);
+        if (!to) return false;
+        to.value = value;
+        console.log(commonDesignTokensRef.current);
+        return true;
+    }, []);
+    const handleComponentTokenChange = useCallback((target: string[], value: string) => {
+        let to: any = componentDesignTokensRef.current;
         for (let i = 0; i < target.length; i++) {
             to = to[target[i]];
             if (!to) {
@@ -258,18 +45,58 @@ function App() {
         if (to) to.value = value;
         return true;
     }, []);
+    const handleComponentChange = useCallback((component: string) => {
+        return setComponent(component);
+    }, []);
+    const handleBIChange = useCallback((bi: string[]) => {
+        setBI(bi);
+    }, []);
+    const handleBack = useCallback(() => {
+        setPanel('default');
+    }, [setPanel]);
+    const handleBIValueChange = useCallback((target: string[], value: string) => {
+        console.log(target, value);
+        return false;
+    }, []);
 
     return (
-        <DesignTokenContext.Provider value={{ bi }}>
-            <EditContext.Provider value={{ handleChange }}>
-                <div className="App">
-                    <Container
-                        component={component}
-                        commonDesignTokens={commonDesignTokens}
-                    />
+        <EditContext.Provider
+            value={{
+                handleCommonTokenChange,
+                handleComponentTokenChange,
+                handleBIValueChange,
+                setPanel,
+                bi,
+                dt: componentDesignTokensRef.current,
+                dtc: commonDesignTokensRef.current,
+            }}>
+            <div className={cls['main']}>
+                <div hidden={panel !== 'default'} className={cls['wrapper']}>
+                    <div className={cls['left']}>
+                        <ComponentList onChange={handleComponentChange} />
+                    </div>
+                    <div className={cls['right']}>
+                        <TokenEditor
+                            component={component}
+                            commonDesignTokens={commonDesignTokens}
+                        />
+                    </div>
                 </div>
-            </EditContext.Provider>
-        </DesignTokenContext.Provider>
+                <div hidden={panel !== 'bi'}>
+                    <button className={cls['back']} onClick={handleBack}>
+                        {'<'}
+                    </button>
+                    <div className={cls['wrapper']}>
+                        <div className={cls['left']}>
+                            <BIList value={currentBI} onChange={handleBIChange} />
+                        </div>
+                        <div className={cls['right']}>
+                            <BITokenEditor {...currentBIInfo} target={currentBI} />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </EditContext.Provider>
     );
 }
 

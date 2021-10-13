@@ -1,7 +1,4 @@
-$shadow-color: rgba(0, 0, 0, 0.18);
-$border-color: #d2d6ea;
-$font-color: #0a1633;
-$background-color: #ffffff;
+@import '../variables.scss';
 
 .wrapper {
     position: relative;
@@ -9,6 +6,7 @@ $background-color: #ffffff;
 }
 .trigger {
     display: inline-block;
+    max-width: 100%;
 }
 .popup {
     position: absolute;
@@ -16,10 +14,10 @@ $background-color: #ffffff;
     top: 100%;
     font-size: 14px;
     .popup-wrapper {
-        box-shadow: 0px 8px 12px 4px $shadow-color;
-        border: 1px solid $border-color;
+        box-shadow: 0px 8px 12px 4px $color-shadow;
+        border: 1px solid $color-border;
         border-radius: 4px;
-        background: $background-color;
+        background: $color-background;
         padding: 1em;
         margin-top: 0.5em;
         .triangle,
@@ -30,10 +28,10 @@ $background-color: #ffffff;
             height: 0;
             border-style: solid;
             border-width: 0 0.5em 0.5em 0.5em;
-            border-color: transparent transparent $background-color transparent;
+            border-color: transparent transparent $color-background transparent;
         }
         .triangle {
-            border-color: transparent transparent $border-color transparent;
+            border-color: transparent transparent $color-border transparent;
             left: 1em;
         }
         .triangle::before {

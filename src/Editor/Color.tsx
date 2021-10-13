@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { RgbaColorPicker } from 'react-colorful';
 
-import { isValidColor, toRGBA, toStringColor } from '../color';
+import { isValidColor, toRGBA, toStringColor } from '../utils/color';
 import Pop from '../Pop';
 import cls from './index.module.scss';
 import Input from './Input';
 
-const ColorInput = ({
+const ColorInputWithoutMemo = ({
     value,
     onChange,
 }: {
@@ -51,35 +51,39 @@ const ColorInput = ({
         />
     );
 };
+const ColorInput = React.memo(ColorInputWithoutMemo);
 
-const Color = React.memo(
-    ({ value, onChange }: { value: string; onChange: (v: string) => void }) => {
-        const handleInputChange = useCallback(
-            (v) => {
-                onChange(v);
-            },
-            [onChange],
-        );
-        const handleColorChange = useCallback(
-            (v) => {
-                return onChange(toStringColor(v));
-            },
-            [onChange],
-        );
-        const rgba = toRGBA(value);
+const Color = ({ value, onChange }: { value: string; onChange: (v: string) => void }) => {
+    const handleInputChange = useCallback(
+        (v) => {
+            onChange(v);
+        },
+        [onChange],
+    );
+    const handleColorChange = useCallback(
+        (v) => {
+            return onChange(toStringColor(v));
+        },
+        [onChange],
+    );
+    const rgba = toRGBA(value);
 
-        return (
-            <Pop
-                popup={
-                    <div>
-                        <RgbaColorPicker color={rgba} onChange={handleColorChange} />
-                        <ColorInput value={value} onChange={handleInputChange} />
-                    </div>
-                }>
+    return (
+        <Pop
+            popup={
+                <div>
+                    <RgbaColorPicker color={rgba} onChange={handleColorChange} />
+                    <ColorInput value={value} onChange={handleInputChange} />
+                </div>
+            }>
+            <div className={cls['color-picker']}>
                 <div className={cls['color-square']} style={{ background: value }} />
-            </Pop>
-        );
-    },
-);
+                <div className={cls['color-value']} title={value}>
+                    {value}
+                </div>
+            </div>
+        </Pop>
+    );
+};
 
-export default Color;
+export default React.memo(Color);

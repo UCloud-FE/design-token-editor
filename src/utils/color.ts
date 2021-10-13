@@ -26,6 +26,12 @@ const toRGBA = (color: string) => {
     }
 };
 
+const transparent = (color: string, transparent: number) => {
+    const rgba = toRGBA(color);
+    rgba.a = transparent / 100;
+    return toStringColor(rgba);
+};
+
 const padString = (s: string) => {
     return ('00' + s).substr(-2);
 };
@@ -51,4 +57,4 @@ const isValidColor = (color: string) => {
     }
 };
 
-export { isValidColor, toRGBA, toStringColor };
+export { isValidColor, toRGBA, toStringColor, transparent };

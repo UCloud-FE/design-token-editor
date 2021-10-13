@@ -6,4 +6,4 @@ const Button = (props: ButtonHTMLAttributes<HTMLButtonElement>) => {
     return <button {...props} className={cls.button} />;
 };
 
-export default Button;
+export default React.memo(Button);

@@ -830,6 +830,9 @@
             }
         },
         "style": {
+            "_meta": {
+                "group": "线条样式"
+            },
             "base": {
                 "value": "solid",
                 "comment": "默认线条，实线"

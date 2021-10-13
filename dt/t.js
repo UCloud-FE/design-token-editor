@@ -71,6 +71,4 @@ const go = (dt, prefix) => {
 
 go(dt, 'T');
 
-console.log(map);
-
 require('fs').writeFileSync('./output.json', JSON.stringify(map, null, 4));
