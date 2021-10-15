@@ -1,0 +1,30 @@
+@import '../variables.scss';
+
+.exporter {
+    .download {
+        margin-bottom: 16px;
+    }
+    ul {
+        border-top: 1px solid $color-border;
+    }
+    li {
+        display: flex;
+        border-bottom: 1px solid $color-border;
+        padding: 8px 0;
+        .name {
+            width: 400px;
+            flex-shrink: 0;
+        }
+        .value.changed {
+            color: green;
+        }
+        .origin {
+            color: $color-font-disabled;
+            text-decoration: line-through;
+        }
+        .diff {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

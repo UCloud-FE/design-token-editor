@@ -1,8 +1,8 @@
 import React, { ChangeEvent, InputHTMLAttributes, useCallback } from 'react';
 
-import { Override } from '../utils/type';
-
 import cls from './index.module.scss';
+
+import { Override } from '../interface';
 
 const Input = ({
     onChange,
@@ -11,10 +11,13 @@ const Input = ({
     InputHTMLAttributes<HTMLInputElement>,
     { onChange: (v: string) => void }
 >) => {
-    const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-        onChange(e.target.value);
-    }, []);
+    const handleChange = useCallback(
+        (e: ChangeEvent<HTMLInputElement>) => {
+            onChange(e.target.value);
+        },
+        [onChange],
+    );
     return <input {...rest} className={cls.input} onChange={handleChange} />;
 };
 
-export default Input;
+export default React.memo(Input);

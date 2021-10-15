@@ -7,10 +7,11 @@ import React, {
     useState,
 } from 'react';
 
-import { Override } from '../utils/type';
 import cls from './index.module.scss';
 
-const Input = ({
+import { Override } from '../interface';
+
+const NumberInput = ({
     value = '',
     onChange,
     ...rest
@@ -35,7 +36,7 @@ const Input = ({
         const sValue = sValueRef.current;
         const finalValue = sValue.trim() ? sValue.trim() : '0';
         onChange(finalValue);
-    }, []);
+    }, [onChange]);
     useEffect(() => {
         if (!focus) {
             setSValue(value);
@@ -53,4 +54,4 @@ const Input = ({
     );
 };
 
-export default Input;
+export default React.memo(NumberInput);

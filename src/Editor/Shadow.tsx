@@ -1,13 +1,16 @@
 import React, { useCallback, useMemo, useContext, useRef, useEffect } from 'react';
 
+import cls from './index.module.scss';
+
+import { keyToValue, parseShadows, stringifyShadows } from '../utils';
+import { IShadow } from '../interface';
+import EditContext from '../EditContext';
 import NumberInput from './NumberInput';
 import ColorChooser from './ColorChooser';
 import Radio from './Radio';
-import cls from './index.module.scss';
-import { shadowsToBoxShadow, shadowTokenToShadows } from '../utils';
-import EditContext from '../EditContext';
 
 const shadowOptions = ['outset', 'inset'];
+
 const Shadow = ({
     value,
     onChange,
@@ -16,62 +19,53 @@ const Shadow = ({
     onChange: (v: string) => void;
 }) => {
     const { bi } = useContext(EditContext);
-    const shadows: string[][] = useMemo(() => shadowTokenToShadows(value), [value]);
+    const shadows: IShadow[] = useMemo(() => parseShadows(value), [value]);
     const shadow = shadows[0];
     const shadowRef = useRef(shadow);
     useEffect(() => {
         shadowRef.current = shadow;
+        console.log(shadow);
     }, [shadow]);
-    const sharedHandleChange = useCallback(
-        (v: string[]) => {
-            if (v[0] === 'outset') {
-                v.shift();
-            }
-            onChange(v.join(' '));
+    const handleShadowChange = useCallback(
+        (key: keyof IShadow) => (v: string) => {
+            const shadow = shadowRef.current;
+            const newValue = { ...shadow };
+            newValue[key] = v;
+            console.log(stringifyShadows([newValue]));
+            onChange(stringifyShadows([newValue]));
         },
         [onChange],
     );
-    const handleTypeChange = useCallback(
-        (type: string) => {
-            const shadow = shadowRef.current;
-            const newValue = [...shadow];
-            newValue[0] = type;
-            sharedHandleChange(newValue);
-        },
-        [sharedHandleChange],
-    );
-    const handleColorChange = useCallback(
-        (color: string) => {
-            const shadow = shadowRef.current;
-            const newValue = [...shadow];
-            newValue[5] = color;
-            sharedHandleChange(newValue);
-        },
-        [sharedHandleChange],
-    );
-    const handleNumberChange = useCallback(
-        (index: number) => (v: string) => {
-            const shadow = shadowRef.current;
-            const newValue = [...shadow];
-            newValue[index] = v;
-            sharedHandleChange(newValue);
-        },
-        [sharedHandleChange],
-    );
 
+    const handleTypeChange = useMemo(
+        () => handleShadowChange('type'),
+        [handleShadowChange],
+    );
+    const handleColorChange = useMemo(
+        () => handleShadowChange('color'),
+        [handleShadowChange],
+    );
     const handleOffsetXChange = useMemo(
-        () => handleNumberChange(1),
-        [handleNumberChange],
+        () => handleShadowChange('offsetX'),
+        [handleShadowChange],
     );
     const handleOffsetYChange = useMemo(
-        () => handleNumberChange(2),
-        [handleNumberChange],
+        () => handleShadowChange('offsetY'),
+        [handleShadowChange],
     );
-    const handleBlurChange = useMemo(() => handleNumberChange(3), [handleNumberChange]);
-    const handleSpreadChange = useMemo(() => handleNumberChange(4), [handleNumberChange]);
+    const handleBlurChange = useMemo(
+        () => handleShadowChange('blur'),
+        [handleShadowChange],
+    );
+    const handleSpreadChange = useMemo(
+        () => handleShadowChange('spread'),
+        [handleShadowChange],
+    );
 
-    const [type, offsetX, offsetY, blur, spread, color] = shadow;
-    const boxShadow = shadowsToBoxShadow(shadows, bi.color);
+    const { type, offsetX, offsetY, blur, spread, color } = shadow;
+    console.log(shadow);
+
+    const boxShadow = keyToValue(stringifyShadows(shadows), bi.color);
 
     return (
         <div className={cls['shadow-wrapper']}>
@@ -98,4 +92,4 @@ const Shadow = ({
     );
 };
 
-export default Shadow;
+export default React.memo(Shadow);

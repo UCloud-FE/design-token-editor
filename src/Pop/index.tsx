@@ -1,14 +1,32 @@
-import React, { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect, useRef } from 'react';
 
 import cls from './index.module.scss';
 
-const Pop = ({ children, popup }: { children: ReactNode; popup: ReactNode }) => {
-    const [visible, setVisible] = useState(false);
+import useUncontrolled from '../hooks/useUncontrolled';
+
+const Pop = ({
+    visible: _visible,
+    defaultVisible,
+    onVisibleChange,
+    children,
+    popup,
+}: {
+    visible?: boolean;
+    defaultVisible?: boolean;
+    onVisibleChange?: (visible: boolean) => void;
+    children: ReactNode;
+    popup: ReactNode;
+}) => {
+    const [visible, setVisible] = useUncontrolled(
+        _visible,
+        (defaultVisible = false),
+        onVisibleChange,
+    );
     const popupRef = useRef<HTMLDivElement>(null);
     const triggerRef = useRef<HTMLDivElement>(null);
     const handleSquareClick = useCallback(() => {
-        setVisible((visible) => !visible);
-    }, []);
+        setVisible(!visible);
+    }, [setVisible, visible]);
     useEffect(() => {
         const clean = (e: any) => {
             const target = e.target;
@@ -20,20 +38,22 @@ const Pop = ({ children, popup }: { children: ReactNode; popup: ReactNode }) => 
         return () => {
             document.removeEventListener('mousedown', clean);
         };
-    }, []);
+    }, [setVisible]);
     return (
         <div className={cls.wrapper}>
             <div className={cls.trigger} onClick={handleSquareClick} ref={triggerRef}>
                 {children}
             </div>
-            <div className={cls.popup} hidden={!visible} ref={popupRef}>
-                <div className={cls['popup-wrapper']}>
-                    <div className={cls.triangle}></div>
-                    {popup}
+            {visible && (
+                <div className={cls.popup} hidden={!visible} ref={popupRef}>
+                    <div className={cls['popup-wrapper']}>
+                        <div className={cls.triangle}></div>
+                        {popup}
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 };
 
-export default Pop;
+export default React.memo(Pop);

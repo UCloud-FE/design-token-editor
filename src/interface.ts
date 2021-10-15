@@ -1,8 +1,16 @@
+export interface RGBA {
+    r: number;
+    g: number;
+    b: number;
+    a?: number;
+}
+
 export interface BIToken {
     value: string;
     comment: string;
     parent: string[];
     key: string;
+    type?: string;
 }
 
 export interface BITokenGroup {
@@ -10,7 +18,7 @@ export interface BITokenGroup {
     info: BIToken[];
 }
 
-export type TokenType = 'COLOR' | 'SHADOW' | 'INPUT';
+export type TokenType = 'COLOR' | 'SHADOW' | 'GRADIENT' | 'INPUT';
 
 export interface TokenDefine {
     value: string;
@@ -31,3 +39,24 @@ export interface Token {
     type?: TokenType;
     target: string[];
 }
+
+export interface OutputTokens {
+    [key: string]: string;
+}
+
+export interface IShadow {
+    type: string;
+    offsetX: string;
+    offsetY: string;
+    blur: string;
+    spread: string;
+    color: string;
+}
+
+export interface IGradient {
+    angle: string;
+    start: string;
+    end: string;
+}
+
+export type Override<T1, T2> = Omit<T1, keyof T2> & T2;

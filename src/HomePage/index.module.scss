@@ -1,0 +1,112 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+
+.wrapper {
+    display: flex;
+    align-items: flex-start;
+    .right {
+        width: 410px;
+        margin-left: 24px;
+    }
+    .left {
+        flex: 1;
+    }
+}
+
+.component-list {
+    .component-wrapper {
+        @include card;
+        padding: 24px;
+        position: relative;
+        .title {
+            font-size: 20px;
+            font-weight: 400;
+            color: $color-font;
+            line-height: 32px;
+        }
+        .edit-button {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 22px;
+            cursor: pointer;
+            position: absolute;
+            right: 24px;
+            top: 24px;
+            display: inline-flex;
+            align-items: center;
+            > svg {
+                margin-right: 8px;
+                fill: currentColor;
+            }
+            &:hover {
+                color: $color-font-primary;
+            }
+        }
+    }
+    .component-wrapper + .component-wrapper {
+        margin-top: 24px;
+    }
+}
+
+.token-editor {
+    @include card;
+    padding: 0;
+
+    .panel {
+        padding: 24px;
+    }
+
+    .group-list {
+        > li + li {
+            margin-top: 12px;
+        }
+    }
+    nav > ul {
+        display: flex;
+
+        li {
+            flex: 1 1 auto;
+            text-align: center;
+            line-height: 52px;
+            font-size: 16px;
+            font-weight: 600;
+            color: $color-remark;
+            cursor: pointer;
+
+            &[data-active='false'] {
+                background: #fafafc;
+            }
+            &[data-active='true'] {
+                color: $color-font-primary;
+                font-weight: 600;
+            }
+            &[data-disabled='true'] {
+                cursor: not-allowed;
+            }
+        }
+    }
+    .group-name {
+        font-size: 16px;
+        font-weight: 600;
+        color: #0a1633;
+        line-height: 24px;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+    }
+    .panel {
+        max-height: 60vmin;
+        min-height: 30vmin;
+        overflow: auto;
+    }
+    .token-list {
+        .comment,
+        .key {
+            font-size: 14px;
+            line-height: 1.6em;
+            margin-bottom: 0.5em;
+        }
+        > li + li {
+            margin-top: 1em;
+        }
+    }
+}

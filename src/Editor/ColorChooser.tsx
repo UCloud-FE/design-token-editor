@@ -1,9 +1,19 @@
 import React, { useCallback, useContext, useMemo, MouseEvent } from 'react';
 
-import Pop from '../Pop';
-import { oldKeyToNew, biToGroups, biKeyToValue, keyToValue } from '../utils';
 import cls from './index.module.scss';
+
+import {
+    oldKeyToNew,
+    biToGroups,
+    biKeyToValue,
+    keyToValue,
+    parseColorKey,
+    stringifyColorKey,
+} from '../utils';
+import { toRGBA } from '../utils/color';
 import EditContext from '../EditContext';
+import Pop from '../Pop';
+import { Alpha } from './Alpha';
 
 const ColorChooser = ({
     value,
@@ -15,19 +25,44 @@ const ColorChooser = ({
     showValue?: boolean;
 }) => {
     const { bi, setPanel } = useContext(EditContext);
+    const { key: colorKey, transparent: { alpha } = { alpha: 1 } } = useMemo(() => {
+        return parseColorKey(value);
+    }, [value]);
     const groups = useMemo(() => biToGroups(bi), [bi]);
     const handleChange = useCallback(
         (e: MouseEvent) => {
             const target = e.target as HTMLLIElement;
             const value = target.dataset['value'];
-            value && onChange(`{${value}}`);
+            if (!value) return;
+            onChange(
+                stringifyColorKey({
+                    key: value,
+                    transparent: {
+                        alpha,
+                    },
+                }),
+            );
         },
-        [onChange],
+        [alpha, onChange],
     );
-    const color = biKeyToValue(value, bi.color);
+    const handleAlphaChange = useCallback(
+        (v: number) => {
+            onChange(
+                stringifyColorKey({
+                    key: colorKey,
+                    transparent: {
+                        alpha: v,
+                    },
+                }),
+            );
+        },
+        [colorKey, onChange],
+    );
     const goBIPanel = useCallback(() => {
         setPanel('bi');
     }, [setPanel]);
+    const color = biKeyToValue(colorKey, bi.color);
+    const rgbaColor = toRGBA(color);
 
     return (
         <Pop
@@ -39,7 +74,7 @@ const ColorChooser = ({
                                 <li className={cls['group']} key={group}>
                                     <h2 className={cls['group-name']}>{group}</h2>
                                     <ul className={cls['color-list']}>
-                                        {info.map((s, i) => {
+                                        {info.map((s) => {
                                             const {
                                                 value: _value,
                                                 comment,
@@ -66,6 +101,17 @@ const ColorChooser = ({
                             );
                         })}
                     </ul>
+                    <div className={cls['transparent-wrapper']}>
+                        <div className={cls['title']}>
+                            <span>透明度调整:</span>
+                            <span>{alpha}</span>
+                        </div>
+                        <Alpha
+                            alpha={alpha}
+                            onChange={handleAlphaChange}
+                            color={rgbaColor}
+                        />
+                    </div>
                     <div onClick={goBIPanel} className={cls['link']}>
                         源色关系图谱
                     </div>
@@ -81,4 +127,4 @@ const ColorChooser = ({
     );
 };
 
-export default ColorChooser;
+export default React.memo(ColorChooser);

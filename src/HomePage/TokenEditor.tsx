@@ -9,17 +9,16 @@ import React, {
 
 import cls from './index.module.scss';
 
-import dtc from '../dt/dtc.json';
-import dt from '../dt/dt.json';
-
-import { Token } from './interface';
-import { targetToName } from './utils';
-import EditContext from './EditContext';
-import Editor from './Editor';
+import dtc from '../../dt/dtc.json';
+import dt from '../../dt/dt.json';
+import { Token } from '../interface';
+import { targetToName } from '../utils';
+import EditContext from '../EditContext';
+import Editor from '../Editor';
 
 type TabType = 'component' | 'common';
 
-const ComponentPanelWithoutPanel = ({ component }: { component: string }) => {
+const ComponentPanelWithoutMemo = ({ component }: { component: string }) => {
     const items = useMemo(() => {
         const itemsGroup: Record<string, Token[]> = {
             [component]: [],
@@ -113,7 +112,7 @@ const ComponentPanelWithoutPanel = ({ component }: { component: string }) => {
     );
 };
 
-const ComponentPanel = React.memo(ComponentPanelWithoutPanel);
+const ComponentPanel = React.memo(ComponentPanelWithoutMemo);
 
 const CommonPanelWithoutMemo = ({
     commonDesignTokens,

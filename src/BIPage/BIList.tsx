@@ -2,8 +2,8 @@ import React, { useMemo, useContext, useCallback } from 'react';
 
 import cls from './index.module.scss';
 
-import { biToGroups, keyToValue, nameToTarget, targetToName } from './utils';
-import EditContext from './EditContext';
+import { biToGroups, keyToValue, nameToTarget, targetToName } from '../utils';
+import EditContext from '../EditContext';
 
 const BIList = ({
     value,
@@ -71,7 +71,7 @@ const BIList = ({
                         break;
                     }
                     if (new RegExp(`{${value.join('.')}}`).test(info.value)) {
-                        groups[group].push({
+                        dtGroups[group].push({
                             ...info,
                             parent,
                             key,

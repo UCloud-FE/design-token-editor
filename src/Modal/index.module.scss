@@ -1,0 +1,48 @@
+@import '../variables.scss';
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    .mask {
+        background-color: #000a;
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+    .body {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        background-color: #fff;
+        width: 80vw;
+        height: 80vh;
+        margin-top: 10vh;
+        .header {
+            flex-shrink: 0;
+            height: 48px;
+            font-size: 20px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 16px;
+            align-items: center;
+            position: relative;
+            border-bottom: 1px solid $color-border;
+            .closer {
+                cursor: pointer;
+            }
+        }
+        .content {
+            padding: 16px;
+            overflow: auto;
+            box-sizing: border-box;
+            flex: 1;
+        }
+    }
+}

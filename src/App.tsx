@@ -2,61 +2,77 @@ import React, { useCallback, useMemo, useRef, useState } from 'react';
 
 import cls from './index.module.scss';
 
-import bi from '../dt/bi.json';
-import dt from '../dt/dt.json';
-import dtc from '../dt/dtc.json';
-// import external from '../dt/external.json';
+import token from '../dt/full.json';
+import { clone, get, output } from './utils';
+import { OutputTokens } from './interface';
+import Button from './Editor/Button';
 import EditContext from './EditContext';
-import BIList from './BIList';
-import BITokenEditor from './BITokenEditor';
-import ComponentList from './ComponentList';
-import TokenEditor from './TokenEditor';
-import { clone, get } from './utils';
+import Modal from './Modal';
+import Exporter from './Exporter';
+import Importer from './Importer';
+import BIPage from './BIPage';
+import HomePage from './HomePage';
+
+const { builtin: bi, common: dtc, component: dt } = token;
 
 function App() {
-    const [component, setComponent] = useState('button');
+    const [outputModal, setOutputModal] = useState<{
+        output: OutputTokens;
+        origin: OutputTokens;
+    } | null>(null);
+    const [inputModal, setInputModal] = useState(false);
     const commonDesignTokens = useMemo(() => clone(dtc), []);
     const commonDesignTokensRef = useRef(commonDesignTokens);
     const componentDesignTokens = useMemo(() => clone(dt), []);
     const componentDesignTokensRef = useRef(componentDesignTokens);
+    const componentBuiltIn = useMemo(() => clone(bi), []);
+    const componentBuiltInRef = useRef(componentBuiltIn);
     const [panel, setPanel] = useState('default');
-    const [currentBI, setBI] = useState<string[]>(['base', 'environment']);
-
-    const currentBIInfo = useMemo(() => {
-        return get(bi.color, currentBI);
-    }, [currentBI]);
 
     const handleCommonTokenChange = useCallback((target: string[], value: string) => {
         const to = get(commonDesignTokensRef.current, target);
-        if (!to) return false;
+        if (!to) {
+            console.error(`Can't change value for ${target}`);
+            return false;
+        }
         to.value = value;
-        console.log(commonDesignTokensRef.current);
+        console.log(target, value, to);
         return true;
     }, []);
     const handleComponentTokenChange = useCallback((target: string[], value: string) => {
-        let to: any = componentDesignTokensRef.current;
-        for (let i = 0; i < target.length; i++) {
-            to = to[target[i]];
-            if (!to) {
-                console.error(`Can't change value for ${target}`);
-                return false;
-            }
+        const to = get(componentDesignTokensRef.current, target);
+        if (!to) {
+            console.error(`Can't change value for ${target}`);
+            return false;
         }
-        if (to) to.value = value;
+        to.value = value;
+        console.log(target, value, to);
         return true;
     }, []);
-    const handleComponentChange = useCallback((component: string) => {
-        return setComponent(component);
+    const handleBIValueChange = useCallback((target: string[], value: string) => {
+        return false;
     }, []);
-    const handleBIChange = useCallback((bi: string[]) => {
-        setBI(bi);
-    }, []);
-    const handleBack = useCallback(() => {
+    const handleBIBack = useCallback(() => {
         setPanel('default');
     }, [setPanel]);
-    const handleBIValueChange = useCallback((target: string[], value: string) => {
-        console.log(target, value);
-        return false;
+    const exportTokens = useCallback(() => {
+        setOutputModal({
+            output: output(
+                componentBuiltInRef.current,
+                componentDesignTokensRef.current,
+                commonDesignTokensRef.current,
+            ),
+            origin: output(bi, dt, dtc),
+        });
+    }, []);
+    const importTokens = useCallback(() => {
+        setInputModal(true);
+    }, []);
+    const handleOutputModalClose = useCallback(() => {
+        setOutputModal(null);
+    }, []);
+    const handleInputModalClose = useCallback(() => {
+        setInputModal(false);
     }, []);
 
     return (
@@ -66,35 +82,31 @@ function App() {
                 handleComponentTokenChange,
                 handleBIValueChange,
                 setPanel,
-                bi,
+                bi: componentBuiltInRef.current,
                 dt: componentDesignTokensRef.current,
                 dtc: commonDesignTokensRef.current,
             }}>
             <div className={cls['main']}>
-                <div hidden={panel !== 'default'} className={cls['wrapper']}>
-                    <div className={cls['left']}>
-                        <ComponentList onChange={handleComponentChange} />
+                <div hidden={panel !== 'default'}>
+                    <div>
+                        <Button onClick={exportTokens}>export</Button>
+                        <Button onClick={importTokens}>import</Button>
                     </div>
-                    <div className={cls['right']}>
-                        <TokenEditor
-                            component={component}
-                            commonDesignTokens={commonDesignTokens}
-                        />
-                    </div>
+                    <HomePage />
                 </div>
                 <div hidden={panel !== 'bi'}>
-                    <button className={cls['back']} onClick={handleBack}>
-                        {'<'}
-                    </button>
-                    <div className={cls['wrapper']}>
-                        <div className={cls['left']}>
-                            <BIList value={currentBI} onChange={handleBIChange} />
-                        </div>
-                        <div className={cls['right']}>
-                            <BITokenEditor {...currentBIInfo} target={currentBI} />
-                        </div>
-                    </div>
+                    <BIPage onBack={handleBIBack} />
                 </div>
+                {outputModal && (
+                    <Modal header={'EXPORT TOKENS'} onClose={handleOutputModalClose}>
+                        <Exporter {...outputModal} />
+                    </Modal>
+                )}
+                {inputModal && (
+                    <Modal header={'INPUT TOKENS'} onClose={handleInputModalClose}>
+                        <Importer onInput={console.log} />
+                    </Modal>
+                )}
             </div>
         </EditContext.Provider>
     );

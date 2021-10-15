@@ -1,0 +1,1868 @@
+{
+    "builtin": {
+        "color": {
+            "base": {
+                "_meta": {
+                    "group": "基础色"
+                },
+                "environment": {
+                    "value": "#ffffff",
+                    "comment": "环境色（如根据暗/亮主题切换）"
+                },
+                "environment_reverse": {
+                    "value": "#0a1633",
+                    "comment": "环境色反转"
+                },
+                "transparent": {
+                    "value": "transparent",
+                    "comment": "透明"
+                },
+                "white": {
+                    "value": "#ffffff",
+                    "comment": "白色"
+                },
+                "black": {
+                    "value": "#000000",
+                    "comment": "黑色"
+                }
+            },
+            "special": {
+                "_meta": {
+                    "group": "特殊色"
+                },
+                "special_1": {
+                    "value": "#e7e9f3",
+                    "comment": "特殊色/侧边栏"
+                }
+            },
+            "primary": {
+                "_meta": {
+                    "group": "主色"
+                },
+                "primary_1": {
+                    "value": "#f8f8ff",
+                    "comment": "主色/品牌色1"
+                },
+                "primary_2": {
+                    "value": "#EAEEFD",
+                    "comment": "主色/品牌色2"
+                },
+                "primary_3": {
+                    "value": "#e3e9ff",
+                    "comment": "主色/品牌色3"
+                },
+                "primary_6": {
+                    "value": "#6488fc",
+                    "comment": "主色/品牌色6"
+                },
+                "primary_7": {
+                    "value": "#5c76e8",
+                    "comment": "主色/品牌色7"
+                },
+                "primary_8": {
+                    "value": "#3860f4",
+                    "comment": "主色/品牌色8"
+                },
+                "primary_9": {
+                    "value": "#3357df",
+                    "comment": "主色/品牌色9"
+                }
+            },
+            "secondary": {
+                "_meta": {
+                    "group": "次色"
+                },
+                "secondary_1": {
+                    "value": "#fafafc",
+                    "comment": "中立色/灰1"
+                },
+                "secondary_2": {
+                    "value": "#f6f6fb",
+                    "comment": "中立色/灰2"
+                },
+                "secondary_3": {
+                    "value": "#efeff8",
+                    "comment": "中立色/灰3"
+                },
+                "secondary_4": {
+                    "value": "#dfe0f1",
+                    "comment": "中立色/灰4"
+                },
+                "secondary_5": {
+                    "value": "#d2d6ea",
+                    "comment": "中立色/灰5"
+                },
+                "secondary_6": {
+                    "value": "transparent",
+                    "comment": "中立色/灰6（预留）"
+                },
+                "secondary_7": {
+                    "value": "#c3cad9",
+                    "comment": "中立色/灰7"
+                },
+                "secondary_8": {
+                    "value": "#7a8baa",
+                    "comment": "中立色/灰8"
+                },
+                "secondary_9": {
+                    "value": "#526075",
+                    "comment": "中立色/灰9"
+                }
+            },
+            "status": {
+                "_meta": {
+                    "group": "状态色"
+                },
+                "notice_1": {
+                    "value": "#fafafc",
+                    "comment": "功能色/提示1"
+                },
+                "notice_2": {
+                    "value": "#d2d6ea",
+                    "comment": "功能色/提示2"
+                },
+                "notice_3": {
+                    "value": "#526075",
+                    "comment": "功能色/提示3"
+                },
+                "success_1": {
+                    "value": "#e6ffed",
+                    "comment": "功能色/正确1"
+                },
+                "success_2": {
+                    "value": "#9effa5",
+                    "comment": "功能色/正确2"
+                },
+                "success_3": {
+                    "value": "#15ad31",
+                    "comment": "功能色/正确3"
+                },
+                "success_4": {
+                    "value": "#00591c",
+                    "comment": "功能色/正确4"
+                },
+                "warning_1": {
+                    "value": "#fffce6",
+                    "comment": "功能色/警告1"
+                },
+                "warning_2": {
+                    "value": "#ffe38d",
+                    "comment": "功能色/警告2"
+                },
+                "warning_3": {
+                    "value": "#ffc42e",
+                    "comment": "功能色/警告3"
+                },
+                "warning_4": {
+                    "value": "#ffc42e",
+                    "comment": "功能色/警告4"
+                },
+                "error_1": {
+                    "value": "#fff0f0",
+                    "comment": "功能色/错误1"
+                },
+                "error_2": {
+                    "value": "#fed4d4",
+                    "comment": "功能色/错误2"
+                },
+                "error_3": {
+                    "value": "#f44336",
+                    "comment": "功能色/错误3"
+                },
+                "error_4": {
+                    "value": "#5a0c06",
+                    "comment": "功能色/错误4"
+                },
+                "disabled_1": {
+                    "value": "#f7f7f7",
+                    "comment": "功能色/禁用1"
+                },
+                "disabled_2": {
+                    "value": "#d9d9d9",
+                    "comment": "功能色/禁用2"
+                },
+                "disabled_3": {
+                    "value": "#cccccc",
+                    "comment": "功能色/禁用3"
+                }
+            },
+            "gradient": {
+                "_meta": {
+                    "group": "渐变色"
+                },
+                "primary_1_1": {
+                    "value": "#6488fc",
+                    "comment": "渐变色/主色1/起始"
+                },
+                "primary_1_2": {
+                    "value": "#3860f4",
+                    "comment": "渐变色/主色1/结束"
+                },
+                "primary_2_1": {
+                    "value": "#5c76e8",
+                    "comment": "渐变色/主色2/起始"
+                },
+                "primary_2_2": {
+                    "value": "#3357df",
+                    "comment": "渐变色/主色2/结束"
+                },
+                "content_1_1": {
+                    "value": "#ebedf5",
+                    "comment": "渐变色/内容背景色/起始"
+                },
+                "content_1_2": {
+                    "value": "#d8dceb",
+                    "comment": "渐变色/内容背景色/结束"
+                },
+                "primary_1": {
+                    "value": "linear-gradient(135deg, {color.brand.gradient.primary_1_1.value} 0%,{color.brand.gradient.primary_1_2.value} 100%)",
+                    "comment": "渐变色/主色1",
+                    "type": "gradient"
+                },
+                "primary_2": {
+                    "value": "linear-gradient(135deg, {color.brand.gradient.primary_2_1.value} 0%,{color.brand.gradient.primary_2_2.value} 100%)",
+                    "comment": "渐变色/主色2",
+                    "type": "gradient"
+                },
+                "content_1": {
+                    "value": "linear-gradient(180deg, {color.brand.gradient.content_1_1.value} 0%, {color.brand.gradient.content_1_1.value} 100%)",
+                    "comment": "渐变色/内容背景色",
+                    "type": "gradient"
+                }
+            },
+            "assist": {
+                "_meta": {
+                    "group": "辅助色"
+                },
+                "purple_1": {
+                    "value": "#f4ebf9",
+                    "comment": "辅助色/紫-1"
+                },
+                "purple_2": {
+                    "value": "#e1ccf0",
+                    "comment": "辅助色/紫-2"
+                },
+                "purple_3": {
+                    "value": "#c6a7e5",
+                    "comment": "辅助色/紫-3"
+                },
+                "purple_4": {
+                    "value": "#af85db",
+                    "comment": "辅助色/紫-4"
+                },
+                "purple_5": {
+                    "value": "#a06dd4",
+                    "comment": "辅助色/紫-5"
+                },
+                "purple_6": {
+                    "value": "#935ecf",
+                    "comment": "辅助色/紫-6"
+                },
+                "purple_7": {
+                    "value": "#6b3aaa",
+                    "comment": "辅助色/紫-7"
+                },
+                "purple_8": {
+                    "value": "#4f298a",
+                    "comment": "辅助色/紫-8"
+                },
+                "purple_9": {
+                    "value": "#322044",
+                    "comment": "辅助色/紫-9"
+                },
+                "lightblue_1": {
+                    "value": "#e7f5fd",
+                    "comment": "辅助色/浅蓝-1"
+                },
+                "lightblue_2": {
+                    "value": "#c1e9fb",
+                    "comment": "辅助色/浅蓝-2"
+                },
+                "lightblue_3": {
+                    "value": "#93e2f8",
+                    "comment": "辅助色/浅蓝-3"
+                },
+                "lightblue_4": {
+                    "value": "#6ad7f5",
+                    "comment": "辅助色/浅蓝-4"
+                },
+                "lightblue_5": {
+                    "value": "#4dcff4",
+                    "comment": "辅助色/浅蓝-5"
+                },
+                "lightblue_6": {
+                    "value": "#3ad0f3",
+                    "comment": "辅助色/浅蓝-6"
+                },
+                "lightblue_7": {
+                    "value": "#17b1cd",
+                    "comment": "辅助色/浅蓝-7"
+                },
+                "lightblue_8": {
+                    "value": "#0a95a8",
+                    "comment": "辅助色/浅蓝-8"
+                },
+                "lightblue_9": {
+                    "value": "#154250",
+                    "comment": "辅助色/浅蓝-9"
+                },
+                "blue_1": {
+                    "value": "#e7eefd",
+                    "comment": "辅助色/蓝-1"
+                },
+                "blue_2": {
+                    "value": "#c1d4fa",
+                    "comment": "辅助色/蓝-2"
+                },
+                "blue_3": {
+                    "value": "#95bff7",
+                    "comment": "辅助色/蓝-3"
+                },
+                "blue_4": {
+                    "value": "#6ca7f4",
+                    "comment": "辅助色/蓝-4"
+                },
+                "blue_5": {
+                    "value": "#4f95f2",
+                    "comment": "辅助色/蓝-5"
+                },
+                "blue_6": {
+                    "value": "#3c90f0",
+                    "comment": "辅助色/蓝-6"
+                },
+                "blue_7": {
+                    "value": "#1971cb",
+                    "comment": "辅助色/蓝-7"
+                },
+                "blue_8": {
+                    "value": "#0c5fa7",
+                    "comment": "辅助色/蓝-8"
+                },
+                "blue_9": {
+                    "value": "#152d4f",
+                    "comment": "辅助色/蓝-9"
+                },
+                "orange_1": {
+                    "value": "#fff5e6",
+                    "comment": "辅助色/橙-1"
+                },
+                "orange_2": {
+                    "value": "#ffe3bd",
+                    "comment": "辅助色/橙-2"
+                },
+                "orange_3": {
+                    "value": "#ffc48d",
+                    "comment": "辅助色/橙-3"
+                },
+                "orange_4": {
+                    "value": "#ffac61",
+                    "comment": "辅助色/橙-4"
+                },
+                "orange_5": {
+                    "value": "#ff9e42",
+                    "comment": "辅助色/橙-5"
+                },
+                "orange_6": {
+                    "value": "#FF8C2E",
+                    "comment": "辅助色/橙-6"
+                },
+                "orange_7": {
+                    "value": "#d9610b",
+                    "comment": "辅助色/橙-7"
+                },
+                "orange_8": {
+                    "value": "#B34400",
+                    "comment": "辅助色/橙-8"
+                },
+                "orange_9": {
+                    "value": "#543211",
+                    "comment": "辅助色/橙-9"
+                },
+                "yellow_1": {
+                    "value": "#fffce6",
+                    "comment": "辅助色/黄-1"
+                },
+                "yellow_2": {
+                    "value": "#fff5bd",
+                    "comment": "辅助色/黄-2"
+                },
+                "yellow_3": {
+                    "value": "#ffe38d",
+                    "comment": "辅助色/黄-3"
+                },
+                "yellow_4": {
+                    "value": "#FFD761",
+                    "comment": "辅助色/黄-4"
+                },
+                "yellow_5": {
+                    "value": "#ffd042",
+                    "comment": "辅助色/黄-5"
+                },
+                "yellow_6": {
+                    "value": "#ffc42e",
+                    "comment": "辅助色/黄-6"
+                },
+                "yellow_7": {
+                    "value": "#d9980b",
+                    "comment": "辅助色/黄-7"
+                },
+                "yellow_8": {
+                    "value": "#b37400",
+                    "comment": "辅助色/黄-8"
+                },
+                "yellow_9": {
+                    "value": "#544411",
+                    "comment": "辅助色/黄-9"
+                },
+                "cyan_1": {
+                    "value": "#e8fcfc",
+                    "comment": "辅助色/青-1"
+                },
+                "cyan_2": {
+                    "value": "#c3f8f5",
+                    "comment": "辅助色/青-2"
+                },
+                "cyan_3": {
+                    "value": "#98f3e5",
+                    "comment": "辅助色/青-3"
+                },
+                "cyan_4": {
+                    "value": "#70efdb",
+                    "comment": "辅助色/青-4"
+                },
+                "cyan_5": {
+                    "value": "#55ecd6",
+                    "comment": "辅助色/青-5"
+                },
+                "cyan_6": {
+                    "value": "#43eacb",
+                    "comment": "辅助色/青-6"
+                },
+                "cyan_7": {
+                    "value": "#1fc4a1",
+                    "comment": "辅助色/青-7"
+                },
+                "cyan_8": {
+                    "value": "#12a17d",
+                    "comment": "辅助色/青-8"
+                },
+                "cyan_9": {
+                    "value": "#174d45",
+                    "comment": "辅助色/青-9"
+                },
+                "red_1": {
+                    "value": "#fff0f0",
+                    "comment": "辅助色/红-1"
+                },
+                "red_2": {
+                    "value": "#ffe2e2",
+                    "comment": "辅助色/红-2"
+                },
+                "red_3": {
+                    "value": "#fed4d4",
+                    "comment": "辅助色/红-3"
+                },
+                "red_4": {
+                    "value": "#FBA49F",
+                    "comment": "辅助色/红-4"
+                },
+                "red_5": {
+                    "value": "#F7736B",
+                    "comment": "辅助色/红-5"
+                },
+                "red_6": {
+                    "value": "#f44336",
+                    "comment": "辅助色/红-6"
+                },
+                "red_7": {
+                    "value": "#C13126",
+                    "comment": "辅助色/红-7"
+                },
+                "red_8": {
+                    "value": "#8D1E16",
+                    "comment": "辅助色/红-8"
+                },
+                "red_9": {
+                    "value": "#5a0c06",
+                    "comment": "辅助色/红-9"
+                },
+                "green_1": {
+                    "value": "#E6FFED",
+                    "comment": "辅助色/绿-1"
+                },
+                "green_2": {
+                    "value": "#C2FFC9",
+                    "comment": "辅助色/绿-2"
+                },
+                "green_3": {
+                    "value": "#9EFFA5",
+                    "comment": "辅助色/绿-3"
+                },
+                "green_4": {
+                    "value": "#70E47E",
+                    "comment": "辅助色/绿-4"
+                },
+                "green_5": {
+                    "value": "#43C858",
+                    "comment": "辅助色/绿-5"
+                },
+                "green_6": {
+                    "value": "#15AD31",
+                    "comment": "辅助色/绿-6"
+                },
+                "green_7": {
+                    "value": "#0E912A",
+                    "comment": "辅助色/绿-7"
+                },
+                "green_8": {
+                    "value": "#077523",
+                    "comment": "辅助色/绿-8"
+                },
+                "green_9": {
+                    "value": "#00591C",
+                    "comment": "辅助色/绿-9"
+                }
+            }
+        }
+    },
+    "common": {
+        "color": {
+            "bg": {
+                "_meta": {
+                    "group": "背景色"
+                },
+                "menu": {
+                    "value": "{color.brand.white.value}",
+                    "comment": "背景/菜单"
+                },
+                "highlight": {
+                    "value": "{color.brand.yellow_2.value}",
+                    "comment": "背景/高亮"
+                },
+                "white": {
+                    "value": "{color.brand.white.value}",
+                    "comment": "背景/白色，替换为T_COLOR_BG_DEFAULT_BRIGHT",
+                    "isDeprecated": true
+                },
+                "transparent": {
+                    "value": "{color.brand.transparent.value}",
+                    "comment": "背景/透明"
+                },
+                "primary_1": {
+                    "value": "{color.brand.primary_8.value}",
+                    "comment": "背景/纯色/品牌色1"
+                },
+                "primary_2": {
+                    "value": "{color.brand.primary_9.value}",
+                    "comment": "背景/纯色/品牌色2"
+                },
+                "primary_3": {
+                    "value": "{color.brand.gradient.primary_1.value}",
+                    "comment": "背景/渐变/品牌色3"
+                },
+                "primary_4": {
+                    "value": "{color.brand.gradient.primary_2.value}",
+                    "comment": "背景/渐变/品牌色4"
+                },
+                "primary_5": {
+                    "value": "{color.brand.primary_1.value}",
+                    "comment": "背景/浅色/品牌色5"
+                },
+                "default": {
+                    "normal": {
+                        "value": "{color.brand.white.value}",
+                        "comment": "背景/常规/默认色，替换为T_COLOR_BG_DEFAULT_BRIGHT",
+                        "isDeprecated": true
+                    },
+                    "bright": {
+                        "value": "{color.brand.white.value}",
+                        "comment": "背景/常规/亮色"
+                    },
+                    "light": {
+                        "value": "{color.brand.secondary_1.value}",
+                        "comment": "背景/常规/浅色"
+                    },
+                    "dark": {
+                        "value": "{color.brand.secondary_2.value}",
+                        "comment": "背景/常规/深色"
+                    },
+                    "hover": {
+                        "value": "{color.brand.primary_2.value}",
+                        "comment": "背景/常规/hover"
+                    }
+                },
+                "content_1": {
+                    "value": "{color.brand.gradient.content_1.value}",
+                    "comment": "背景/渐变/内容区"
+                },
+                "notice": {
+                    "light": {
+                        "value": "{color.brand.notice_1.value}",
+                        "comment": "背景/提示状态/浅色"
+                    },
+                    "dark": {
+                        "value": "{color.brand.notice_3.value}",
+                        "comment": "背景/提示状态/深色"
+                    }
+                },
+                "success": {
+                    "light": {
+                        "value": "{color.brand.success_1.value}",
+                        "comment": "背景/成功状态/浅色"
+                    },
+                    "dark": {
+                        "value": "{color.brand.success_3.value}",
+                        "comment": "背景/成功状态/深色"
+                    }
+                },
+                "warning": {
+                    "light": {
+                        "value": "{color.brand.warning_1.value}",
+                        "comment": "背景/警告状态/浅色"
+                    },
+                    "dark": {
+                        "value": "{color.brand.warning_3.value}",
+                        "comment": "背景/警告状态/深色"
+                    }
+                },
+                "error": {
+                    "light": {
+                        "value": "{color.brand.error_1.value}",
+                        "comment": "背景/错误状态/浅色"
+                    },
+                    "dark": {
+                        "value": "{color.brand.error_3.value}",
+                        "comment": "背景/错误状态/深色"
+                    }
+                },
+                "disabled": {
+                    "light": {
+                        "value": "{color.brand.disabled_1.value}",
+                        "comment": "背景/禁用状态/浅色"
+                    },
+                    "dark": {
+                        "value": "{color.brand.disabled_3.value}",
+                        "comment": "背景/禁用状态/深色"
+                    }
+                },
+                "sidebar": {
+                    "value": "{color.brand.sidebar.value}",
+                    "comment": "背景/侧边栏"
+                }
+            },
+            "line": {
+                "_meta": {
+                    "group": "线条色"
+                },
+                "default": {
+                    "light": {
+                        "value": "{color.brand.secondary_5.value}",
+                        "comment": "线条/常规/浅色"
+                    },
+                    "dark": {
+                        "value": "{color.brand.secondary_7.value}",
+                        "comment": "线条/常规/深色"
+                    },
+                    "transparent": {
+                        "value": "{color.brand.transparent.value}",
+                        "comment": "线条/常规/透明"
+                    }
+                },
+                "primary": {
+                    "default": {
+                        "value": "{color.brand.primary_8.value}",
+                        "comment": "线条/主色"
+                    },
+                    "hover": {
+                        "value": "{color.brand.primary_9.value}",
+                        "comment": "线条/主色/hover"
+                    },
+                    "light": {
+                        "value": "{color.brand.primary_3.value}",
+                        "comment": "线条/浅色"
+                    }
+                },
+                "notice": {
+                    "light": {
+                        "value": "{color.brand.notice_2.value}",
+                        "comment": "线条/提示/浅色"
+                    },
+                    "dark": {
+                        "value": "{color.brand.notice_3.value}",
+                        "comment": "线条/提示/深色"
+                    }
+                },
+                "success": {
+                    "light": {
+                        "value": "{color.brand.success_2.value}",
+                        "comment": "线条/正确/浅色"
+                    },
+                    "dark": {
+                        "value": "{color.brand.success_3.value}",
+                        "comment": "线条/正确/深色"
+                    }
+                },
+                "warning": {
+                    "light": {
+                        "value": "{color.brand.warning_2.value}",
+                        "comment": "线条/警告/浅色"
+                    },
+                    "dark": {
+                        "value": "{color.brand.warning_3.value}",
+                        "comment": "线条/警告/深色"
+                    }
+                },
+                "error": {
+                    "light": {
+                        "value": "{color.brand.error_2.value}",
+                        "comment": "线条/错误/浅色"
+                    },
+                    "dark": {
+                        "value": "{color.brand.error_3.value}",
+                        "comment": "线条/错误/深色"
+                    }
+                },
+                "disabled": {
+                    "light": {
+                        "value": "{color.brand.disabled_2.value}",
+                        "comment": "线条/禁用/浅色"
+                    },
+                    "dark": {
+                        "value": "{color.brand.disabled_3.value}",
+                        "comment": "线条/禁用/深色"
+                    }
+                }
+            },
+            "text": {
+                "_meta": {
+                    "group": "文本色"
+                },
+                "white": {
+                    "value": "{color.brand.white.value}",
+                    "comment": "文本/白色，替换为T_COLOR_TEXT_DEFAULT_BRIGHT",
+                    "isDeprecated": true
+                },
+                "default": {
+                    "normal": {
+                        "value": "{color.brand.white.value}",
+                        "comment": "文本/常规/默认色，替换为T_COLOR_TEXT_DEFAULT_BRIGHT",
+                        "isDeprecated": true
+                    },
+                    "bright": {
+                        "value": "{color.brand.white.value}",
+                        "comment": "文本/常规/亮色"
+                    },
+                    "light": {
+                        "value": "{color.brand.secondary_9.value}",
+                        "comment": "文本/常规/浅色"
+                    },
+                    "dark": {
+                        "value": "{color.brand.black.value}",
+                        "comment": "文本/常规/深色"
+                    }
+                },
+                "primary": {
+                    "default": {
+                        "value": "{color.brand.primary_8.value}",
+                        "comment": "文本/主色"
+                    },
+                    "hover": {
+                        "value": "{color.brand.primary_9.value}",
+                        "comment": "文本/主色/hover"
+                    }
+                },
+                "remark": {
+                    "light": {
+                        "value": "{color.brand.black_transparent.20.value}",
+                        "comment": "文本/备注/浅色"
+                    },
+                    "dark": {
+                        "value": "{color.brand.secondary_8.value}",
+                        "comment": "文本/备注/深色"
+                    }
+                },
+                "success": {
+                    "value": "{color.brand.success_3.value}",
+                    "comment": "文本/正确"
+                },
+                "success_dark": {
+                    "value": "{color.brand.success_4.value}",
+                    "comment": "文本/正确/深色"
+                },
+                "warning": {
+                    "value": "{color.brand.warning_3.value}",
+                    "comment": "文本/警告"
+                },
+                "warning_dark": {
+                    "value": "{color.brand.warning_4.value}",
+                    "comment": "文本/警告/深色"
+                },
+                "error": {
+                    "value": "{color.brand.error_3.value}",
+                    "comment": "文本/错误"
+                },
+                "error_dark": {
+                    "value": "{color.brand.error_4.value}",
+                    "comment": "文本/错误/深色"
+                },
+                "disabled": {
+                    "value": "{color.brand.disabled_3.value}",
+                    "comment": "文本/禁用"
+                },
+                "system": {
+                    "white": {
+                        "value": "{color.brand.system.white.value}",
+                        "comment": "系统白色文本"
+                    },
+                    "black": {
+                        "value": "{color.brand.system.black.value}",
+                        "comment": "系统黑色文本"
+                    }
+                }
+            },
+            "legend": {
+                "_meta": {
+                    "group": "图例色"
+                },
+                "purple_1": {
+                    "value": "{color.brand.purple_1.value}",
+                    "comment": "图例/紫-1"
+                },
+                "purple_2": {
+                    "value": "{color.brand.purple_2.value}",
+                    "comment": "图例/紫-2"
+                },
+                "purple_3": {
+                    "value": "{color.brand.purple_3.value}",
+                    "comment": "图例/紫-3"
+                },
+                "purple_4": {
+                    "value": "{color.brand.purple_4.value}",
+                    "comment": "图例/紫-4"
+                },
+                "purple_5": {
+                    "value": "{color.brand.purple_5.value}",
+                    "comment": "图例/紫-5"
+                },
+                "purple_6": {
+                    "value": "{color.brand.purple_6.value}",
+                    "comment": "图例/紫-6"
+                },
+                "purple_7": {
+                    "value": "{color.brand.purple_7.value}",
+                    "comment": "图例/紫-7"
+                },
+                "purple_8": {
+                    "value": "{color.brand.purple_8.value}",
+                    "comment": "图例/紫-8"
+                },
+                "purple_9": {
+                    "value": "{color.brand.purple_9.value}",
+                    "comment": "图例/紫-9"
+                },
+                "lightblue_1": {
+                    "value": "{color.brand.lightblue_1.value}",
+                    "comment": "图例/浅蓝-1"
+                },
+                "lightblue_2": {
+                    "value": "{color.brand.lightblue_2.value}",
+                    "comment": "图例/浅蓝-2"
+                },
+                "lightblue_3": {
+                    "value": "{color.brand.lightblue_3.value}",
+                    "comment": "图例/浅蓝-3"
+                },
+                "lightblue_4": {
+                    "value": "{color.brand.lightblue_4.value}",
+                    "comment": "图例/浅蓝-4"
+                },
+                "lightblue_5": {
+                    "value": "{color.brand.lightblue_5.value}",
+                    "comment": "图例/浅蓝-5"
+                },
+                "lightblue_6": {
+                    "value": "{color.brand.lightblue_6.value}",
+                    "comment": "图例/浅蓝-6"
+                },
+                "lightblue_7": {
+                    "value": "{color.brand.lightblue_7.value}",
+                    "comment": "图例/浅蓝-7"
+                },
+                "lightblue_8": {
+                    "value": "{color.brand.lightblue_8.value}",
+                    "comment": "图例/浅蓝-8"
+                },
+                "lightblue_9": {
+                    "value": "{color.brand.lightblue_9.value}",
+                    "comment": "图例/浅蓝-9"
+                },
+                "blue_1": {
+                    "value": "{color.brand.blue_1.value}",
+                    "comment": "图例/蓝-1"
+                },
+                "blue_2": {
+                    "value": "{color.brand.blue_2.value}",
+                    "comment": "图例/蓝-2"
+                },
+                "blue_3": {
+                    "value": "{color.brand.blue_3.value}",
+                    "comment": "图例/蓝-3"
+                },
+                "blue_4": {
+                    "value": "{color.brand.blue_4.value}",
+                    "comment": "图例/蓝-4"
+                },
+                "blue_5": {
+                    "value": "{color.brand.blue_5.value}",
+                    "comment": "图例/蓝-5"
+                },
+                "blue_6": {
+                    "value": "{color.brand.blue_6.value}",
+                    "comment": "图例/蓝-6"
+                },
+                "blue_7": {
+                    "value": "{color.brand.blue_7.value}",
+                    "comment": "图例/蓝-7"
+                },
+                "blue_8": {
+                    "value": "{color.brand.blue_8.value}",
+                    "comment": "图例/蓝-8"
+                },
+                "blue_9": {
+                    "value": "{color.brand.blue_9.value}",
+                    "comment": "图例/蓝-9"
+                },
+                "orange_1": {
+                    "value": "{color.brand.orange_1.value}",
+                    "comment": "图例/橙-1"
+                },
+                "orange_2": {
+                    "value": "{color.brand.orange_2.value}",
+                    "comment": "图例/橙-2"
+                },
+                "orange_3": {
+                    "value": "{color.brand.orange_3.value}",
+                    "comment": "图例/橙-3"
+                },
+                "orange_4": {
+                    "value": "{color.brand.orange_4.value}",
+                    "comment": "图例/橙-4"
+                },
+                "orange_5": {
+                    "value": "{color.brand.orange_5.value}",
+                    "comment": "图例/橙-5"
+                },
+                "orange_6": {
+                    "value": "{color.brand.orange_6.value}",
+                    "comment": "图例/橙-6"
+                },
+                "orange_7": {
+                    "value": "{color.brand.orange_7.value}",
+                    "comment": "图例/橙-7"
+                },
+                "orange_8": {
+                    "value": "{color.brand.orange_8.value}",
+                    "comment": "图例/橙-8"
+                },
+                "orange_9": {
+                    "value": "{color.brand.orange_9.value}",
+                    "comment": "图例/橙-9"
+                },
+                "yellow_1": {
+                    "value": "{color.brand.yellow_1.value}",
+                    "comment": "图例/黄-1"
+                },
+                "yellow_2": {
+                    "value": "{color.brand.yellow_2.value}",
+                    "comment": "图例/黄-2"
+                },
+                "yellow_3": {
+                    "value": "{color.brand.yellow_3.value}",
+                    "comment": "图例/黄-3"
+                },
+                "yellow_4": {
+                    "value": "{color.brand.yellow_4.value}",
+                    "comment": "图例/黄-4"
+                },
+                "yellow_5": {
+                    "value": "{color.brand.yellow_5.value}",
+                    "comment": "图例/黄-5"
+                },
+                "yellow_6": {
+                    "value": "{color.brand.yellow_6.value}",
+                    "comment": "图例/黄-6"
+                },
+                "yellow_7": {
+                    "value": "{color.brand.yellow_7.value}",
+                    "comment": "图例/黄-7"
+                },
+                "yellow_8": {
+                    "value": "{color.brand.yellow_8.value}",
+                    "comment": "图例/黄-8"
+                },
+                "yellow_9": {
+                    "value": "{color.brand.yellow_9.value}",
+                    "comment": "图例/黄-9"
+                },
+                "cyan_1": {
+                    "value": "{color.brand.cyan_1.value}",
+                    "comment": "图例/青-1"
+                },
+                "cyan_2": {
+                    "value": "{color.brand.cyan_2.value}",
+                    "comment": "图例/青-2"
+                },
+                "cyan_3": {
+                    "value": "{color.brand.cyan_3.value}",
+                    "comment": "图例/青-3"
+                },
+                "cyan_4": {
+                    "value": "{color.brand.cyan_4.value}",
+                    "comment": "图例/青-4"
+                },
+                "cyan_5": {
+                    "value": "{color.brand.cyan_5.value}",
+                    "comment": "图例/青-5"
+                },
+                "cyan_6": {
+                    "value": "{color.brand.cyan_6.value}",
+                    "comment": "图例/青-6"
+                },
+                "cyan_7": {
+                    "value": "{color.brand.cyan_7.value}",
+                    "comment": "图例/青-7"
+                },
+                "cyan_8": {
+                    "value": "{color.brand.cyan_8.value}",
+                    "comment": "图例/青-8"
+                },
+                "cyan_9": {
+                    "value": "{color.brand.cyan_9.value}",
+                    "comment": "图例/青-9"
+                },
+                "red_1": {
+                    "value": "{color.brand.red_1.value}",
+                    "comment": "图例/红-1"
+                },
+                "red_2": {
+                    "value": "{color.brand.red_2.value}",
+                    "comment": "图例/红-2"
+                },
+                "red_3": {
+                    "value": "{color.brand.red_3.value}",
+                    "comment": "图例/红-3"
+                },
+                "red_4": {
+                    "value": "{color.brand.red_4.value}",
+                    "comment": "图例/红-4"
+                },
+                "red_5": {
+                    "value": "{color.brand.red_5.value}",
+                    "comment": "图例/红-5"
+                },
+                "red_6": {
+                    "value": "{color.brand.red_6.value}",
+                    "comment": "图例/红-6"
+                },
+                "red_7": {
+                    "value": "{color.brand.red_7.value}",
+                    "comment": "图例/红-7"
+                },
+                "red_8": {
+                    "value": "{color.brand.red_8.value}",
+                    "comment": "图例/红-8"
+                },
+                "red_9": {
+                    "value": "{color.brand.red_9.value}",
+                    "comment": "图例/红-9"
+                },
+                "green_1": {
+                    "value": "{color.brand.green_1.value}",
+                    "comment": "图例/绿-1"
+                },
+                "green_2": {
+                    "value": "{color.brand.green_2.value}",
+                    "comment": "图例/绿-2"
+                },
+                "green_3": {
+                    "value": "{color.brand.green_3.value}",
+                    "comment": "图例/绿-3"
+                },
+                "green_4": {
+                    "value": "{color.brand.green_4.value}",
+                    "comment": "图例/绿-4"
+                },
+                "green_5": {
+                    "value": "{color.brand.green_5.value}",
+                    "comment": "图例/绿-5"
+                },
+                "green_6": {
+                    "value": "{color.brand.green_6.value}",
+                    "comment": "图例/绿-6"
+                },
+                "green_7": {
+                    "value": "{color.brand.green_7.value}",
+                    "comment": "图例/绿-7"
+                },
+                "green_8": {
+                    "value": "{color.brand.green_8.value}",
+                    "comment": "图例/绿-8"
+                },
+                "green_9": {
+                    "value": "{color.brand.green_9.value}",
+                    "comment": "图例/绿-9"
+                }
+            }
+        },
+        "height": {
+            "_meta": {
+                "group": "高度"
+            },
+            "sm": {
+                "value": "24px",
+                "comment": "小号控件高度"
+            },
+            "md": {
+                "value": "28px",
+                "comment": "中号控件高度"
+            },
+            "lg": {
+                "value": "32px",
+                "comment": "大号控件高度"
+            }
+        },
+        "width": {
+            "_meta": {
+                "group": "宽度"
+            },
+            "sm": {
+                "value": "144px",
+                "comment": "小号控件宽度"
+            },
+            "md": {
+                "value": "192px",
+                "comment": "中号控件宽度"
+            },
+            "lg": {
+                "value": "320px",
+                "comment": "大号控件宽度"
+            }
+        },
+        "corner": {
+            "_meta": {
+                "group": "圆角"
+            },
+            "sm": {
+                "value": "2px",
+                "comment": "默认圆角，常用于按钮/输入框等"
+            },
+            "lg": {
+                "value": "4px",
+                "comment": "大圆角，用于卡片圆角"
+            },
+            "circle": {
+                "value": "50%",
+                "comment": "圆形"
+            },
+            "zero": {
+                "value": "0",
+                "comment": "直角"
+            }
+        },
+        "square": {
+            "_meta": {
+                "group": "方块"
+            },
+            "sm": {
+                "value": "24px",
+                "comment": "小正方形的宽度/高度"
+            },
+            "md": {
+                "value": "28px",
+                "comment": "中正方形的宽度/高度"
+            },
+            "lg": {
+                "value": "32px",
+                "comment": "大正方形的宽度/高度"
+            }
+        },
+        "spacing": {
+            "_meta": {
+                "group": "间距"
+            },
+            "common": {
+                "xs": {
+                    "value": "4px",
+                    "comment": "icon和文本之间的间距"
+                },
+                "sm": {
+                    "value": "8px",
+                    "comment": "中号按钮左右内间距/弹窗内按钮与按钮的横向间距"
+                },
+                "md": {
+                    "value": "12px",
+                    "comment": "大号按钮左右内间距/页面内按钮与按钮横向间距"
+                },
+                "lg": {
+                    "value": "16px",
+                    "comment": "弹窗内表单间纵向间距"
+                },
+                "xlg": {
+                    "value": "20px",
+                    "comment": ""
+                },
+                "xxlg": {
+                    "value": "24px",
+                    "comment": "页面内表单间纵向间距/常规卡片间距"
+                },
+                "xxxlg": {
+                    "value": "32px",
+                    "comment": ""
+                }
+            }
+        },
+        "shadow": {
+            "_meta": {
+                "group": "阴影"
+            },
+            "inset_1": {
+                "value": "inset 0 1px 3px 0 {color.brand.secondary_5.value}",
+                "comment": "内阴影/输入框"
+            },
+            "inset": {
+                "top": {
+                    "value": "inset 0 10px 8px -8px {color.brand.system.black_transparent.12.value}",
+                    "comment": "内阴影/上"
+                },
+                "right": {
+                    "value": "inset -10px 0 8px -8px {color.brand.system.black_transparent.12.value}",
+                    "comment": "内阴影/右"
+                },
+                "bottom": {
+                    "value": "inset 0 -10px 8px -8px {color.brand.system.black_transparent.12.value}",
+                    "comment": "内阴影/下"
+                },
+                "left": {
+                    "value": "inset 10px 0 8px -8px {color.brand.system.black_transparent.12.value}",
+                    "comment": "内阴影/左"
+                },
+                "default": {
+                    "value": "inset 0 3px 0 0 {color.brand.system.black_transparent.5.value}",
+                    "comment": "内阴影/默认"
+                },
+                "error": {
+                    "value": "inset 0 1px 3px 0 {color.brand.error_2.value}",
+                    "comment": "内阴影/错误"
+                }
+            },
+            "block": {
+                "default": {
+                    "sm": {
+                        "value": "0 0 2px 0 {color.brand.system.black_transparent.8.value}, 0 5px 8px -4px {color.brand.system.black_transparent.12.value}, 0 1px 0 0 {color.brand.system.black_transparent.5.value},inset 0 -1px 0px 0px {color.brand.system.black_transparent.8.value}",
+                        "comment": "块/常规/小"
+                    },
+                    "md": {
+                        "value": "0 0 1px 0 {color.brand.system.black_transparent.12.value}, 0 8px 12px -4px {color.brand.system.black_transparent.12.value}, 0 4px 4px -2px {color.brand.system.black_transparent.5.value},inset 0 -2px 0px 0px {color.brand.system.black_transparent.8.value}",
+                        "comment": "块/常规/中"
+                    },
+                    "lg": {
+                        "value": "0 6px 16px 0 {color.brand.system.black_transparent.5.value}, 0 16px 24px -8px {color.brand.system.black_transparent.8.value}, 0 0 16px 0 {color.brand.system.black_transparent.5.value},inset 0 -2px 0px 0px {color.brand.system.black_transparent.8.value}",
+                        "comment": "块/常规/大"
+                    }
+                },
+                "left": {
+                    "sm": {
+                        "value": "-3px 0 3px -2px {color.brand.system.black_transparent.5.value},-8px 0 6px -6px {color.brand.system.black_transparent.8.value}",
+                        "comment": "块/左/小"
+                    },
+                    "lg": {
+                        "value": "-46px 0 24px -35px {color.brand.system.black_transparent.5.value},-25px 0 10px -16px {color.brand.system.black_transparent.5.value},-10px 0 6px -6px {color.brand.system.black_transparent.5.value}",
+                        "comment": "块/左/大"
+                    }
+                },
+                "right": {
+                    "sm": {
+                        "value": "3px 0 3px -2px {color.brand.system.black_transparent.5.value},8px 0 6px -6px {color.brand.system.black_transparent.8.value}",
+                        "comment": "块/右/小"
+                    },
+                    "lg": {
+                        "value": "46px 0 24px -35px {color.brand.system.black_transparent.5.value},25px 0 10px -16px {color.brand.system.black_transparent.5.value},10px 0 6px -6px {color.brand.system.black_transparent.5.value}",
+                        "comment": "块/右/大"
+                    }
+                },
+                "bottom": {
+                    "sm": {
+                        "value": "0 3px 3px -2px {color.brand.system.black_transparent.5.value},0 8px 6px -6px {color.brand.system.black_transparent.8.value}",
+                        "comment": "块/下/小"
+                    },
+                    "lg": {
+                        "value": "0 46px 24px -35px {color.brand.system.black_transparent.5.value},0 25px 10px -16px {color.brand.system.black_transparent.5.value},0 10px 6px -6px {color.brand.system.black_transparent.5.value}",
+                        "comment": "块/下/大"
+                    }
+                },
+                "top": {
+                    "sm": {
+                        "value": "0 -3px 3px -2px {color.brand.system.black_transparent.5.value},0 -8px 6px -6px {color.brand.system.black_transparent.8.value}",
+                        "comment": "块/上/小"
+                    },
+                    "lg": {
+                        "value": "0 -46px 24px -35px {color.brand.system.black_transparent.5.value},0 -25px 10px -16px {color.brand.system.black_transparent.5.value},0 -10px 6px -6px {color.brand.system.black_transparent.5.value}",
+                        "comment": "块/上/大"
+                    }
+                }
+            },
+            "button": {
+                "default": {
+                    "value": "0 2px 3px 0 {color.brand.system.black_transparent.12.value},inset 0 -2px 0 0 {color.brand.primary_3.value}",
+                    "comment": "按钮/白/默认"
+                },
+                "hover": {
+                    "value": "0 0 1px 0 {transparent(color.brand.system.black.value, 10)},0 8px 12px -4px {color.brand.system.black_transparent.12.value},0 2px 1px -1px {color.brand.system.black_transparent.5.value}, inset 0 -2px 0 0 {color.brand.primary_3.value}",
+                    "comment": "按钮/白/hover"
+                },
+                "primary": {
+                    "value": "0 2px 4px -1px {color.brand.primary_7.value}, inset 0 -3px 0 0 {color.brand.system.black_transparent.12.value}, inset 0 1px 0 0 {color.brand.system.black_transparent.12.value}",
+                    "comment": "按钮/品牌色/默认"
+                },
+                "primary_hover": {
+                    "value": "0 5px 8px -4px {color.brand.primary_7.value}, inset 0 -3px 0 0 {color.brand.system.black_transparent.12.value}, inset 0 1px 0 0 {color.brand.system.black_transparent.12.value}",
+                    "comment": "按钮/品牌色/hover"
+                },
+                "error": {
+                    "value": "0 1px 3px -1px {color.brand.error_3.value}",
+                    "comment": "按钮/错误色/默认"
+                },
+                "error_hover": {
+                    "value": "0 5px 8px -4px {color.brand.error_3.value}",
+                    "comment": "按钮/错误色/hover"
+                }
+            }
+        },
+        "line": {
+            "width": {
+                "_meta": {
+                    "group": "线条尺寸"
+                },
+                "base": {
+                    "value": "1px",
+                    "comment": "默认线条高"
+                },
+                "sm": {
+                    "value": "0px",
+                    "comment": "无线条"
+                },
+                "lg": {
+                    "value": "2px",
+                    "comment": "粗线条"
+                }
+            },
+            "style": {
+                "_meta": {
+                    "group": "线条样式"
+                },
+                "base": {
+                    "value": "solid",
+                    "comment": "默认线条，实线"
+                },
+                "dashed": {
+                    "value": "dashed",
+                    "comment": "虚线边框样式，用于添加/上传照片按钮"
+                }
+            }
+        }
+    },
+    "component": {
+        "input": {
+            "color": {
+                "bg": {
+                    "default": {
+                        "value": "{color.brand.secondary_1.value}",
+                        "comment": "输入框/背景色/默认",
+                        "type": "color"
+                    },
+                    "active": {
+                        "value": "{color.brand.secondary_2.value}",
+                        "comment": "输入框/背景色/激活",
+                        "type": "color"
+                    }
+                }
+            }
+        },
+        "button": {
+            "color": {
+                "mask": {
+                    "value": "{color.brand.white.value}",
+                    "comment": "按钮加载遮罩",
+                    "type": "color"
+                },
+                "bg": {
+                    "primary": {
+                        "default": {
+                            "value": "{color.brand.gradient.primary_1.value}",
+                            "comment": "按钮/主/背景色",
+                            "type": "color"
+                        },
+                        "hover": {
+                            "value": "{color.brand.gradient.primary_2.value}",
+                            "comment": "按钮/主/背景色/hover",
+                            "type": "color"
+                        }
+                    },
+                    "secondary": {
+                        "default": {
+                            "value": "{color.brand.white.value}",
+                            "comment": "按钮/次/背景色",
+                            "type": "color"
+                        }
+                    }
+                },
+                "text": {
+                    "default": {
+                        "value": "{color.brand.white.value}",
+                        "comment": "按钮/主/文本色",
+                        "type": "color"
+                    }
+                }
+            }
+        },
+        "card": {
+            "color": {
+                "bg": {
+                    "default": {
+                        "value": "{color.brand.white.value}",
+                        "comment": "卡片/背景色",
+                        "type": "color"
+                    }
+                }
+            }
+        },
+        "tabs": {
+            "color": {
+                "bg": {
+                    "default": {
+                        "value": "{color.brand.gradient.content_1_1.value}",
+                        "comment": "导航切换选中项/背景色",
+                        "type": "color"
+                    },
+                    "hover": {
+                        "value": "{color.brand.secondary_1.value}",
+                        "comment": "导航切换/背景色/hover",
+                        "type": "color"
+                    }
+                },
+                "line": {
+                    "hover": {
+                        "value": "{color.brand.secondary_3.value}",
+                        "comment": "导航切换/边框色/hover",
+                        "type": "color"
+                    }
+                },
+                "compatible": {
+                    "prefix": "default"
+                }
+            }
+        },
+        "table": {
+            "color": {
+                "bg": {
+                    "row": {
+                        "default": {
+                            "value": "{color.brand.secondary_2.value}",
+                            "comment": "表格/行/背景色",
+                            "type": "color"
+                        },
+                        "hover": {
+                            "value": "{color.brand.primary_2.value}",
+                            "comment": "表格/行/背景色/hover",
+                            "type": "color"
+                        }
+                    }
+                }
+            }
+        },
+        "switch": {
+            "color": {
+                "bg": {
+                    "outer": {
+                        "value": "{color.brand.white.value}",
+                        "comment": "开关/外圈/背景色",
+                        "type": "color"
+                    },
+                    "inner": {
+                        "off": {
+                            "value": "{color.brand.secondary_2.value}",
+                            "comment": "开关/内圈/背景色/关",
+                            "type": "color"
+                        },
+                        "on": {
+                            "value": "{color.brand.success_3.value}",
+                            "comment": "开关/内圈/背景色/开",
+                            "type": "color"
+                        }
+                    }
+                },
+                "text": {
+                    "off": {
+                        "value": "{color.brand.secondary_9.value}",
+                        "comment": "开关/文本色/关",
+                        "type": "color"
+                    },
+                    "on": {
+                        "value": "{color.brand.system.white.value}",
+                        "comment": "开关/文本色/开",
+                        "type": "color"
+                    }
+                },
+                "line": {
+                    "inner": {
+                        "on": {
+                            "value": "{color.brand.success_1.value}",
+                            "comment": "开关/内圈/边框/开",
+                            "type": "color"
+                        }
+                    }
+                }
+            }
+        },
+        "slider": {
+            "color": {
+                "bg": {
+                    "active": {
+                        "value": "{color.brand.primary_1.value}",
+                        "comment": "滑块/背景色/激活",
+                        "type": "color"
+                    },
+                    "default": {
+                        "value": "{color.brand.secondary_1.value}",
+                        "comment": "滑块/背景色/未激活",
+                        "type": "color"
+                    }
+                },
+                "line": {
+                    "active": {
+                        "value": "{color.brand.primary_8.value}",
+                        "comment": "滑块/边框色/激活",
+                        "type": "color"
+                    },
+                    "default": {
+                        "value": "{color.brand.secondary_7.value}",
+                        "comment": "滑块/边框色/未激活",
+                        "type": "color"
+                    }
+                },
+                "text": {
+                    "active": {
+                        "value": "{color.brand.primary_8.value}",
+                        "comment": "滑块/文本色/激活",
+                        "type": "color"
+                    },
+                    "default": {
+                        "value": "{color.brand.secondary_8.value}",
+                        "comment": "滑块/文本色/未激活",
+                        "type": "color"
+                    }
+                }
+            }
+        },
+        "progress": {
+            "color": {
+                "bg": {
+                    "default": {
+                        "value": "{color.brand.secondary_4.value}",
+                        "comment": "进度条/背景色",
+                        "type": "color"
+                    }
+                }
+            }
+        },
+        "modal": {
+            "color": {
+                "layer": {
+                    "default": {
+                        "value": "{color.brand.system.black_transparent.50.value}",
+                        "comment": "弹窗/蒙层",
+                        "type": "color"
+                    }
+                }
+            },
+            "shadow": {
+                "default": {
+                    "value": "0 3px 6px -4px {color.brand.system.black_transparent.12.value},0 6px 16px 0 {color.brand.system.black_transparent.8.value},0 9px 28px 8px {color.brand.system.black_transparent.5.value}",
+                    "comment": "弹窗/阴影"
+                }
+            }
+        },
+        "popover": {
+            "color": {
+                "bg": {
+                    "light": {
+                        "value": "{color.brand.white.value}",
+                        "comment": "弹出层/背景色/亮",
+                        "type": "color"
+                    },
+                    "dark": {
+                        "value": "{color.brand.black.value}",
+                        "comment": "弹出层/背景色/暗",
+                        "type": "color"
+                    }
+                },
+                "line": {
+                    "light": {
+                        "value": "{color.brand.secondary_5.value}",
+                        "comment": "弹出层/边框/亮",
+                        "type": "color"
+                    },
+                    "dark": {
+                        "value": "{color.brand.transparent.value}",
+                        "comment": "弹出层/边框/暗",
+                        "type": "color"
+                    }
+                }
+            }
+        },
+        "typo": {
+            "font_size_1": {
+                "value": "12px",
+                "comment": "一般用于备注/正文，是浏览器识别的最小字号"
+            },
+            "font_size_2": {
+                "value": "14px",
+                "comment": "一般用于正文或者小标题"
+            },
+            "font_size_3": {
+                "value": "16px",
+                "comment": "一般用于标题"
+            },
+            "font_size_4": {
+                "value": "18px",
+                "comment": "一般用于数字"
+            },
+            "font_size_5": {
+                "value": "20px",
+                "comment": "一般用于标题，或者特殊场景下的文本展示"
+            },
+            "font_size_6": {
+                "value": "24px",
+                "comment": "一般用于标题，或者特殊场景下的文本展示"
+            },
+            "font_size_7": {
+                "value": "28px",
+                "comment": "一般用于标题，或者特殊场景下的文本展示"
+            },
+            "font_size_8": {
+                "value": "32px",
+                "comment": "一般用于标题，或者特殊场景下的文本展示"
+            },
+            "line_height_sm": {
+                "value": "1.3",
+                "comment": "密集的行高，字号1.3倍"
+            },
+            "line_height_md": {
+                "value": "1.5",
+                "comment": "中等的行高，字号1.5倍"
+            },
+            "line_height_lg": {
+                "value": "1.7",
+                "comment": "宽松的行高，字号1.7倍"
+            },
+            "font_weight_normal": {
+                "value": "400",
+                "comment": "默认字体粗细，常规"
+            },
+            "font_weight_light": {
+                "value": "300",
+                "comment": "细体字"
+            },
+            "font_weight_bold": {
+                "value": "600",
+                "comment": "粗体字"
+            }
+        },
+        "scrollbar": {
+            "color": {
+                "bg": {
+                    "default": {
+                        "value": "{color.brand.system.black_transparent.12.value}",
+                        "comment": "滚动条/背景色",
+                        "type": "color"
+                    }
+                },
+                "border": {
+                    "default": {
+                        "value": "{color.brand.system.white_transparent.70.value}",
+                        "comment": "滚动条/边框色",
+                        "type": "color"
+                    }
+                }
+            }
+        },
+        "loading": {
+            "color": {
+                "layer": {
+                    "default": {
+                        "value": "{color.brand.white_transparent.70.value}",
+                        "comment": "加载底部蒙层",
+                        "type": "color"
+                    }
+                }
+            }
+        }
+    },
+    "other": {
+        "tabs": {
+            "product": {
+                "color": {
+                    "text": {
+                        "default": {
+                            "value": "{color.brand.system.black_transparent.70.value}",
+                            "comment": "默认状态文本色值",
+                            "type": "color"
+                        }
+                    },
+                    "shadow": {
+                        "default": {
+                            "value": "#edf0fd",
+                            "comment": "默认状态阴影色值",
+                            "type": "color"
+                        },
+                        "hover": {
+                            "value": "#dee1e9",
+                            "comment": "hover状态阴影色值",
+                            "type": "color"
+                        }
+                    },
+                    "bg": {
+                        "hover": {
+                            "value": "rgba(233,237,245,0.5)",
+                            "comment": "hover状态背景色",
+                            "type": "color"
+                        }
+                    },
+                    "line": {
+                        "active": {
+                            "value": "{color.brand.secondary_4.value}",
+                            "comment": "导航切换/边框色/active",
+                            "type": "color"
+                        }
+                    }
+                }
+            }
+        },
+        "pay": {
+            "color": {
+                "bg": {
+                    "1": {
+                        "value": "{color.brand.gradient.content_1.value}",
+                        "comment": "左侧订单模块背景",
+                        "type": "color"
+                    },
+                    "2": {
+                        "value": "{color.brand.secondary_3.value}",
+                        "comment": "右侧计费模块背景",
+                        "type": "color"
+                    },
+                    "3": {
+                        "value": "{color.brand.primary_1.value}",
+                        "comment": "左侧订单卡片下半段背景",
+                        "type": "color"
+                    }
+                }
+            }
+        },
+        "frame": {
+            "top": {
+                "color": {
+                    "bg": {
+                        "default": {
+                            "value": "{color.brand.primary_8.value}",
+                            "comment": "顶部导航默认背景色",
+                            "type": "color"
+                        },
+                        "hover": {
+                            "value": "{color.brand.primary_9.value}",
+                            "comment": "顶部导航hover背景色/Logo背景色",
+                            "type": "color"
+                        }
+                    }
+                }
+            },
+            "logo": {
+                "color": {
+                    "bg": {
+                        "default": {
+                            "value": "{color.brand.primary_9.value}",
+                            "comment": "顶部导航左侧LOGO背景色",
+                            "type": "color"
+                        }
+                    }
+                }
+            },
+            "products": {
+                "color": {
+                    "text": {
+                        "icon": {
+                            "value": "{color.brand.blue_9.value}",
+                            "comment": "全部产品列表/图标颜色",
+                            "type": "color"
+                        }
+                    }
+                }
+            },
+            "sidebar": {
+                "color": {
+                    "bg": {
+                        "default": {
+                            "value": "{color.brand.secondary_4.value}",
+                            "comment": "全局左侧收藏栏默认背景色",
+                            "type": "color"
+                        },
+                        "active": {
+                            "value": "{color.brand.primary_1.value}",
+                            "comment": "全局左侧收藏栏选中的产品背景色",
+                            "type": "color"
+                        },
+                        "expand": {
+                            "value": "{color.brand.white.value}",
+                            "comment": "全局左侧收藏栏展开状态背景色",
+                            "type": "color"
+                        }
+                    }
+                }
+            }
+        },
+        "ide": {
+            "default": {
+                "color": {
+                    "bg": {
+                        "default": {
+                            "value": "{color.brand.black.value}",
+                            "comment": "代码编辑器/读写/背景色/默认",
+                            "type": "color"
+                        },
+                        "action": {
+                            "value": "{color.brand.system.white_transparent.12.value}",
+                            "comment": "代码编辑器/读写/背景色/操作",
+                            "type": "color"
+                        }
+                    }
+                }
+            },
+            "readonly": {
+                "color": {
+                    "bg": {
+                        "default": {
+                            "value": "{color.brand.secondary_2.value}",
+                            "comment": "代码编辑器/只读/背景色/默认",
+                            "type": "color"
+                        },
+                        "action": {
+                            "value": "{color.brand.black_transparent.12.value}",
+                            "comment": "代码编辑器/只读/背景色/操作",
+                            "type": "color"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

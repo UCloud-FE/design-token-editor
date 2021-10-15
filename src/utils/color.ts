@@ -1,11 +1,7 @@
+// utils for color transform
 import Color from 'color';
 
-interface RGBA {
-    r: number;
-    g: number;
-    b: number;
-    a?: number;
-}
+import { RGBA } from '../interface';
 
 const toRGBA = (color: string) => {
     try {
@@ -41,11 +37,13 @@ const c2s = (n: number) => {
 };
 
 const toStringColor = (color: string | RGBA): string => {
-    if (typeof color === 'string') return color;
-    if (color.a === 1 || !('a' in color)) {
+    if (typeof color === 'string') {
+        color = toRGBA(color);
+    }
+    if (color.a === 1 || color.a == null) {
         return `#${c2s(color.r)}${c2s(color.g)}${c2s(color.b)}`;
     }
-    return `rgba(${color.r},${color.g},${color.b},${color.a})`;
+    return `rgba(${color.r},${color.g},${color.b},${+(+color.a).toFixed(2)})`;
 };
 
 const isValidColor = (color: string) => {

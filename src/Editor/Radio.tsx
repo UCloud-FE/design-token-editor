@@ -25,8 +25,7 @@ const Radio = ({
                         data-active={option === value}
                         data-option={option}
                         className={cls['radio-option']}
-                        onClick={handleChange}
-                    >
+                        onClick={handleChange}>
                         {option}
                     </div>
                 );
@@ -35,4 +34,4 @@ const Radio = ({
     );
 };
 
-export default Radio;
+export default React.memo(Radio);
