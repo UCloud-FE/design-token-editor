@@ -7,13 +7,15 @@ import EditContext from '../EditContext';
 
 const BIList = ({
     value,
+    update,
     onChange,
 }: {
-    value: string[];
+    value: string;
+    update: number;
     onChange: (value: string[]) => void;
 }) => {
-    const { bi, dt, dtc } = useContext(EditContext);
-    const groups = useMemo(() => biToGroups(bi), [bi]);
+    const { bi } = useContext(EditContext);
+    const groups = useMemo(() => biToGroups(bi), [bi, update]);
     const handleColorChange = useCallback(
         (e) => {
             const dataset = (e.target as HTMLElement).dataset;
@@ -23,72 +25,6 @@ const BIList = ({
         },
         [onChange],
     );
-    const getRelevantToken = () => {
-        const groups: any = {};
-        const dig = (map: any, parent: string[], group?: string) => {
-            if (map._meta?.group) {
-                if (group) {
-                    console.error(
-                        `Group hierarchy disorder: ${group} ${map._meta.group}`,
-                    );
-                }
-                group = map._meta.group as string;
-                if (!(group in groups)) {
-                    groups[group] = [];
-                }
-            }
-            for (const key in map) {
-                if (key === '_meta') continue;
-                const info = map[key];
-                if (typeof info !== 'object') continue;
-                if ('value' in info) {
-                    if (!group) {
-                        console.error(`Can't find group for`, info);
-                        break;
-                    }
-                    if (new RegExp(`{${value.join('.')}}`).test(info.value)) {
-                        groups[group].push({
-                            ...info,
-                            parent,
-                            key,
-                        });
-                    }
-                } else {
-                    dig(info, [...parent, key], group);
-                }
-            }
-        };
-        dig(dtc, []);
-        const dtGroups: any = {};
-        const digDT = (map: any, parent: string[], group?: string) => {
-            for (const key in map) {
-                if (key === '_meta') continue;
-                const info = map[key];
-                if (typeof info !== 'object') continue;
-                if ('value' in info) {
-                    if (!group) {
-                        console.error(`Can't find group for`, info);
-                        break;
-                    }
-                    if (new RegExp(`{${value.join('.')}}`).test(info.value)) {
-                        dtGroups[group].push({
-                            ...info,
-                            parent,
-                            key,
-                        });
-                    }
-                } else {
-                    digDT(info, [...parent, key], group);
-                }
-            }
-        };
-        Object.keys(dt).forEach((key) => {
-            dtGroups[key] = [];
-            digDT(dt[key as keyof typeof dt], [key], key);
-        });
-        return { ...groups, ...dtGroups };
-    };
-    console.log(getRelevantToken(), dtc, dt);
 
     return (
         <div className={cls['bi-list']}>

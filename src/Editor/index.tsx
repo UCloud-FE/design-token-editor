@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
 
 import { TokenType } from '../interface';
-import { nameToTarget } from '../utils';
+import { nameToTarget, trimKey } from '../utils';
 import ColorChooser from './ColorChooser';
 import Input from './Input';
 import Shadow from './Shadow';
@@ -35,10 +35,19 @@ const Editor = ({
         },
         [name, onChange],
     );
-    const color = value.replace(/^\{(.*)\}$/, '$1');
+
+    const handleColorChange = useCallback(
+        (v: string) => {
+            const target = nameToTarget(name);
+            if (onChange(target, `{${v}}`)) {
+                setValue(`{${v}}`);
+            }
+        },
+        [name, onChange],
+    );
     switch (type) {
         case 'COLOR':
-            return <ColorChooser value={color} onChange={handleChange} />;
+            return <ColorChooser value={trimKey(value)} onChange={handleColorChange} />;
         case 'SHADOW':
             return <Shadow value={value} onChange={handleChange} />;
         case 'INPUT':

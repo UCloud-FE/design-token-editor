@@ -24,7 +24,6 @@ const Shadow = ({
     const shadowRef = useRef(shadow);
     useEffect(() => {
         shadowRef.current = shadow;
-        console.log(shadow);
     }, [shadow]);
     const handleShadowChange = useCallback(
         (key: keyof IShadow) => (v: string) => {
@@ -63,7 +62,6 @@ const Shadow = ({
     );
 
     const { type, offsetX, offsetY, blur, spread, color } = shadow;
-    console.log(shadow);
 
     const boxShadow = keyToValue(stringifyShadows(shadows), bi.color);
 

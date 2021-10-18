@@ -36,7 +36,7 @@ const saveAs = function saveAs(blob: Blob, name: string) {
     a.href = URL.createObjectURL(blob);
     setTimeout(function () {
         URL.revokeObjectURL(a.href);
-    }, 1);
+    }, 10);
     setTimeout(function () {
         click(a);
     }, 0);

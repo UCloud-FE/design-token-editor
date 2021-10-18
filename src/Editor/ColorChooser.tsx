@@ -3,17 +3,17 @@ import React, { useCallback, useContext, useMemo, MouseEvent } from 'react';
 import cls from './index.module.scss';
 
 import {
-    oldKeyToNew,
     biToGroups,
     biKeyToValue,
     keyToValue,
     parseColorKey,
     stringifyColorKey,
+    get,
 } from '../utils';
 import { toRGBA } from '../utils/color';
 import EditContext from '../EditContext';
 import Pop from '../Pop';
-import { Alpha } from './Alpha';
+import Alpha from './Alpha';
 
 const ColorChooser = ({
     value,
@@ -63,6 +63,11 @@ const ColorChooser = ({
     }, [setPanel]);
     const color = biKeyToValue(colorKey, bi.color);
     const rgbaColor = toRGBA(color);
+    const colorKeyType = useMemo(() => {
+        const info = get(bi.color, colorKey.split('.'));
+        return info?.type;
+    }, [bi.color, colorKey]);
+    const result = biKeyToValue(value, bi.color);
 
     return (
         <Pop
@@ -82,7 +87,7 @@ const ColorChooser = ({
                                                 key,
                                             } = s;
                                             const fullKey = [...parent, key].join('.');
-                                            const active = oldKeyToNew(value) === fullKey;
+                                            const active = colorKey === fullKey;
                                             let color = keyToValue(_value, bi.color);
                                             return (
                                                 <li
@@ -101,26 +106,28 @@ const ColorChooser = ({
                             );
                         })}
                     </ul>
-                    <div className={cls['transparent-wrapper']}>
-                        <div className={cls['title']}>
-                            <span>透明度调整:</span>
-                            <span>{alpha}</span>
+                    {colorKeyType !== 'gradient' && (
+                        <div className={cls['transparent-wrapper']}>
+                            <div className={cls['title']}>
+                                <span>透明度调整:</span>
+                                <span>{alpha}</span>
+                            </div>
+                            <Alpha
+                                alpha={alpha}
+                                onChange={handleAlphaChange}
+                                color={rgbaColor}
+                            />
                         </div>
-                        <Alpha
-                            alpha={alpha}
-                            onChange={handleAlphaChange}
-                            color={rgbaColor}
-                        />
-                    </div>
+                    )}
                     <div onClick={goBIPanel} className={cls['link']}>
                         源色关系图谱
                     </div>
                 </div>
             }>
             <div className={cls['color-chooser']}>
-                <div className={cls['color-square']} style={{ background: color }} />
-                <div className={cls['color-value']} hidden={!showValue} title={color}>
-                    {color}
+                <div className={cls['color-square']} style={{ background: result }} />
+                <div className={cls['color-value']} hidden={!showValue} title={result}>
+                    {result}
                 </div>
             </div>
         </Pop>

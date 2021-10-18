@@ -1,8 +1,17 @@
+export type Override<T1, T2> = Omit<T1, keyof T2> & T2;
+
 export interface RGBA {
     r: number;
     g: number;
     b: number;
     a?: number;
+}
+
+export interface ColorInfo {
+    key: string;
+    transparent?: {
+        alpha: number;
+    };
 }
 
 export interface BIToken {
@@ -26,13 +35,16 @@ export interface TokenDefine {
     type?: TokenType;
     deprecated?: boolean;
 }
+
 export interface MetaDefine {
     group?: string;
 }
+
 export interface ComponentTokensDefine {
     _meta: MetaDefine;
     [key: string]: TokenDefine | MetaDefine | ComponentTokensDefine;
 }
+
 export interface Token {
     value: string;
     comment: string;
@@ -58,5 +70,3 @@ export interface IGradient {
     start: string;
     end: string;
 }
-
-export type Override<T1, T2> = Omit<T1, keyof T2> & T2;

@@ -1,7 +1,7 @@
 import React, { MouseEvent, useCallback } from 'react';
 
 import cls from './index.module.scss';
-import Eye from '../static/Eye';
+import Eye from '../Icons/Eye';
 
 const EditButtonWithoutMemo = ({
     component,

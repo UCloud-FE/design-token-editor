@@ -10,7 +10,7 @@ interface Props {
     color: string;
 }
 
-export const Pointer = ({ className, color, left, top = 0.5 }: Props): JSX.Element => {
+const Pointer = ({ className, color, left, top = 0.5 }: Props): JSX.Element => {
     const nodeClassName = formatClassName(['react-colorful__pointer', className]);
 
     const style = {
@@ -27,3 +27,5 @@ export const Pointer = ({ className, color, left, top = 0.5 }: Props): JSX.Eleme
         </div>
     );
 };
+
+export default React.memo(Pointer);

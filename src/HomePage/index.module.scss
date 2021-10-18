@@ -1,6 +1,31 @@
 @import '../variables.scss';
 @import '../mixins.scss';
 
+.header {
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 24px;
+    .button {
+        display: inline-flex;
+        height: 28px;
+        align-items: center;
+        color: $color-font;
+        fill: currentColor;
+        cursor: pointer;
+        svg {
+            margin-right: 8px;
+        }
+        &:hover {
+            color: $color-font-primary;
+            fill: currentColor;
+        }
+    }
+    .button + .button {
+        margin-left: 16px;
+    }
+}
+
 .wrapper {
     display: flex;
     align-items: flex-start;
@@ -94,8 +119,8 @@
         text-transform: uppercase;
     }
     .panel {
-        max-height: 60vmin;
-        min-height: 30vmin;
+        max-height: 80vh;
+        min-height: 30vh;
         overflow: auto;
     }
     .token-list {

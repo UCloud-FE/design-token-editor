@@ -15,9 +15,6 @@
             width: 400px;
             flex-shrink: 0;
         }
-        .value.changed {
-            color: green;
-        }
         .origin {
             color: $color-font-disabled;
             text-decoration: line-through;
@@ -25,6 +22,15 @@
         .diff {
             display: flex;
             flex-direction: column;
+        }
+        &.changed {
+            box-shadow: inset green 3px 3px 10px 0px;
+            .name {
+                // color: $color-font-primary;
+            }
+            .value {
+                color: green;
+            }
         }
     }
 }

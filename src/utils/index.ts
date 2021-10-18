@@ -1,10 +1,7 @@
-import { BIToken, BITokenGroup, IGradient, IShadow } from '../interface';
+import { BIToken, BITokenGroup, ColorInfo, IGradient, IShadow } from '../interface';
 import { transparent } from './color';
 
-const isNumberString = (v: string) => {
-    return /^\d+$/.test(v);
-};
-
+// 老变量 key 转换为新格式
 export const oldKeyToNew = (value: string = '') => {
     if (value.startsWith('color.brand')) {
         const target = value.split('.');
@@ -40,55 +37,47 @@ export const oldKeyToNew = (value: string = '') => {
     }
 };
 
+// 获得 token 的值
 const tokenToValue = (token: string, bi: any) => {
     const target = oldKeyToNew(token);
-    let isTransparent: boolean = false;
-    let transparentNumber: number = 100;
     try {
         const token = target.split('.').reduce((map: any, key: string) => {
-            // old transparent type
-            if (isTransparent) {
-                if (/^\d+$/.test(key)) {
-                    throw new Error(`${key} is not a transparent number`);
-                } else {
-                    transparentNumber = +key;
-                    return map;
-                }
-            }
-            if (/_transparent$/.test(key)) {
-                isTransparent = true;
-                return map[key.replace(/_transparent$/, '')];
-            }
             return map[key];
         }, bi);
-        if (isTransparent) {
-            return transparent(token.value, transparentNumber);
-        } else {
-            return keyToValue(token.value, bi);
-        }
+        return keyToValue(token.value, bi);
     } catch (error) {
         console.error(error, `key: ${token}`);
         return '#FFF';
     }
 };
 
-interface ColorInfo {
-    key: string;
-    transparent?: {
-        alpha: number;
-    };
-}
-
+// 将 key 格式化为 key 和 transparent
 export const parseColorKey = (key: string): ColorInfo => {
     let targetKey: string = key;
     const colorInfo: ColorInfo = { key: targetKey };
+
+    let isTransparent = false;
+    let transparentNumber = 1;
+    targetKey = key.replace(/_transparent\.(\d+)\.value$/, (s, number) => {
+        if (isTransparent) {
+            console.error(`Parse transparent error: ${key}`);
+        } else {
+            isTransparent = true;
+            transparentNumber = number / 100;
+        }
+        return '';
+    });
+    if (isTransparent) {
+        colorInfo.transparent = { alpha: transparentNumber };
+    }
+
     const dig = (key: string) => {
         const a = /^(\w+)\((.*)\)$/.exec(key);
         const [, func, args] = a || [];
         if (func) {
             if (func === 'transparent') {
                 const [key, value] = args.split(',').map((v) => v.trim());
-                colorInfo.transparent = { alpha: +value };
+                colorInfo.transparent = { alpha: +value / 100 };
                 dig(key);
             } else {
                 console.error(`Unknown func type ${func}`);
@@ -99,60 +88,30 @@ export const parseColorKey = (key: string): ColorInfo => {
         }
     };
     dig(targetKey);
+    colorInfo.key = oldKeyToNew(colorInfo.key);
     return colorInfo;
 };
+
 export const stringifyColorKey = (colorInfo: ColorInfo) => {
     const { key, transparent } = colorInfo;
     let colorStr = key;
     if (transparent) {
         const { alpha } = transparent;
-        colorStr = `transparent(${colorStr}, ${alpha})`;
+        colorStr =
+            alpha === 1
+                ? colorStr
+                : `transparent(${colorStr}, ${(alpha * 100).toFixed(0)})`;
     }
     return colorStr;
 };
 
+export const trimKey = (key: string) => key.replace(/^\{(.*)\}$/, '$1');
+
 export const biKeyToValue = (key: string, bi: any) => {
-    const newKey = key.replace(/^\{(.*)\}$/, '$1');
-    const funcs: { type: string; args: { [key: string]: string } }[] = [];
-    let targetKey: string = newKey;
-    const getFuncs = (key: string) => {
-        const a = /^(\w+)\((.*)\)$/.exec(key);
-        const [, func, args] = a || [];
-        if (func) {
-            if (func === 'transparent') {
-                const [key, value] = args.split(',').map((v) => v.trim());
-                funcs.push({
-                    type: func,
-                    args: { value },
-                });
-                getFuncs(key);
-            } else {
-                console.error(`Unknown func type ${func}`);
-            }
-        } else {
-            targetKey = key;
-        }
-    };
-    getFuncs(newKey);
-    let value = tokenToValue(targetKey, bi);
-    for (let i = funcs.length - 1; i >= 0; i--) {
-        const funcInfo = funcs[i];
-        switch (funcInfo.type) {
-            case 'transparent': {
-                if (!isNumberString(funcInfo.args.value)) {
-                    console.error(`Unknown valid transparent ${funcInfo.args.value}`);
-                } else {
-                    value = transparent(value, +funcInfo.args.value);
-                }
-                break;
-            }
-            default: {
-                console.error(`Unknown func ${funcInfo.type}`);
-                break;
-            }
-        }
-    }
-    return value;
+    const newKey = trimKey(key);
+    const { key: colorKey, transparent: transparentInfo } = parseColorKey(newKey);
+    let value = tokenToValue(colorKey, bi);
+    return transparentInfo ? transparent(value, transparentInfo.alpha) : value;
 };
 
 export const keyToValue = (key: string, bi: any): string => {
@@ -166,8 +125,6 @@ export const parseGradient = (gradient: string): IGradient => {
         /^linear-gradient\(([^,]+)[,\s]+\{([^,{}]+)\}[\d%,\s]+\{([^,{}]+)\}[\d%,\s]+\)$/.exec(
             gradient,
         ) || [];
-
-    console.log(angle, start, end);
     return {
         angle,
         start,
@@ -191,7 +148,7 @@ export const parseShadows = (shadows: string): IShadow[] => {
             tokens.unshift('outset');
         }
         const [type, offsetX, offsetY, blur, spread, color] = tokens;
-        return { type, offsetX, offsetY, blur, spread, color };
+        return { type, offsetX, offsetY, blur, spread, color: trimKey(color) };
     });
 };
 
@@ -316,7 +273,6 @@ export const output = (bi: any, dtc: any, dt: any) => {
             }
         }
     };
-
     gobi(bi);
 
     const go = (_dt: typeof dt, prefix: string) => {
@@ -338,9 +294,7 @@ export const output = (bi: any, dtc: any, dt: any) => {
             }
         }
     };
-
     go(dt, 'T');
     go(dtc, 'T');
-    console.log(map);
     return map;
 };

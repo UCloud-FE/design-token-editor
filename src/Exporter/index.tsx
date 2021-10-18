@@ -19,17 +19,10 @@ const Exporter = ({ output, origin }: { output: OutputTokens; origin: OutputToke
                 {Object.keys(origin).map((key) => {
                     const changed = output[key] !== origin[key];
                     return (
-                        <li key={key}>
+                        <li key={key} className={changed ? cls['changed'] : ''}>
                             <span className={cls['name']}>{key}:</span>
                             <div className={cls['diff']}>
-                                <span
-                                    className={
-                                        cls['value'] +
-                                        ' ' +
-                                        (changed ? cls['changed'] : '')
-                                    }>
-                                    {output[key]}
-                                </span>
+                                <span className={cls['value']}>{output[key]}</span>
                                 {changed && (
                                     <span className={cls['origin']}>{origin[key]}</span>
                                 )}
