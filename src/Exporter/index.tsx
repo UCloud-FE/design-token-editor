@@ -1,15 +1,18 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 
 import cls from './index.module.scss';
 
 import { OutputTokens } from '../interface';
 import save from '../utils/save';
 import Button from '../Editor/Button';
+import EditContext from '../EditContext';
 
 const Exporter = ({ output, origin }: { output: OutputTokens; origin: OutputTokens }) => {
+    const { bi, dt, dtc, external } = useContext(EditContext);
     const exportOutput = useCallback(() => {
         save(output, 'output.json');
-    }, [output]);
+        save({ builtin: bi, component: dt, common: dtc, external }, 'tokens.json');
+    }, [bi, dt, dtc, external, output]);
     return (
         <div className={cls['exporter']}>
             <Button onClick={exportOutput} className={cls['download']}>

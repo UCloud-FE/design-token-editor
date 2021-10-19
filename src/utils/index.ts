@@ -111,13 +111,26 @@ export const biKeyToValue = (key: string, bi: any) => {
     const newKey = trimKey(key);
     const { key: colorKey, transparent: transparentInfo } = parseColorKey(newKey);
     let value = tokenToValue(colorKey, bi);
-    return transparentInfo ? transparent(value, transparentInfo.alpha) : value;
+    return transparentInfo ? transparent(value, transparentInfo.alpha * 100) : value;
 };
 
 export const keyToValue = (key: string, bi: any): string => {
     return key.replace(/(\{.+?\})/g, (key: string) => {
         return biKeyToValue(key, bi);
     });
+};
+
+export const usedKey = (value: string, key: string): boolean => {
+    const arr = /(\{.+?\})/g.exec(value);
+    if (arr) {
+        const index = arr.findIndex((v) => {
+            v = trimKey(v);
+            const colorInfo = parseColorKey(v);
+            return colorInfo.key === key;
+        });
+        return index >= 0;
+    }
+    return false;
 };
 
 export const parseGradient = (gradient: string): IGradient => {
@@ -257,7 +270,7 @@ export const get = (obj: any, target: string[]) => {
     return obj;
 };
 
-export const output = (bi: any, dtc: any, dt: any) => {
+export const output = (bi: any, dtc: any, dt: any, external: any) => {
     const map: any = {};
     const gobi = (builtin: typeof bi) => {
         for (const key in builtin) {
@@ -296,5 +309,6 @@ export const output = (bi: any, dtc: any, dt: any) => {
     };
     go(dt, 'T');
     go(dtc, 'T');
+    go(external, 'T');
     return map;
 };

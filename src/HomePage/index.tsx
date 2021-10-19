@@ -24,13 +24,27 @@ const HomePage = () => {
     const handleComponentChange = useCallback((component: string) => {
         return setComponent(component);
     }, []);
-    const { bi, dt, dtc, origin } = useContext(EditContext);
+    const { bi, dt, dtc, external, origin } = useContext(EditContext);
     const exportTokens = useCallback(() => {
         setOutputModal({
-            output: output(bi, dt, dtc),
-            origin: output(origin.builtin, origin.component, origin.common),
+            output: output(bi, dt, dtc, external),
+            origin: output(
+                origin.builtin,
+                origin.component,
+                origin.common,
+                origin.external,
+            ),
         });
-    }, [bi, dt, dtc, origin.builtin, origin.common, origin.component]);
+    }, [
+        bi,
+        dt,
+        dtc,
+        external,
+        origin.builtin,
+        origin.common,
+        origin.component,
+        origin.external,
+    ]);
     const importTokens = useCallback(() => {
         importerRef.current?.trigger();
     }, []);
@@ -55,7 +69,7 @@ const HomePage = () => {
                     <ComponentList onChange={handleComponentChange} />
                 </div>
                 <div className={cls['right']}>
-                    <TokenEditor component={component} commonDesignTokens={dtc} />
+                    <TokenEditor component={component} />
                 </div>
             </div>
             {outputModal && (

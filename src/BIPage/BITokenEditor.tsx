@@ -1,9 +1,9 @@
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useContext, useState, useMemo } from 'react';
 
 import cls from './index.module.scss';
 
 import tokens from '../../dt/full.json';
-import { nameToTarget, oldKeyToNew } from '../utils';
+import { nameToTarget, usedKey } from '../utils';
 import EditContext from '../EditContext';
 import Color from '../Editor/Color';
 import Gradient from '../Editor/Gradient';
@@ -13,7 +13,17 @@ const getRelevantToken = (
     dtc: typeof tokens['common'],
     dt: typeof tokens['component'],
 ) => {
-    const groups: any = {};
+    interface TokenInfo {
+        value: string;
+        comment: string;
+        type?: string;
+        parent: string[];
+        key: string;
+    }
+    interface GroupMap {
+        [key: string]: TokenInfo[];
+    }
+    const groups: GroupMap = {};
     const dig = (map: any, parent: string[], group?: string) => {
         if (map._meta?.group) {
             if (group) {
@@ -33,7 +43,8 @@ const getRelevantToken = (
                     console.error(`Can't find group for`, info);
                     break;
                 }
-                if (new RegExp(`{${value.join('.')}}`).test(info.value)) {
+                console.log(info.value, value, usedKey(info.value, value.join('.')));
+                if (usedKey(info.value, value.join('.'))) {
                     groups[group].push({
                         ...info,
                         parent,
@@ -46,7 +57,7 @@ const getRelevantToken = (
         }
     };
     dig(dtc, []);
-    const dtGroups: any = {};
+    const dtGroups: GroupMap = {};
     const digDT = (map: any, parent: string[], group?: string) => {
         for (const key in map) {
             if (key === '_meta') continue;
@@ -57,9 +68,8 @@ const getRelevantToken = (
                     console.error(`Can't find group for`, info);
                     break;
                 }
-                console.log(value, info.value, oldKeyToNew(info.value));
-
-                if (new RegExp(`{${value.join('.')}}`).test(oldKeyToNew(info.value))) {
+                console.log(info.value, value, usedKey(info.value, value.join('.')));
+                if (usedKey(info.value, value.join('.'))) {
                     dtGroups[group].push({
                         ...info,
                         parent,
@@ -75,7 +85,7 @@ const getRelevantToken = (
         dtGroups[key] = [];
         digDT(dt[key as keyof typeof dt], [key], key);
     });
-    const result: any = {};
+    const result: GroupMap = {};
     Object.keys({ ...groups, ...dtGroups }).forEach((key: string) => {
         if ({ ...groups, ...dtGroups }[key]?.length) {
             result[key] = { ...groups, ...dtGroups }[key];
@@ -107,7 +117,9 @@ const BITokenEditor = ({
         },
         [handleBIValueChange, onChange, target],
     );
-    console.log(getRelevantToken(nameToTarget(target), dtc, dt));
+    const relevantToken = useMemo(() => {
+        return getRelevantToken(nameToTarget(target), dtc, dt);
+    }, [dt, dtc, target]);
     return (
         <div className={cls['bi-token-editor']}>
             <h2 className={cls['title']}>{comment}</h2>
@@ -119,6 +131,34 @@ const BITokenEditor = ({
             )}
             <h3 className={cls['sub-title']}>相关变量</h3>
             <div className={cls['divider']}></div>
+            <div className={cls['relevant-tokens']}>
+                {Object.keys(relevantToken).map((key) => {
+                    const tokens = relevantToken[key];
+                    return (
+                        <div key={key}>
+                            <h3>{key}</h3>
+                            <ul key={key}>
+                                {tokens.map((token, i) => {
+                                    return (
+                                        <li key={i}>
+                                            <div
+                                                className={cls['comment']}
+                                                title={token.comment}>
+                                                {token.comment}
+                                            </div>
+                                            <div className={cls['key']}>
+                                                {['T', ...token.parent, token.key]
+                                                    .join('_')
+                                                    .toUpperCase()}
+                                            </div>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </div>
+                    );
+                })}
+            </div>
         </div>
     );
 };

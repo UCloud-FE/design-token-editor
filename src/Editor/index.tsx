@@ -2,6 +2,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 
 import { TokenType } from '../interface';
 import { nameToTarget, trimKey } from '../utils';
+import Color from './Color';
 import ColorChooser from './ColorChooser';
 import Input from './Input';
 import Shadow from './Shadow';
@@ -50,6 +51,8 @@ const Editor = ({
             return <ColorChooser value={trimKey(value)} onChange={handleColorChange} />;
         case 'SHADOW':
             return <Shadow value={value} onChange={handleChange} />;
+        case 'CUSTOM':
+            return <Color value={value} onChange={handleChange} />;
         case 'INPUT':
         default:
             return <Input value={value} onChange={handleChange} />;

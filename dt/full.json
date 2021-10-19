@@ -1377,13 +1377,11 @@
                 "bg": {
                     "default": {
                         "value": "{color.brand.secondary_1.value}",
-                        "comment": "输入框/背景色/默认",
-                        "type": "color"
+                        "comment": "输入框/背景色/默认"
                     },
                     "active": {
                         "value": "{color.brand.secondary_2.value}",
-                        "comment": "输入框/背景色/激活",
-                        "type": "color"
+                        "comment": "输入框/背景色/激活"
                     }
                 }
             }
@@ -1392,35 +1390,30 @@
             "color": {
                 "mask": {
                     "value": "{color.brand.white.value}",
-                    "comment": "按钮加载遮罩",
-                    "type": "color"
+                    "comment": "按钮加载遮罩"
                 },
                 "bg": {
                     "primary": {
                         "default": {
                             "value": "{color.brand.gradient.primary_1.value}",
-                            "comment": "按钮/主/背景色",
-                            "type": "color"
+                            "comment": "按钮/主/背景色"
                         },
                         "hover": {
                             "value": "{color.brand.gradient.primary_2.value}",
-                            "comment": "按钮/主/背景色/hover",
-                            "type": "color"
+                            "comment": "按钮/主/背景色/hover"
                         }
                     },
                     "secondary": {
                         "default": {
                             "value": "{color.brand.white.value}",
-                            "comment": "按钮/次/背景色",
-                            "type": "color"
+                            "comment": "按钮/次/背景色"
                         }
                     }
                 },
                 "text": {
                     "default": {
                         "value": "{color.brand.white.value}",
-                        "comment": "按钮/主/文本色",
-                        "type": "color"
+                        "comment": "按钮/主/文本色"
                     }
                 }
             }
@@ -1430,8 +1423,7 @@
                 "bg": {
                     "default": {
                         "value": "{color.brand.white.value}",
-                        "comment": "卡片/背景色",
-                        "type": "color"
+                        "comment": "卡片/背景色"
                     }
                 }
             }
@@ -1441,20 +1433,17 @@
                 "bg": {
                     "default": {
                         "value": "{color.brand.gradient.content_1_1.value}",
-                        "comment": "导航切换选中项/背景色",
-                        "type": "color"
+                        "comment": "导航切换选中项/背景色"
                     },
                     "hover": {
                         "value": "{color.brand.secondary_1.value}",
-                        "comment": "导航切换/背景色/hover",
-                        "type": "color"
+                        "comment": "导航切换/背景色/hover"
                     }
                 },
                 "line": {
                     "hover": {
                         "value": "{color.brand.secondary_3.value}",
-                        "comment": "导航切换/边框色/hover",
-                        "type": "color"
+                        "comment": "导航切换/边框色/hover"
                     }
                 },
                 "compatible": {
@@ -1468,13 +1457,11 @@
                     "row": {
                         "default": {
                             "value": "{color.brand.secondary_2.value}",
-                            "comment": "表格/行/背景色",
-                            "type": "color"
+                            "comment": "表格/行/背景色"
                         },
                         "hover": {
                             "value": "{color.brand.primary_2.value}",
-                            "comment": "表格/行/背景色/hover",
-                            "type": "color"
+                            "comment": "表格/行/背景色/hover"
                         }
                     }
                 }
@@ -1485,40 +1472,34 @@
                 "bg": {
                     "outer": {
                         "value": "{color.brand.white.value}",
-                        "comment": "开关/外圈/背景色",
-                        "type": "color"
+                        "comment": "开关/外圈/背景色"
                     },
                     "inner": {
                         "off": {
                             "value": "{color.brand.secondary_2.value}",
-                            "comment": "开关/内圈/背景色/关",
-                            "type": "color"
+                            "comment": "开关/内圈/背景色/关"
                         },
                         "on": {
                             "value": "{color.brand.success_3.value}",
-                            "comment": "开关/内圈/背景色/开",
-                            "type": "color"
+                            "comment": "开关/内圈/背景色/开"
                         }
                     }
                 },
                 "text": {
                     "off": {
                         "value": "{color.brand.secondary_9.value}",
-                        "comment": "开关/文本色/关",
-                        "type": "color"
+                        "comment": "开关/文本色/关"
                     },
                     "on": {
                         "value": "{color.brand.system.white.value}",
-                        "comment": "开关/文本色/开",
-                        "type": "color"
+                        "comment": "开关/文本色/开"
                     }
                 },
                 "line": {
                     "inner": {
                         "on": {
                             "value": "{color.brand.success_1.value}",
-                            "comment": "开关/内圈/边框/开",
-                            "type": "color"
+                            "comment": "开关/内圈/边框/开"
                         }
                     }
                 }
@@ -1529,37 +1510,31 @@
                 "bg": {
                     "active": {
                         "value": "{color.brand.primary_1.value}",
-                        "comment": "滑块/背景色/激活",
-                        "type": "color"
+                        "comment": "滑块/背景色/激活"
                     },
                     "default": {
                         "value": "{color.brand.secondary_1.value}",
-                        "comment": "滑块/背景色/未激活",
-                        "type": "color"
+                        "comment": "滑块/背景色/未激活"
                     }
                 },
                 "line": {
                     "active": {
                         "value": "{color.brand.primary_8.value}",
-                        "comment": "滑块/边框色/激活",
-                        "type": "color"
+                        "comment": "滑块/边框色/激活"
                     },
                     "default": {
                         "value": "{color.brand.secondary_7.value}",
-                        "comment": "滑块/边框色/未激活",
-                        "type": "color"
+                        "comment": "滑块/边框色/未激活"
                     }
                 },
                 "text": {
                     "active": {
                         "value": "{color.brand.primary_8.value}",
-                        "comment": "滑块/文本色/激活",
-                        "type": "color"
+                        "comment": "滑块/文本色/激活"
                     },
                     "default": {
                         "value": "{color.brand.secondary_8.value}",
-                        "comment": "滑块/文本色/未激活",
-                        "type": "color"
+                        "comment": "滑块/文本色/未激活"
                     }
                 }
             }
@@ -1569,8 +1544,7 @@
                 "bg": {
                     "default": {
                         "value": "{color.brand.secondary_4.value}",
-                        "comment": "进度条/背景色",
-                        "type": "color"
+                        "comment": "进度条/背景色"
                     }
                 }
             }
@@ -1580,8 +1554,7 @@
                 "layer": {
                     "default": {
                         "value": "{color.brand.system.black_transparent.50.value}",
-                        "comment": "弹窗/蒙层",
-                        "type": "color"
+                        "comment": "弹窗/蒙层"
                     }
                 }
             },
@@ -1597,25 +1570,21 @@
                 "bg": {
                     "light": {
                         "value": "{color.brand.white.value}",
-                        "comment": "弹出层/背景色/亮",
-                        "type": "color"
+                        "comment": "弹出层/背景色/亮"
                     },
                     "dark": {
                         "value": "{color.brand.black.value}",
-                        "comment": "弹出层/背景色/暗",
-                        "type": "color"
+                        "comment": "弹出层/背景色/暗"
                     }
                 },
                 "line": {
                     "light": {
                         "value": "{color.brand.secondary_5.value}",
-                        "comment": "弹出层/边框/亮",
-                        "type": "color"
+                        "comment": "弹出层/边框/亮"
                     },
                     "dark": {
                         "value": "{color.brand.transparent.value}",
-                        "comment": "弹出层/边框/暗",
-                        "type": "color"
+                        "comment": "弹出层/边框/暗"
                     }
                 }
             }
@@ -1683,15 +1652,13 @@
                 "bg": {
                     "default": {
                         "value": "{color.brand.system.black_transparent.12.value}",
-                        "comment": "滚动条/背景色",
-                        "type": "color"
+                        "comment": "滚动条/背景色"
                     }
                 },
                 "border": {
                     "default": {
                         "value": "{color.brand.system.white_transparent.70.value}",
-                        "comment": "滚动条/边框色",
-                        "type": "color"
+                        "comment": "滚动条/边框色"
                     }
                 }
             }
@@ -1701,48 +1668,45 @@
                 "layer": {
                     "default": {
                         "value": "{color.brand.white_transparent.70.value}",
-                        "comment": "加载底部蒙层",
-                        "type": "color"
+                        "comment": "加载底部蒙层"
                     }
                 }
             }
         }
     },
-    "other": {
+    "external": {
         "tabs": {
             "product": {
                 "color": {
                     "text": {
                         "default": {
                             "value": "{color.brand.system.black_transparent.70.value}",
-                            "comment": "默认状态文本色值",
-                            "type": "color"
+                            "comment": "默认状态文本色值"
                         }
                     },
                     "shadow": {
                         "default": {
                             "value": "#edf0fd",
                             "comment": "默认状态阴影色值",
-                            "type": "color"
+                            "type": "custom"
                         },
                         "hover": {
                             "value": "#dee1e9",
                             "comment": "hover状态阴影色值",
-                            "type": "color"
+                            "type": "custom"
                         }
                     },
                     "bg": {
                         "hover": {
                             "value": "rgba(233,237,245,0.5)",
                             "comment": "hover状态背景色",
-                            "type": "color"
+                            "type": "custom"
                         }
                     },
                     "line": {
                         "active": {
                             "value": "{color.brand.secondary_4.value}",
-                            "comment": "导航切换/边框色/active",
-                            "type": "color"
+                            "comment": "导航切换/边框色/active"
                         }
                     }
                 }
@@ -1753,18 +1717,15 @@
                 "bg": {
                     "1": {
                         "value": "{color.brand.gradient.content_1.value}",
-                        "comment": "左侧订单模块背景",
-                        "type": "color"
+                        "comment": "左侧订单模块背景"
                     },
                     "2": {
                         "value": "{color.brand.secondary_3.value}",
-                        "comment": "右侧计费模块背景",
-                        "type": "color"
+                        "comment": "右侧计费模块背景"
                     },
                     "3": {
                         "value": "{color.brand.primary_1.value}",
-                        "comment": "左侧订单卡片下半段背景",
-                        "type": "color"
+                        "comment": "左侧订单卡片下半段背景"
                     }
                 }
             }
@@ -1775,13 +1736,11 @@
                     "bg": {
                         "default": {
                             "value": "{color.brand.primary_8.value}",
-                            "comment": "顶部导航默认背景色",
-                            "type": "color"
+                            "comment": "顶部导航默认背景色"
                         },
                         "hover": {
                             "value": "{color.brand.primary_9.value}",
-                            "comment": "顶部导航hover背景色/Logo背景色",
-                            "type": "color"
+                            "comment": "顶部导航hover背景色/Logo背景色"
                         }
                     }
                 }
@@ -1791,8 +1750,7 @@
                     "bg": {
                         "default": {
                             "value": "{color.brand.primary_9.value}",
-                            "comment": "顶部导航左侧LOGO背景色",
-                            "type": "color"
+                            "comment": "顶部导航左侧LOGO背景色"
                         }
                     }
                 }
@@ -1802,8 +1760,7 @@
                     "text": {
                         "icon": {
                             "value": "{color.brand.blue_9.value}",
-                            "comment": "全部产品列表/图标颜色",
-                            "type": "color"
+                            "comment": "全部产品列表/图标颜色"
                         }
                     }
                 }
@@ -1813,18 +1770,15 @@
                     "bg": {
                         "default": {
                             "value": "{color.brand.secondary_4.value}",
-                            "comment": "全局左侧收藏栏默认背景色",
-                            "type": "color"
+                            "comment": "全局左侧收藏栏默认背景色"
                         },
                         "active": {
                             "value": "{color.brand.primary_1.value}",
-                            "comment": "全局左侧收藏栏选中的产品背景色",
-                            "type": "color"
+                            "comment": "全局左侧收藏栏选中的产品背景色"
                         },
                         "expand": {
                             "value": "{color.brand.white.value}",
-                            "comment": "全局左侧收藏栏展开状态背景色",
-                            "type": "color"
+                            "comment": "全局左侧收藏栏展开状态背景色"
                         }
                     }
                 }
@@ -1836,13 +1790,11 @@
                     "bg": {
                         "default": {
                             "value": "{color.brand.black.value}",
-                            "comment": "代码编辑器/读写/背景色/默认",
-                            "type": "color"
+                            "comment": "代码编辑器/读写/背景色/默认"
                         },
                         "action": {
                             "value": "{color.brand.system.white_transparent.12.value}",
-                            "comment": "代码编辑器/读写/背景色/操作",
-                            "type": "color"
+                            "comment": "代码编辑器/读写/背景色/操作"
                         }
                     }
                 }
@@ -1852,13 +1804,11 @@
                     "bg": {
                         "default": {
                             "value": "{color.brand.secondary_2.value}",
-                            "comment": "代码编辑器/只读/背景色/默认",
-                            "type": "color"
+                            "comment": "代码编辑器/只读/背景色/默认"
                         },
                         "action": {
                             "value": "{color.brand.black_transparent.12.value}",
-                            "comment": "代码编辑器/只读/背景色/操作",
-                            "type": "color"
+                            "comment": "代码编辑器/只读/背景色/操作"
                         }
                     }
                 }

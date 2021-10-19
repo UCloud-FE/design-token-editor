@@ -27,7 +27,7 @@ export interface BITokenGroup {
     info: BIToken[];
 }
 
-export type TokenType = 'COLOR' | 'SHADOW' | 'GRADIENT' | 'INPUT';
+export type TokenType = 'COLOR' | 'SHADOW' | 'INPUT' | 'CUSTOM';
 
 export interface TokenDefine {
     value: string;

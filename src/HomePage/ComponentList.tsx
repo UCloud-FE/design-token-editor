@@ -1,6 +1,7 @@
 import React, { MouseEvent, useCallback } from 'react';
 
 import cls from './index.module.scss';
+
 import Eye from '../Icons/Eye';
 
 const EditButtonWithoutMemo = ({
@@ -37,6 +38,10 @@ const ComponentList = ({ onChange }: { onChange: (component: string) => void }) 
             <div className={cls['component-wrapper']}>
                 <h2 className={cls['title']}>输入框 Input</h2>
                 <EditButton component="input" onClick={handleChange} />
+            </div>
+            <div className={cls['component-wrapper']}>
+                <h2 className={cls['title']}>扩展 Tokens</h2>
+                <EditButton component="external" onClick={handleChange} />
             </div>
         </div>
     );
