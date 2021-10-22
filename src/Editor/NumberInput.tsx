@@ -1,6 +1,8 @@
 import React, {
     ChangeEvent,
+    FocusEventHandler,
     InputHTMLAttributes,
+    SyntheticEvent,
     useCallback,
     useEffect,
     useRef,
@@ -17,7 +19,7 @@ const NumberInput = ({
     ...rest
 }: Override<
     InputHTMLAttributes<HTMLInputElement>,
-    { value: string; onChange: (v: string) => void }
+    { value: string; onChange: (v: string, e: SyntheticEvent<HTMLInputElement>) => void }
 >) => {
     const [sValue, setSValue] = useState(value);
     const [focus, setFocus] = useState(false);
@@ -31,12 +33,15 @@ const NumberInput = ({
     const handleFocus = useCallback(() => {
         setFocus(true);
     }, []);
-    const handleBlur = useCallback(() => {
-        setFocus(false);
-        const sValue = sValueRef.current;
-        const finalValue = sValue.trim() ? sValue.trim() : '0';
-        onChange(finalValue);
-    }, [onChange]);
+    const handleBlur: FocusEventHandler<HTMLInputElement> = useCallback(
+        (e) => {
+            setFocus(false);
+            const sValue = sValueRef.current;
+            const finalValue = sValue.trim() ? sValue.trim() : '0';
+            onChange(finalValue, e);
+        },
+        [onChange],
+    );
     useEffect(() => {
         if (!focus) {
             setSValue(value);

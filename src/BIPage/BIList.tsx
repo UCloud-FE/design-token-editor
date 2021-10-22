@@ -6,11 +6,9 @@ import { biToGroups, keyToValue, nameToTarget, targetToName } from '../utils';
 import EditContext from '../EditContext';
 
 const BIList = ({
-    value,
     update,
     onChange,
 }: {
-    value: string;
     update: number;
     onChange: (value: string[]) => void;
 }) => {

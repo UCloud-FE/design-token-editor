@@ -43,7 +43,6 @@ const getRelevantToken = (
                     console.error(`Can't find group for`, info);
                     break;
                 }
-                console.log(info.value, value, usedKey(info.value, value.join('.')));
                 if (usedKey(info.value, value.join('.'))) {
                     groups[group].push({
                         ...info,
@@ -68,7 +67,6 @@ const getRelevantToken = (
                     console.error(`Can't find group for`, info);
                     break;
                 }
-                console.log(info.value, value, usedKey(info.value, value.join('.')));
                 if (usedKey(info.value, value.join('.'))) {
                     dtGroups[group].push({
                         ...info,

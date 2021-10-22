@@ -1,0 +1,26 @@
+@import '../../variables.scss';
+
+.shadow-wrapper {
+    display: flex;
+    .shadow-list {
+        .shadow-wrapper {
+            display: grid;
+            grid-template: auto 1fr/32px 60px 32px 32px 32px 32px 16px 16px;
+            row-gap: 8px;
+            column-gap: 8px;
+            align-items: center;
+            .shadow-input-tip {
+                margin-top: 4px;
+                text-align: center;
+            }
+            & > :nth-child(7),
+            & > :nth-child(8) {
+                cursor: pointer;
+            }
+        }
+    }
+    .shadow-square {
+        margin-left: 8px;
+        width: 100%;
+    }
+}

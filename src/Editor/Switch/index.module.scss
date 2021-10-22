@@ -1,0 +1,10 @@
+@import '../../variables.scss';
+
+.switch {
+    line-height: 30px;
+    height: 32px;
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid $color-border;
+    cursor: pointer;
+}

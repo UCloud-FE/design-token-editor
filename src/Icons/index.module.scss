@@ -1,0 +1,12 @@
+@import '../variables.scss';
+
+.add,
+.remove {
+    width: 16px;
+    height: 16px;
+    box-sizing: border-box;
+    line-height: 12px;
+    border-radius: 50%;
+    border: 1px solid $color-border;
+    text-align: center;
+}

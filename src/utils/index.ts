@@ -169,7 +169,7 @@ export const stringifyShadows = (shadows: IShadow[]) => {
     const boxShadow = shadows.map((shadow) => {
         const { type, offsetX, offsetY, blur, spread, color } = shadow;
         return (type === 'outset' ? [] : [type])
-            .concat([offsetX, offsetY, blur, spread, color])
+            .concat([offsetX, offsetY, blur, spread, `{${color}}`])
             .join(' ');
     });
     return boxShadow.join(', ');
