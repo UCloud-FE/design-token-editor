@@ -71,7 +71,7 @@ const ColorChooser = ({
 
     return (
         <Pop
-            popup={
+            popup={() => (
                 <div className={cls['color-popup']}>
                     <ul className={cls['color-group-list']}>
                         {groups.map(({ group, info }) => {
@@ -123,7 +123,7 @@ const ColorChooser = ({
                         源色关系图谱
                     </div>
                 </div>
-            }>
+            )}>
             <div className={cls['color-chooser']}>
                 <div className={cls['color-square']} style={{ background: result }} />
                 <div className={cls['color-value']} hidden={!showValue} title={result}>

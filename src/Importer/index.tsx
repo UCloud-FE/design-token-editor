@@ -18,8 +18,11 @@ const Importer = (
             const reader = new FileReader();
             reader.readAsText(file);
             reader.onload = (e: ProgressEvent<FileReader>) => {
-                if (!e.target) return;
-                onChange(e.target.result);
+                if (!e.target?.result) return;
+                if (typeof e.target.result !== 'string') return;
+                const tokens = JSON.parse(e.target.result);
+                onChange(tokens);
+                if (inputRef.current) inputRef.current.value = '';
             };
         },
         [onChange],

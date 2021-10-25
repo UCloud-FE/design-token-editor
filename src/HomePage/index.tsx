@@ -24,7 +24,7 @@ const HomePage = () => {
     const handleComponentChange = useCallback((component: string) => {
         return setComponent(component);
     }, []);
-    const { bi, dt, dtc, external, origin } = useContext(EditContext);
+    const { bi, dt, dtc, external, origin, handleImport } = useContext(EditContext);
     const exportTokens = useCallback(() => {
         setOutputModal({
             output: output(bi, dt, dtc, external),
@@ -77,7 +77,7 @@ const HomePage = () => {
                     <Exporter {...outputModal} />
                 </Modal>
             )}
-            <Importer ref={importerRef} onChange={console.log} />
+            <Importer ref={importerRef} onChange={handleImport} />
         </>
     );
 };

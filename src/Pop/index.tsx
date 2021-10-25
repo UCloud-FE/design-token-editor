@@ -15,7 +15,7 @@ const Pop = ({
     defaultVisible?: boolean;
     onVisibleChange?: (visible: boolean) => void;
     children: ReactNode;
-    popup: ReactNode;
+    popup: ReactNode | (() => ReactNode);
 }) => {
     const [visible, setVisible] = useUncontrolled(
         _visible,
@@ -48,7 +48,7 @@ const Pop = ({
                 <div className={cls.popup} hidden={!visible} ref={popupRef}>
                     <div className={cls['popup-wrapper']}>
                         <div className={cls.triangle}></div>
-                        {popup}
+                        {typeof popup === 'function' ? popup() : popup}
                     </div>
                 </div>
             )}

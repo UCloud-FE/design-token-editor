@@ -16,3 +16,33 @@
         margin: 0;
     }
 }
+
+@keyframes spin {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading {
+    position: absolute;
+    display: flex;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: transparentize($color: $color-background, $amount: 0.5);
+    &[hidden] {
+        display: none;
+    }
+    .indicator {
+        width: 30px;
+        fill: $color-font-primary;
+        animation: 1.2s linear infinite spin;
+    }
+}

@@ -119,6 +119,10 @@ const Panel = React.memo(PanelWithoutMemo);
 const ComponentPanelWithoutMemo = ({ component }: { component: string }) => {
     const { dt, handleComponentTokenChange } = useContext(EditContext);
     const items = useMemo(() => {
+        console.log(
+            dt,
+            groupItems(dt[component as keyof typeof dt], component, component),
+        );
         return groupItems(dt[component as keyof typeof dt], component, component);
     }, [component, dt]);
     return <Panel items={items} onChange={handleComponentTokenChange} />;

@@ -259,6 +259,38 @@ export const clone = function <T>(json: T): T {
     return JSON.parse(JSON.stringify(json));
 };
 
+export const merge = function <T>(origin: T, external: Partial<T>): T {
+    origin = clone(origin);
+    external = clone(external);
+
+    const dig = (obj: any, target: any) => {
+        Object.keys(obj).forEach((key) => {
+            const v = obj[key];
+            const vType = {}.toString.call(v).slice(8, -1);
+            switch (vType) {
+                case 'Array':
+                    target[key] = [...v];
+                    break;
+                case 'Undefined':
+                case 'Null':
+                    break;
+                case 'Object':
+                    if (!(key in target)) {
+                        target[key] = {};
+                    }
+                    dig(v, target[key]);
+                    break;
+                default:
+                    target[key] = v;
+                    break;
+            }
+        });
+    };
+
+    dig(external, origin);
+    return origin;
+};
+
 export const get = (obj: any, target: string[]) => {
     for (let i = 0; i < target.length; i++) {
         obj = obj[target[i]];
@@ -275,6 +307,7 @@ export const output = (bi: any, dtc: any, dt: any, external: any) => {
     const gobi = (builtin: typeof bi) => {
         for (const key in builtin) {
             const info = builtin[key];
+            if (key === '_meta') continue;
             if (info.value) {
                 if (/{.*}/.test(info.value)) {
                     info.value = keyToValue(info.value, bi.color);
@@ -311,4 +344,12 @@ export const output = (bi: any, dtc: any, dt: any, external: any) => {
     go(dtc, 'T');
     go(external, 'T');
     return map;
+};
+
+export const sleep = async (time: number) => {
+    return new Promise<void>((resolve) =>
+        setTimeout(() => {
+            resolve();
+        }, time),
+    );
 };
