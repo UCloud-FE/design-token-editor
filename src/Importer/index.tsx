@@ -12,7 +12,6 @@ const Importer = (
     const handleChange = useCallback(
         (e: ChangeEvent<HTMLInputElement>) => {
             const files = e.target.files;
-            console.log(files);
             if (!files) return;
             const file = files[0];
             const reader = new FileReader();

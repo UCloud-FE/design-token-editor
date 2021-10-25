@@ -21,7 +21,6 @@ const BIPage = ({ onBack }: { onBack: () => void }) => {
     const handleValueChange = useCallback(() => {
         setUpdate((i) => i + 1);
     }, []);
-    console.log(update);
 
     return (
         <>
@@ -32,7 +31,7 @@ const BIPage = ({ onBack }: { onBack: () => void }) => {
             </div>
             <div className={cls['wrapper']}>
                 <div className={cls['left']}>
-                    <BIList value={currentBI} update={update} onChange={handleBIChange} />
+                    <BIList update={update} onChange={handleBIChange} />
                 </div>
                 <div className={cls['right']}>
                     <BITokenEditor

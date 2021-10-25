@@ -20,7 +20,6 @@ const Gradient = ({
     const gradientRef = useRef(gradient);
     useEffect(() => {
         gradientRef.current = gradient;
-        console.log(gradient);
     }, [gradient]);
     const handleGradientChange = useCallback(
         (key: keyof IGradient) => (v: string) => {
