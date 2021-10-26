@@ -25,6 +25,7 @@ const Loading = ({ loading }: { loading: boolean }) => {
 function App() {
     // use key to force control render
     const [key, setKey] = useState(0);
+    const [fileName, setFileName] = useState('design_tokens');
     const [loading, setLoading] = useState(false);
     const [fullToken, setFullToken] = useState(token);
     const [currentFullToken, setCurrentFullToken, currentFullTokenRef] = useRefState(() =>
@@ -33,13 +34,14 @@ function App() {
     const [panel, setPanel] = useState('default');
 
     const handleImport = useCallback(
-        async (fullToken: typeof token) => {
+        async (fullToken: typeof token, fileName: string) => {
             setLoading(true);
             await sleep(1);
             fullToken = merge(token, fullToken);
             setFullToken(fullToken);
             setCurrentFullToken(clone(fullToken));
             setKey((key) => key + 1);
+            setFileName(fileName);
             await sleep(1);
             setLoading(false);
         },
@@ -108,6 +110,7 @@ function App() {
                     handleComponentTokenChange,
                     handleExternalTokenChange,
                     handleBIValueChange,
+                    fileName,
                     handleImport,
                     setPanel,
                     origin: fullToken,

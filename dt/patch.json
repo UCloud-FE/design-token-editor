@@ -1,0 +1,23 @@
+{
+    "_meta": {
+        "type": "patch"
+    },
+    "component": {
+        "button": {
+            "color": {
+                "mask": {
+                    "value": "{color.brand.white.value}",
+                    "comment": "按钮加载遮罩"
+                },
+                "bg": {
+                    "secondary": {
+                        "default": {
+                            "value": "{color.brand.white.value}",
+                            "comment": "按钮/次/背景色"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

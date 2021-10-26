@@ -302,6 +302,14 @@ export const get = (obj: any, target: string[]) => {
     return obj;
 };
 
+export const sortKey = (obj: Record<string, any>) => {
+    const _obj = {} as typeof obj;
+    Object.keys(obj)
+        .sort()
+        .map((key) => (_obj[key] = obj[key]));
+    return _obj;
+};
+
 export const output = (bi: any, dtc: any, dt: any, external: any) => {
     const map: any = {};
     const gobi = (builtin: typeof bi) => {
@@ -324,6 +332,7 @@ export const output = (bi: any, dtc: any, dt: any, external: any) => {
     const go = (_dt: typeof dt, prefix: string) => {
         for (const key in _dt) {
             const info = _dt[key];
+            if (key === '_meta') continue;
             const fullKey = `${prefix}_${key}`.toUpperCase();
             if (info.value) {
                 if (/{.*}/.test(info.value)) {

@@ -531,9 +531,28 @@
                 "_meta": {
                     "group": "背景色"
                 },
-                "menu": {
-                    "value": "{color.brand.white.value}",
-                    "comment": "背景/菜单"
+                "default": {
+                    "normal": {
+                        "value": "{color.brand.white.value}",
+                        "comment": "背景/常规/默认色，替换为T_COLOR_BG_DEFAULT_BRIGHT",
+                        "isDeprecated": true
+                    },
+                    "bright": {
+                        "value": "{color.brand.white.value}",
+                        "comment": "背景/常规/亮色"
+                    },
+                    "light": {
+                        "value": "{color.brand.secondary_1.value}",
+                        "comment": "背景/常规/浅色"
+                    },
+                    "dark": {
+                        "value": "{color.brand.secondary_2.value}",
+                        "comment": "背景/常规/深色"
+                    },
+                    "hover": {
+                        "value": "{color.brand.primary_2.value}",
+                        "comment": "背景/常规/hover"
+                    }
                 },
                 "highlight": {
                     "value": "{color.brand.yellow_2.value}",
@@ -567,29 +586,6 @@
                 "primary_5": {
                     "value": "{color.brand.primary_1.value}",
                     "comment": "背景/浅色/品牌色5"
-                },
-                "default": {
-                    "normal": {
-                        "value": "{color.brand.white.value}",
-                        "comment": "背景/常规/默认色，替换为T_COLOR_BG_DEFAULT_BRIGHT",
-                        "isDeprecated": true
-                    },
-                    "bright": {
-                        "value": "{color.brand.white.value}",
-                        "comment": "背景/常规/亮色"
-                    },
-                    "light": {
-                        "value": "{color.brand.secondary_1.value}",
-                        "comment": "背景/常规/浅色"
-                    },
-                    "dark": {
-                        "value": "{color.brand.secondary_2.value}",
-                        "comment": "背景/常规/深色"
-                    },
-                    "hover": {
-                        "value": "{color.brand.primary_2.value}",
-                        "comment": "背景/常规/hover"
-                    }
                 },
                 "content_1": {
                     "value": "{color.brand.gradient.content_1.value}",
@@ -644,6 +640,10 @@
                         "value": "{color.brand.disabled_3.value}",
                         "comment": "背景/禁用状态/深色"
                     }
+                },
+                "menu": {
+                    "value": "{color.brand.white.value}",
+                    "comment": "背景/菜单"
                 },
                 "sidebar": {
                     "value": "{color.brand.sidebar.value}",
@@ -1387,13 +1387,17 @@
             }
         },
         "button": {
-            "color": {
-                "mask": {
-                    "value": "{color.brand.white.value}",
-                    "comment": "按钮加载遮罩"
-                },
-                "bg": {
-                    "primary": {
+            "common": {
+                "color": {
+                    "mask": {
+                        "value": "{color.brand.white.value}",
+                        "comment": "按钮加载遮罩"
+                    }
+                }
+            },
+            "primary": {
+                "color": {
+                    "bg": {
                         "default": {
                             "value": "{color.brand.gradient.primary_1.value}",
                             "comment": "按钮/主/背景色"
@@ -1403,17 +1407,21 @@
                             "comment": "按钮/主/背景色/hover"
                         }
                     },
-                    "secondary": {
+                    "text": {
+                        "default": {
+                            "value": "{color.brand.white.value}",
+                            "comment": "按钮/主/文本色"
+                        }
+                    }
+                }
+            },
+            "secondary": {
+                "color": {
+                    "bg": {
                         "default": {
                             "value": "{color.brand.white.value}",
                             "comment": "按钮/次/背景色"
                         }
-                    }
-                },
-                "text": {
-                    "default": {
-                        "value": "{color.brand.white.value}",
-                        "comment": "按钮/主/文本色"
                     }
                 }
             }
@@ -1429,32 +1437,31 @@
             }
         },
         "tabs": {
-            "color": {
-                "bg": {
-                    "default": {
-                        "value": "{color.brand.gradient.content_1_1.value}",
-                        "comment": "导航切换选中项/背景色"
+            "default": {
+                "color": {
+                    "bg": {
+                        "default": {
+                            "value": "{color.brand.gradient.content_1_1.value}",
+                            "comment": "导航切换选中项/背景色"
+                        },
+                        "hover": {
+                            "value": "{color.brand.secondary_1.value}",
+                            "comment": "导航切换/背景色/hover"
+                        }
                     },
-                    "hover": {
-                        "value": "{color.brand.secondary_1.value}",
-                        "comment": "导航切换/背景色/hover"
+                    "line": {
+                        "hover": {
+                            "value": "{color.brand.secondary_3.value}",
+                            "comment": "导航切换/边框色/hover"
+                        }
                     }
-                },
-                "line": {
-                    "hover": {
-                        "value": "{color.brand.secondary_3.value}",
-                        "comment": "导航切换/边框色/hover"
-                    }
-                },
-                "compatible": {
-                    "prefix": "default"
                 }
             }
         },
         "table": {
-            "color": {
-                "bg": {
-                    "row": {
+            "row": {
+                "color": {
+                    "bg": {
                         "default": {
                             "value": "{color.brand.secondary_2.value}",
                             "comment": "表格/行/背景色"

@@ -5,23 +5,35 @@ export interface ImporterRef {
 }
 
 const Importer = (
-    { onChange }: { onChange: (input: any) => void },
+    { onChange }: { onChange: (input: any, fileName: string) => void },
     ref: Ref<ImporterRef>,
 ) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const handleChange = useCallback(
         (e: ChangeEvent<HTMLInputElement>) => {
             const files = e.target.files;
-            if (!files) return;
+            if (!files?.length) return;
             const file = files[0];
+            if (file.type !== 'application/json') {
+                return console.error('File type is not JSON');
+            }
             const reader = new FileReader();
+            const fileName = file.name.replace(/\.json$/, '');
             reader.readAsText(file);
             reader.onload = (e: ProgressEvent<FileReader>) => {
-                if (!e.target?.result) return;
-                if (typeof e.target.result !== 'string') return;
-                const tokens = JSON.parse(e.target.result);
-                onChange(tokens);
-                if (inputRef.current) inputRef.current.value = '';
+                if (!e.target?.result) {
+                    return console.error(`File read fail`);
+                }
+                if (typeof e.target.result !== 'string') {
+                    return console.error(`File read fail`);
+                }
+                try {
+                    const tokens = JSON.parse(e.target.result);
+                    onChange(tokens, fileName);
+                    if (inputRef.current) inputRef.current.value = '';
+                } catch (error) {
+                    console.error(error);
+                }
             };
         },
         [onChange],

@@ -7,7 +7,8 @@ const EditContext = React.createContext<{
     handleComponentTokenChange: (target: string[], value: string) => boolean;
     handleExternalTokenChange: (target: string[], value: string) => boolean;
     handleBIValueChange: (target: string[], value: string) => boolean;
-    handleImport: (tk: typeof tokens) => void;
+    handleImport: (tk: typeof tokens, fileName: string) => void;
+    fileName: string;
     setPanel: (panel: string) => void;
     origin: typeof tokens;
     bi: typeof tokens['builtin'];
@@ -20,6 +21,7 @@ const EditContext = React.createContext<{
     handleExternalTokenChange: () => false,
     handleBIValueChange: () => false,
     handleImport: () => {},
+    fileName: 'design_tokens',
     setPanel: () => {},
     origin: tokens,
     bi: tokens['builtin'],
