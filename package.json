@@ -1,6 +1,25 @@
 {
-    "name": "design-token-editor",
+    "name": "@ucloud-fe/design-token-editor",
     "version": "0.0.0",
+    "title": "UCloud design token editor",
+    "description": "UCloud design token editor",
+    "keywords": [
+        "react",
+        "design",
+        "tokens",
+        "editor",
+        "frontend",
+        "ucloud"
+    ],
+    "main": "dist/design-token-editor.es.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/UCloud-FE/design-token-editor.git"
+    },
+    "bugs": {
+        "url": "https://github.com/UCloud-FE/design-token-editor/issues"
+    },
+    "homepage": "https://ucloud-fe.github.io/u-design/",
     "scripts": {
         "dev": "vite",
         "build": "tsc && vite build",
