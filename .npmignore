@@ -1,0 +1,10 @@
+vite.config.ts
+index.html
+.prettierrc.js
+.prettierignore
+.eslintrc.js
+.eslintignore
+dt
+.vscode
+src
+node_modules
