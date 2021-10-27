@@ -302,12 +302,12 @@ export const get = (obj: any, target: string[]) => {
     return obj;
 };
 
-export const sortKey = (obj: Record<string, any>) => {
-    const _obj = {} as typeof obj;
+export const sortKey = <T>(obj: T) => {
+    const _obj = {} as any;
     Object.keys(obj)
         .sort()
-        .map((key) => (_obj[key] = obj[key]));
-    return _obj;
+        .map((key) => (_obj[key] = (obj as any)[key]));
+    return _obj as T;
 };
 
 export const output = (bi: any, dtc: any, dt: any, external: any) => {
@@ -352,7 +352,7 @@ export const output = (bi: any, dtc: any, dt: any, external: any) => {
     go(dt, 'T');
     go(dtc, 'T');
     go(external, 'T');
-    return map;
+    return sortKey(map);
 };
 
 export const sleep = async (time: number) => {

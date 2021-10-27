@@ -7,7 +7,7 @@ import App from './App';
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <App onChange={console.log} />
     </React.StrictMode>,
     document.getElementById('root'),
 );

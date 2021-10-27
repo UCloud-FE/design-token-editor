@@ -3,7 +3,7 @@ import React, { useCallback, useState } from 'react';
 import cls from './index.module.scss';
 
 import token from '../dt/full.json';
-import { clone, get, merge, sleep } from './utils';
+import { clone, get, merge, sleep, output } from './utils';
 import EditContext from './EditContext';
 import BIPage from './BIPage';
 import HomePage from './HomePage';
@@ -22,7 +22,7 @@ const Loading = ({ loading }: { loading: boolean }) => {
     );
 };
 
-function App() {
+function App({ onChange }: { onChange?: (tokens: { [key: string]: string }) => void }) {
     // use key to force control render
     const [key, setKey] = useState(0);
     const [fileName, setFileName] = useState('design_tokens');
@@ -32,6 +32,16 @@ function App() {
         clone(fullToken),
     );
     const [panel, setPanel] = useState('default');
+
+    const handleChange = useCallback(() => {
+        if (!onChange) return;
+        const bi = currentFullTokenRef.current.builtin;
+        const dt = currentFullTokenRef.current.component;
+        const dtc = currentFullTokenRef.current.common;
+        const external = currentFullTokenRef.current.external;
+        const tokens = output(bi, dtc, dt, external);
+        onChange(tokens);
+    }, [currentFullTokenRef, onChange]);
 
     const handleImport = useCallback(
         async (fullToken: typeof token, fileName: string) => {
@@ -44,8 +54,9 @@ function App() {
             setFileName(fileName);
             await sleep(1);
             setLoading(false);
+            handleChange();
         },
-        [setCurrentFullToken, setFullToken],
+        [handleChange, setCurrentFullToken],
     );
 
     const handleCommonTokenChange = useCallback(
@@ -56,9 +67,10 @@ function App() {
                 return false;
             }
             to.value = value;
+            handleChange();
             return true;
         },
-        [currentFullTokenRef],
+        [currentFullTokenRef, handleChange],
     );
     const handleComponentTokenChange = useCallback(
         (target: string[], value: string) => {
@@ -68,9 +80,10 @@ function App() {
                 return false;
             }
             to.value = value;
+            handleChange();
             return true;
         },
-        [currentFullTokenRef],
+        [currentFullTokenRef, handleChange],
     );
     const handleExternalTokenChange = useCallback(
         (target: string[], value: string) => {
@@ -80,21 +93,23 @@ function App() {
                 return false;
             }
             to.value = value;
+            handleChange();
             return true;
         },
-        [currentFullTokenRef],
+        [currentFullTokenRef, handleChange],
     );
     const handleBIValueChange = useCallback(
         (target: string[], value: string) => {
-            const to = get(currentFullTokenRef.current.builtin, target);
+            const to = get(currentFullTokenRef.current.builtin.color, target);
             if (!to) {
                 console.error(`Can't change value for ${target}`);
                 return false;
             }
             to.value = value;
+            handleChange();
             return true;
         },
-        [currentFullTokenRef],
+        [currentFullTokenRef, handleChange],
     );
     const handleBIBack = useCallback(() => {
         setPanel('default');
