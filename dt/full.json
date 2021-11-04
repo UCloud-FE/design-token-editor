@@ -1369,6 +1369,53 @@
                     "comment": "虚线边框样式，用于添加/上传照片按钮"
                 }
             }
+        },
+        "control": {
+            "_meta": {
+                "group": "控件变量"
+            },
+            "height": {
+                "sm": {
+                    "value": "24px",
+                    "comment": "小号控件高度"
+                },
+                "md": {
+                    "value": "28px",
+                    "comment": "中号控件高度"
+                },
+                "lg": {
+                    "value": "32px",
+                    "comment": "大号控件高度"
+                }
+            },
+            "spacing": {
+                "sm": {
+                    "value": "8px",
+                    "comment": "小号控件间距"
+                },
+                "md": {
+                    "value": "8px",
+                    "comment": "中号控件间距"
+                },
+                "lg": {
+                    "value": "12px",
+                    "comment": "大号控件间距"
+                }
+            },
+            "font_size": {
+                "sm": {
+                    "value": "12px",
+                    "comment": "小号控件字号"
+                },
+                "md": {
+                    "value": "12px",
+                    "comment": "中号控件字号"
+                },
+                "lg": {
+                    "value": "14px",
+                    "comment": "大号控件字号"
+                }
+            }
         }
     },
     "component": {

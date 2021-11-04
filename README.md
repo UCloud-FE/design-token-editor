@@ -2,7 +2,7 @@
 
 An editor for design-token
 
-组件
+组件/应用范围 component、control
 类型 color、padding、width、height
 子类型 bg、text、border
 位置 mask、layer
