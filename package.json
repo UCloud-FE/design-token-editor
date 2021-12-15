@@ -31,13 +31,15 @@
         "publish:patch": "npm version patch && git push --follow-tags",
         "publish:minor": "npm version minor && git push --follow-tags",
         "publish:major": "npm version major && git push --follow-tags",
-        "test:ci": "npm run lint",
+        "test:ci": "npm run lint && type-check",
         "ci": "npm run build"
     },
     "dependencies": {
+        "color": "^4.1.0",
         "react-colorful": "^5.4.0"
     },
     "devDependencies": {
+        "@types/color": "^3.0.2",
         "@types/react": "^17.0.0",
         "@types/react-dom": "^17.0.0",
         "@typescript-eslint/eslint-plugin": "^4.17.0",
