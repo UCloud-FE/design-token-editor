@@ -31,7 +31,7 @@
         "publish:patch": "npm version patch && git push --follow-tags",
         "publish:minor": "npm version minor && git push --follow-tags",
         "publish:major": "npm version major && git push --follow-tags",
-        "test:ci": "npm run lint && type-check",
+        "test:ci": "npm run lint && npm run type-check",
         "ci": "npm run build"
     },
     "dependencies": {
