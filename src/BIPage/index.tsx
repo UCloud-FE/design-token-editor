@@ -13,8 +13,8 @@ const BIPage = ({ onBack }: { onBack: () => void }) => {
     const [currentBI, setBI] = useState<string>('base,environment');
     const [update, setUpdate] = useState(0);
     const currentBIInfo = useMemo(() => {
-        return get(bi.color, nameToTarget(currentBI));
-    }, [bi.color, currentBI]);
+        return get(bi?.color, nameToTarget(currentBI));
+    }, [bi?.color, currentBI]);
     const handleBIChange = useCallback((bi: string[]) => {
         setBI(targetToName(bi));
     }, []);

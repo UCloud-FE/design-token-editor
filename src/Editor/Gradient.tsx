@@ -46,7 +46,7 @@ const Gradient = ({
 
     const { angle, start, end } = gradient;
 
-    const gradientStr = keyToValue(stringifyGradient(gradient), bi.color);
+    const gradientStr = keyToValue(stringifyGradient(gradient), bi?.color);
 
     return (
         <div className={cls['shadow-wrapper']}>

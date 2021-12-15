@@ -13,6 +13,7 @@ const BIList = ({
     onChange: (value: string[]) => void;
 }) => {
     const { bi } = useContext(EditContext);
+    /** use update to force update */
     const groups = useMemo(() => biToGroups(bi), [bi, update]);
     const handleColorChange = useCallback(
         (e) => {
@@ -35,7 +36,7 @@ const BIList = ({
                                 {info.map((s, i) => {
                                     const { value: _value, comment, parent, key } = s;
                                     const fullKey = targetToName([...parent, key]);
-                                    let color = keyToValue(_value, bi.color);
+                                    let color = keyToValue(_value, bi?.color);
                                     return (
                                         <li
                                             key={fullKey}

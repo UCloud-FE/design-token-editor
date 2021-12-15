@@ -42,7 +42,7 @@ const tokenToValue = (token: string, bi: any) => {
     const target = oldKeyToNew(token);
     try {
         const token = target.split('.').reduce((map: any, key: string) => {
-            return map[key];
+            return map?.[key];
         }, bi);
         return keyToValue(token.value, bi);
     } catch (error) {
@@ -293,7 +293,7 @@ export const merge = function <T>(origin: T, external: Partial<T>): T {
 
 export const get = (obj: any, target: string[]) => {
     for (let i = 0; i < target.length; i++) {
-        obj = obj[target[i]];
+        obj = obj?.[target[i]];
         if (!obj) {
             console.error(`Can't find ${target} in ${obj}`);
             return null;

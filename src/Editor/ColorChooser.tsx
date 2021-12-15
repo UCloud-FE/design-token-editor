@@ -61,13 +61,13 @@ const ColorChooser = ({
     const goBIPanel = useCallback(() => {
         setPanel('bi');
     }, [setPanel]);
-    const color = biKeyToValue(colorKey, bi.color);
+    const color = biKeyToValue(colorKey, bi?.color);
     const rgbaColor = toRGBA(color);
     const colorKeyType = useMemo(() => {
-        const info = get(bi.color, colorKey.split('.'));
+        const info = get(bi?.color, colorKey.split('.'));
         return info?.type;
-    }, [bi.color, colorKey]);
-    const result = biKeyToValue(value, bi.color);
+    }, [bi?.color, colorKey]);
+    const result = biKeyToValue(value, bi?.color);
 
     return (
         <Pop
@@ -88,7 +88,7 @@ const ColorChooser = ({
                                             } = s;
                                             const fullKey = [...parent, key].join('.');
                                             const active = colorKey === fullKey;
-                                            let color = keyToValue(_value, bi.color);
+                                            let color = keyToValue(_value, bi?.color);
                                             return (
                                                 <li
                                                     key={fullKey}

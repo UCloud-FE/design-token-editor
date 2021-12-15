@@ -2,16 +2,16 @@ import React, { useCallback, useContext, useState, useMemo } from 'react';
 
 import cls from './index.module.scss';
 
-import tokens from '../../dt/full.json';
 import { nameToTarget, usedKey } from '../utils';
 import EditContext from '../EditContext';
 import Color from '../Editor/Color';
 import Gradient from '../Editor/Gradient';
+import { Tokens } from '../interface';
 
 const getRelevantToken = (
     value: string[],
-    dtc: typeof tokens['common'],
-    dt: typeof tokens['component'],
+    dtc: Tokens['common'] = {},
+    dt: Tokens['component'] = {},
 ) => {
     interface TokenInfo {
         value: string;

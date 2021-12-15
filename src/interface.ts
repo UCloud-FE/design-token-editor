@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export type Override<T1, T2> = Omit<T1, keyof T2> & T2;
 
 export interface RGBA {
@@ -41,8 +43,8 @@ export interface MetaDefine {
 }
 
 export interface ComponentTokensDefine {
-    _meta: MetaDefine;
-    [key: string]: TokenDefine | MetaDefine | ComponentTokensDefine;
+    _meta?: MetaDefine;
+    [key: string]: TokenDefine | MetaDefine | ComponentTokensDefine | void;
 }
 
 export interface Token {
@@ -70,3 +72,30 @@ export interface IGradient {
     start: string;
     end: string;
 }
+
+export interface Tokens {
+    builtin?: {
+        color: ComponentTokensDefine;
+        [key: string]: ComponentTokensDefine;
+    };
+    common?: {
+        [key: string]: ComponentTokensDefine;
+    };
+    component?: {
+        [key: string]: ComponentTokensDefine;
+    };
+    external?: {
+        [key: string]: ComponentTokensDefine;
+    };
+}
+
+export type RenderComponentDemosWrap = (props: {
+    tokens: OutputTokens;
+    children: ReactNode;
+}) => ReactNode;
+
+export type ComponentDemos = {
+    component: string;
+    title: string;
+    demo: ReactNode;
+}[];

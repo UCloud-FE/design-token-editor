@@ -22,6 +22,7 @@ const groupItems = (map: any, group?: string, defaultParent?: string) => {
         itemsGroup[group] = [];
     }
     const dig = (obj: any, parent: string[], group?: string) => {
+        if (!obj) return;
         if (obj._meta) {
             if (obj._meta.group) {
                 if (group) {
@@ -117,7 +118,7 @@ const PanelWithoutMemo = ({
 const Panel = React.memo(PanelWithoutMemo);
 
 const ComponentPanelWithoutMemo = ({ component }: { component: string }) => {
-    const { dt, handleComponentTokenChange } = useContext(EditContext);
+    const { dt = {}, handleComponentTokenChange } = useContext(EditContext);
     const items = useMemo(() => {
         return groupItems(dt[component as keyof typeof dt], component, component);
     }, [component, dt]);
@@ -147,7 +148,7 @@ const ExternalPanel = React.memo(ExternalPanelWithoutMemo);
 
 const TokenEditor = ({ component }: { component: string }) => {
     const [tab, setTab] = useState<TabType>('component');
-    const { dt } = useContext(EditContext);
+    const { dt = {} } = useContext(EditContext);
     const isComponentValid = useMemo(() => component in dt, [component, dt]);
     useEffect(() => {
         if (isComponentValid) {

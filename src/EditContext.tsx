@@ -1,20 +1,29 @@
 import React from 'react';
+import defaultTokens from './defaultTokens';
 
-import tokens from '../dt/full.json';
+import {
+    ComponentDemos,
+    OutputTokens,
+    RenderComponentDemosWrap,
+    Tokens,
+} from './interface';
 
 const EditContext = React.createContext<{
     handleCommonTokenChange: (target: string[], value: string) => boolean;
     handleComponentTokenChange: (target: string[], value: string) => boolean;
     handleExternalTokenChange: (target: string[], value: string) => boolean;
     handleBIValueChange: (target: string[], value: string) => boolean;
-    handleImport: (tk: typeof tokens, fileName: string) => void;
+    handleImport: (tk: Tokens, fileName: string) => void;
     fileName: string;
     setPanel: (panel: string) => void;
-    origin: typeof tokens;
-    bi: typeof tokens['builtin'];
-    dt: typeof tokens['component'];
-    dtc: typeof tokens['common'];
-    external: typeof tokens['external'];
+    origin: Tokens;
+    bi: Tokens['builtin'];
+    dt: Tokens['component'];
+    dtc: Tokens['common'];
+    external: Tokens['external'];
+    componentDemos?: ComponentDemos;
+    renderComponentDemosWrap?: RenderComponentDemosWrap;
+    outputTokens: OutputTokens;
 }>({
     handleCommonTokenChange: () => false,
     handleComponentTokenChange: () => false,
@@ -23,11 +32,12 @@ const EditContext = React.createContext<{
     handleImport: () => {},
     fileName: 'design_tokens',
     setPanel: () => {},
-    origin: tokens,
-    bi: tokens['builtin'],
-    dt: tokens['component'],
-    dtc: tokens['common'],
-    external: tokens['external'],
+    origin: defaultTokens,
+    bi: defaultTokens['builtin'],
+    dt: defaultTokens['component'],
+    dtc: defaultTokens['common'],
+    external: defaultTokens['external'],
+    outputTokens: {},
 });
 
 export default EditContext;

@@ -8,12 +8,12 @@ import EditContext from '../EditContext';
 import Modal from '../Modal';
 import Exporter from '../Exporter';
 import Importer, { ImporterRef } from '../Importer';
-import ComponentList from './ComponentList';
+import Demo from '../Demo';
 import TokenEditor from './TokenEditor';
 import Import from '../Icons/Import';
 import Export from '../Icons/Export';
 
-const HomePage = () => {
+const Main = () => {
     const [component, setComponent] = useState('button');
     const [outputModal, setOutputModal] = useState<{
         output: OutputTokens;
@@ -66,7 +66,7 @@ const HomePage = () => {
             </div>
             <div className={cls['wrapper']}>
                 <div className={cls['left']}>
-                    <ComponentList onChange={handleComponentChange} />
+                    <Demo onChange={handleComponentChange} />
                 </div>
                 <div className={cls['right']}>
                     <TokenEditor component={component} />
@@ -82,4 +82,4 @@ const HomePage = () => {
     );
 };
 
-export default React.memo(HomePage);
+export default React.memo(Main);
