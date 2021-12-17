@@ -11,10 +11,12 @@
         padding: 24px;
         position: relative;
         .title {
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 400;
             color: $color-font;
-            line-height: 32px;
+            line-height: 24px;
+            font-weight: bold;
+            margin-bottom: 24px;
         }
         .edit-button {
             font-size: 14px;
