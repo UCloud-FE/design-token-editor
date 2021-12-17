@@ -190,10 +190,10 @@ const TokenEditor = ({ component }: { component: string }) => {
                             </li>
                         </ul>
                     </nav>
-                    <div hidden={tab !== 'component'}>
+                    <div className={cls['wrap']} hidden={tab !== 'component'}>
                         <ComponentPanel component={component} />
                     </div>
-                    <div hidden={tab !== 'common'}>
+                    <div className={cls['wrap']} hidden={tab !== 'common'}>
                         <CommonPanel />
                     </div>
                 </>

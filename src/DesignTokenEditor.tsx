@@ -136,32 +136,34 @@ function DesignTokenEditor({
     }, [setPanel]);
 
     return (
-        <div>
-            <Loading loading={loading} />
-            <EditContext.Provider
-                key={key}
-                value={{
-                    handleCommonTokenChange,
-                    handleComponentTokenChange,
-                    handleExternalTokenChange,
-                    handleBIValueChange,
-                    fileName,
-                    handleImport,
-                    setPanel,
-                    origin: fullToken,
-                    bi: currentFullToken.builtin,
-                    dt: currentFullToken.component,
-                    dtc: currentFullToken.common,
-                    external: currentFullToken.external,
-                    componentDemos,
-                    renderComponentDemosWrap,
-                    outputTokens,
-                }}>
-                <div className={cls['main']}>
-                    {panel === 'default' && <Main />}
-                    {panel === 'bi' && <BIPage onBack={handleBIBack} />}
-                </div>
-            </EditContext.Provider>
+        <div className={cls['max-wrap']}>
+            <div className={cls['wrap']}>
+                <Loading loading={loading} />
+                <EditContext.Provider
+                    key={key}
+                    value={{
+                        handleCommonTokenChange,
+                        handleComponentTokenChange,
+                        handleExternalTokenChange,
+                        handleBIValueChange,
+                        fileName,
+                        handleImport,
+                        setPanel,
+                        origin: fullToken,
+                        bi: currentFullToken.builtin,
+                        dt: currentFullToken.component,
+                        dtc: currentFullToken.common,
+                        external: currentFullToken.external,
+                        componentDemos,
+                        renderComponentDemosWrap,
+                        outputTokens,
+                    }}>
+                    <div className={cls['main']}>
+                        {panel === 'default' && <Main />}
+                        {panel === 'bi' && <BIPage onBack={handleBIBack} />}
+                    </div>
+                </EditContext.Provider>
+            </div>
         </div>
     );
 }
