@@ -7,9 +7,11 @@
     height: 100%;
     margin: -15px;
     .component-wrapper {
-        @include card;
         padding: 24px;
         position: relative;
+        &.current {
+            @include card;
+        }
         .title {
             font-size: 16px;
             font-weight: 400;

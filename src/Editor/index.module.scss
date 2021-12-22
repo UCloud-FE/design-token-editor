@@ -98,8 +98,16 @@
         font-size: 14px;
         font-weight: 400;
         color: $color-font-primary;
+        fill: $color-font-primary;
         line-height: 22px;
         cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        > svg {
+            margin-left: 4px;
+            width: 14px;
+            height: 14px;
+        }
     }
     .transparent-wrapper {
         margin-bottom: 16px;

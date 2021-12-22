@@ -7,6 +7,7 @@ import Button from '../Editor/Button';
 import EditContext from '../EditContext';
 import BIList from './BIList';
 import BITokenEditor from './BITokenEditor';
+import Arrow from '../Icons/Arrow';
 
 const BIPage = ({ onBack }: { onBack: () => void }) => {
     const { bi } = useContext(EditContext);
@@ -24,15 +25,13 @@ const BIPage = ({ onBack }: { onBack: () => void }) => {
 
     return (
         <>
-            <div>
+            <div className={cls['breadcrumb']}>
                 <Button className={cls['back']} onClick={onBack}>
-                    {'<'}
+                    <Arrow />
                 </Button>
-                <span className={cls['breadcrumb']}>
-                    <span onClick={onBack}>定制</span>
-                    <span>/</span>
-                    <span>原色关系图谱</span>
-                </span>
+                <span onClick={onBack}>定制</span>
+                <span>/</span>
+                <span>原色关系图谱</span>
             </div>
             <div className={cls['wrapper']}>
                 <div className={cls['left']}>

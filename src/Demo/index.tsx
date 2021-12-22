@@ -6,7 +6,13 @@ import DemoWrap from './DemoWrap';
 
 import cls from './index.module.scss';
 
-const Demo = ({ onChange }: { onChange: (component: string) => void }) => {
+const Demo = ({
+    onChange,
+    component,
+}: {
+    onChange: (component: string) => void;
+    component: string;
+}) => {
     const handleChange = useCallback(
         (component) => {
             component && onChange(component);
@@ -18,9 +24,13 @@ const Demo = ({ onChange }: { onChange: (component: string) => void }) => {
     const list = (
         <div className={cls['component-list']}>
             {componentDemos
-                ? componentDemos.map(({ component, title, demo }) => {
+                ? componentDemos.map(({ component: _component, title, demo }) => {
                       return (
-                          <DemoWrap component={component} title={title} key={component}>
+                          <DemoWrap
+                              component={component}
+                              current={component === _component}
+                              title={title}
+                              key={component}>
                               {demo}
                           </DemoWrap>
                       );

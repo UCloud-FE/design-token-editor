@@ -22,17 +22,19 @@ const DemoWrap = ({
     component,
     title,
     children,
+    current,
 }: {
     component: string;
     title?: ReactNode;
     children: ReactNode;
+    current?: boolean;
 }) => {
     const { handleChange } = useContext(DemoContext);
     const handleClick = useCallback(() => {
         handleChange(component);
     }, [component, handleChange]);
     return (
-        <div className={cls['component-wrapper']}>
+        <div className={cls['component-wrapper'] + (current ? ' ' + cls['current'] : '')}>
             <h2 className={cls['title']}>{title ? title : component}</h2>
             <EditButton onClick={handleClick} />
             {children}

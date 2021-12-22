@@ -9,8 +9,9 @@
     .button {
         display: inline-flex;
         height: 28px;
+        line-height: 18px;
         align-items: center;
-        color: $color-font;
+        color: $color-font-subtitle;
         fill: currentColor;
         cursor: pointer;
         svg {
@@ -87,7 +88,7 @@
     .group-name {
         font-size: 16px;
         font-weight: 600;
-        color: #0a1633;
+        color: $color-font;
         line-height: 24px;
         margin-bottom: 8px;
         text-transform: uppercase;
@@ -105,6 +106,13 @@
             font-size: 14px;
             line-height: 1.6em;
             margin-bottom: 0.5em;
+        }
+        .comment {
+            color: $color-font-subtitle;
+            font-weight: initial;
+        }
+        .key {
+            color: $color-font-remark;
         }
         > li + li {
             margin-top: 1em;

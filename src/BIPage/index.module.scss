@@ -7,15 +7,19 @@
     border-radius: 2px;
     border: 1px solid $color-border;
     background: $color-background;
-    margin-bottom: 24px;
     cursor: pointer;
     box-sizing: border-box;
     margin-right: 8px;
+    padding: 0;
+    text-align: center;
 }
 
 .breadcrumb {
     font-weight: 400;
     line-height: 24px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
     > span:nth-of-type(1) {
         color: $color-font-primary;
         cursor: pointer;

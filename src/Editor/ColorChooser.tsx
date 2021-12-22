@@ -14,6 +14,7 @@ import { toRGBA } from '../utils/color';
 import EditContext from '../EditContext';
 import Pop from '../Pop';
 import Alpha from './Alpha';
+import Triangle from '../Icons/Triangle';
 
 const ColorChooser = ({
     value,
@@ -120,7 +121,7 @@ const ColorChooser = ({
                         </div>
                     )}
                     <div onClick={goBIPanel} className={cls['link']}>
-                        源色关系图谱
+                        源色关系图谱 <Triangle />
                     </div>
                 </div>
             )}>

@@ -66,7 +66,7 @@ const Main = () => {
             </div>
             <div className={cls['wrapper']}>
                 <div className={cls['left']}>
-                    <Demo onChange={handleComponentChange} />
+                    <Demo onChange={handleComponentChange} component={component} />
                 </div>
                 <div className={cls['right']}>
                     <TokenEditor component={component} />
