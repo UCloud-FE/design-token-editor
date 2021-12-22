@@ -104,8 +104,8 @@
         .comment,
         .key {
             font-size: 14px;
-            line-height: 1.6em;
-            margin-bottom: 0.5em;
+            line-height: 24px;
+            margin-bottom: 8px;
         }
         .comment {
             color: $color-font-subtitle;
@@ -115,7 +115,7 @@
             color: $color-font-remark;
         }
         > li + li {
-            margin-top: 1em;
+            margin-top: 24px;
         }
     }
 }
