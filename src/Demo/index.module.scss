@@ -9,8 +9,9 @@
     .component-wrapper {
         padding: 24px;
         position: relative;
-        &.current {
-            @include card;
+        @include card;
+        &:not(.current) {
+            box-shadow: none;
         }
         .title {
             font-size: 16px;

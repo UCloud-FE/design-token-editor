@@ -45,6 +45,15 @@ const componentDemos = [
             </>
         ),
     },
+    {
+        title: 'Input 输入框',
+        component: 'input',
+        demo: (
+            <>
+                <input />
+            </>
+        ),
+    },
 ];
 const token: Tokens = {
     builtin: {

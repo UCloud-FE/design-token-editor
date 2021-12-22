@@ -27,10 +27,10 @@ const Demo = ({
                 ? componentDemos.map(({ component: _component, title, demo }) => {
                       return (
                           <DemoWrap
-                              component={component}
+                              component={_component}
                               current={component === _component}
                               title={title}
-                              key={component}>
+                              key={_component}>
                               {demo}
                           </DemoWrap>
                       );
