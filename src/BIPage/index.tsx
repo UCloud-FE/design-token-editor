@@ -28,6 +28,11 @@ const BIPage = ({ onBack }: { onBack: () => void }) => {
                 <Button className={cls['back']} onClick={onBack}>
                     {'<'}
                 </Button>
+                <span className={cls['breadcrumb']}>
+                    <span onClick={onBack}>定制</span>
+                    <span>/</span>
+                    <span>原色关系图谱</span>
+                </span>
             </div>
             <div className={cls['wrapper']}>
                 <div className={cls['left']}>
