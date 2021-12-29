@@ -2,7 +2,7 @@
     "compilerOptions": {
         "target": "es2015",
         "lib": ["es2015"],
-        "types": ["node", "vite/client"],
+        "types": ["node"],
         "allowJs": false,
         "skipLibCheck": true,
         "esModuleInterop": false,
@@ -14,7 +14,7 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noEmit": false,
-        "outDir": "../lib"
+        "outDir": "../../bin"
     },
     "include": ["./"],
     "exclude": ["node_modules"]

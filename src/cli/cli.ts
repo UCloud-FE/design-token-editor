@@ -1,26 +1,41 @@
 // #!/usr/bin/env node
 
 import { output } from '../react/utils';
-import yargs from 'yargs/yargs';
-import { hideBin } from 'yargs/helpers';
+const path = require('path');
+const fs = require('fs');
+const yargs = require('yargs/yargs');
+const { hideBin } = require('yargs/helpers');
 
 yargs(hideBin(process.argv))
     .command(
         'build',
-        'start the server',
-        (yargs) => {
-            return yargs.positional('port', {
-                describe: 'port to bind on',
-                default: 5000,
-            });
+        'build the designToken to tokens',
+        (yargs: any) => {
+            return yargs
+                .positional('outDir', {
+                    describe: 'build output dir',
+                    default: './output',
+                })
+                .positional('input', {
+                    describe: 'origin file',
+                    default: './default.json',
+                });
         },
-        (argv) => {
-            if (argv.verbose) console.info(`start server on :${argv.port}`);
+        (argv: any) => {
+            console.log(`read token define from ${argv.input}`);
+
+            const tokenDefine = require(path.join(process.cwd(), argv.input));
+            const tokens = output(
+                tokenDefine.builtin,
+                tokenDefine.common,
+                tokenDefine.component,
+                tokenDefine.external,
+            );
+
+            console.log(`write tokens to ${argv.outDir}`);
+            const dir = path.join(process.cwd(), argv.outDir);
+            if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+            fs.writeFileSync(path.join(dir, 'token.json'), JSON.stringify(tokens));
         },
     )
-    .option('verbose', {
-        alias: 'v',
-        type: 'boolean',
-        description: 'Run with verbose logging',
-    })
     .parse();
