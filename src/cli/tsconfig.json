@@ -1,21 +1,21 @@
 {
     "compilerOptions": {
-        "target": "ESNext",
-        "lib": ["DOM", "DOM.Iterable", "ESNext"],
-        "types": ["vite/client"],
+        "target": "es2015",
+        "lib": ["es2015"],
+        "types": ["node", "vite/client"],
         "allowJs": false,
-        "skipLibCheck": false,
+        "skipLibCheck": true,
         "esModuleInterop": false,
         "allowSyntheticDefaultImports": true,
         "strict": true,
         "forceConsistentCasingInFileNames": true,
-        "module": "ESNext",
+        "module": "CommonJS",
         "moduleResolution": "Node",
         "resolveJsonModule": true,
         "isolatedModules": true,
-        "noEmit": true,
-        "jsx": "react"
+        "noEmit": false,
+        "outDir": "../lib"
     },
-    "include": ["./src"],
-    "exclude": ["node_modules", "./src/cli"]
+    "include": ["./"],
+    "exclude": ["node_modules"]
 }

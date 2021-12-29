@@ -7,7 +7,7 @@ export default defineConfig({
     plugins: [reactRefresh()],
     build: {
         lib: {
-            entry: path.resolve(__dirname, 'src/DesignTokenEditor.tsx'),
+            entry: path.resolve(__dirname, 'src/react/DesignTokenEditor.tsx'),
             name: 'design-token-editor',
             fileName: (format) => `design-token-editor.${format}.js`,
         },
