@@ -1,52 +1,15 @@
 import { BIToken, BITokenGroup, ColorInfo, IGradient, IShadow } from '../interface';
 import { transparent } from './color';
 
-// 老变量 key 转换为新格式
-export const oldKeyToNew = (value: string = '') => {
-    if (value.startsWith('color.brand')) {
-        const target = value.split('.');
-        const type = target[2].split('_')[0];
-        switch (type) {
-            case 'white':
-                return 'base.environment';
-            case 'black':
-                return 'base.environment_reverse';
-            case 'transparent':
-                return 'base.transparent';
-            case 'primary':
-                return `primary.${target[2]}`;
-            case 'secondary':
-                return `secondary.${target[2]}`;
-            case 'system':
-                return `base.${target[3]}`;
-            case 'gradient':
-                return `gradient.${target[3]}`;
-            case 'sidebar':
-                return `special.special_1`;
-            case 'notice':
-            case 'success':
-            case 'warning':
-            case 'error':
-            case 'disabled':
-                return `status.${target[2]}`;
-            default:
-                return `assist.${target[2]}`;
-        }
-    } else {
-        return value;
-    }
-};
-
 // 获得 token 的值
-const tokenToValue = (token: string, bi: any) => {
-    const target = oldKeyToNew(token);
+const tokenToValue = (target: string, bi: any) => {
     try {
         const token = target.split('.').reduce((map: any, key: string) => {
             return map?.[key];
         }, bi);
         return keyToValue(token.value, bi);
     } catch (error) {
-        console.error(error, `key: ${token}`);
+        console.error(error, `key: ${target}`);
         return '#FFF';
     }
 };
@@ -56,19 +19,9 @@ export const parseColorKey = (key: string): ColorInfo => {
     let targetKey: string = key;
     const colorInfo: ColorInfo = { key: targetKey };
 
-    let isTransparent = false;
-    let transparentNumber = 1;
-    targetKey = key.replace(/_transparent\.(\d+)\.value$/, (s, number) => {
-        if (isTransparent) {
-            console.error(`Parse transparent error: ${key}`);
-        } else {
-            isTransparent = true;
-            transparentNumber = number / 100;
-        }
-        return '';
-    });
-    if (isTransparent) {
-        colorInfo.transparent = { alpha: transparentNumber };
+    if (/^#[0-9a-fA-F]{1,8}$/.test(key)) {
+        colorInfo.notAKey = true;
+        return colorInfo;
     }
 
     const dig = (key: string) => {
@@ -88,7 +41,7 @@ export const parseColorKey = (key: string): ColorInfo => {
         }
     };
     dig(targetKey);
-    colorInfo.key = oldKeyToNew(colorInfo.key);
+    // colorInfo.key = oldKeyToNew(colorInfo.key);
     return colorInfo;
 };
 
@@ -109,8 +62,12 @@ export const trimKey = (key: string) => key.replace(/^\{(.*)\}$/, '$1');
 
 export const biKeyToValue = (key: string, bi: any) => {
     const newKey = trimKey(key);
-    const { key: colorKey, transparent: transparentInfo } = parseColorKey(newKey);
-    let value = tokenToValue(colorKey, bi);
+    const {
+        key: colorKey,
+        transparent: transparentInfo,
+        notAKey,
+    } = parseColorKey(newKey);
+    let value = notAKey ? colorKey : tokenToValue(colorKey, bi);
     return transparentInfo ? transparent(value, transparentInfo.alpha * 100) : value;
 };
 
@@ -134,8 +91,8 @@ export const usedKey = (value: string, key: string): boolean => {
 };
 
 export const parseGradient = (gradient: string): IGradient => {
-    const [, angle, start, end] =
-        /^linear-gradient\(([^,]+)[,\s]+\{([^,{}]+)\}[\d%,\s]+\{([^,{}]+)\}[\d%,\s]+\)$/.exec(
+    const [, angle = '0', start = 'base.white', end = 'base.white'] =
+        /^linear-gradient\((\w+),\s*\{([\w.]+)\}\s*0%,\s*\{([\w.]+)\}\s*100%\)$/.exec(
             gradient,
         ) || [];
     return {
@@ -151,7 +108,7 @@ export const stringifyGradient = (gradient: IGradient): string => {
 };
 
 export const parseShadows = (shadows: string): IShadow[] => {
-    const shadowArr = shadows.trim().match(/(?:.*?(?:\{.*?\})?,)|(?:.+$)/g) || [];
+    const shadowArr = shadows.trim().match(/(?:.*?(?:\{.*?\}),?)|(?:.+$)/g) || [];
     return shadowArr.map((str) => {
         str = str.trim().replace(/,$/, '');
         const tokens = (str.match(/(\{.+\})|([^\s]+?\s)/g) || []).map((token) =>
@@ -177,7 +134,7 @@ export const stringifyShadows = (shadows: IShadow[]) => {
 
 export const shadowTokenToShadows = (shadowToken: string) => {
     let str = shadowToken.trim();
-    const shadows = str.match(/(?:.*?(?:\{.*?\})?,)|(?:.+$)/g) || [];
+    const shadows = str.match(/(?:.*?(?:\{.*?\}),?)|(?:.+$)/g) || [];
     return shadows.map((str) => {
         str = str.trim().replace(/,$/, '');
         const tokens = (str.match(/(\{.+\})|([^\s]+?\s)/g) || []).map((token) =>
@@ -238,7 +195,7 @@ export const biToGroups = (bi: any) => {
             }
         }
     };
-    dig(bi.color, []);
+    dig(bi.color, ['color']);
     const groupArray: BITokenGroup[] = Object.keys(groups).map((key: string) => {
         return {
             group: key,
@@ -312,13 +269,14 @@ export const sortKey = <T>(obj: T) => {
 
 export const output = (bi: any, dtc: any, dt: any, external: any) => {
     const map: any = {};
+    bi = JSON.parse(JSON.stringify(bi));
     const gobi = (builtin: typeof bi) => {
         for (const key in builtin) {
             const info = builtin[key];
             if (key === '_meta') continue;
             if (info.value) {
                 if (/{.*}/.test(info.value)) {
-                    info.value = keyToValue(info.value, bi.color);
+                    info.value = keyToValue(info.value, bi);
                 }
             } else if (typeof info === 'object') {
                 gobi(info);
@@ -336,7 +294,7 @@ export const output = (bi: any, dtc: any, dt: any, external: any) => {
             const fullKey = `${prefix}_${key}`.toUpperCase();
             if (info.value) {
                 if (/{.*}/.test(info.value)) {
-                    map[fullKey] = keyToValue(info.value, bi.color);
+                    map[fullKey] = keyToValue(info.value, bi);
                 } else {
                     map[fullKey] = info.value;
                 }

@@ -7,6 +7,7 @@ import EditContext from '../EditContext';
 import Color from '../Editor/Color';
 import Gradient from '../Editor/Gradient';
 import { Tokens } from '../interface';
+import { isGradient } from '../utils/color';
 
 const getRelevantToken = (
     value: string[],
@@ -118,6 +119,7 @@ const BITokenEditor = ({
     const relevantToken = useMemo(() => {
         return getRelevantToken(nameToTarget(target), dtc, dt);
     }, [dt, dtc, target]);
+    if (isGradient(value)) type = 'gradient';
     return (
         <div className={cls['bi-token-editor']}>
             <h2 className={cls['title']}>{comment}</h2>

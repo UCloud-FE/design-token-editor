@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
 import { TokenType } from '../interface';
 import { nameToTarget, trimKey } from '../utils';

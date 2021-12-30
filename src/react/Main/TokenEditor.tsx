@@ -44,8 +44,8 @@ const groupItems = (map: any, group?: string, defaultParent?: string) => {
                     console.error(`Can't find group for`, info);
                     break;
                 }
-                const { value, comment, type, isDeprecated } = info;
-                if (isDeprecated) return;
+                const { value, comment, type, deprecated } = info;
+                if (deprecated) continue;
                 const target = [...parent, key];
                 itemsGroup[group].push({
                     value,
@@ -131,7 +131,8 @@ const CommonPanelWithoutMemo = () => {
     const items = useMemo(() => {
         return groupItems(dtc);
     }, [dtc]);
-
+    console.log(items);
+    
     return <Panel items={items} onChange={handleCommonTokenChange} />;
 };
 const CommonPanel = React.memo(CommonPanelWithoutMemo);

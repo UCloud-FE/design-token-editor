@@ -77,12 +77,12 @@ const token: Tokens = {
     component: {
         button: {
             bg: {
-                value: '{base.white}',
+                value: '{color.base.white}',
                 comment: '按钮背景',
                 type: 'COLOR',
             },
             color: {
-                value: '{base.black}',
+                value: '{color.base.black}',
                 comment: '按钮字色',
             },
         },

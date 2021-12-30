@@ -120,7 +120,7 @@ function DesignTokenEditor({
     );
     const handleBIValueChange = useCallback(
         (target: string[], value: string) => {
-            const to = get(currentFullTokenRef.current.builtin?.color, target);
+            const to = get(currentFullTokenRef.current.builtin, target);
             if (!to) {
                 console.error(`Can't change value for ${target}`);
                 return false;

@@ -36,7 +36,7 @@ const BIList = ({
                                 {info.map((s, i) => {
                                     const { value: _value, comment, parent, key } = s;
                                     const fullKey = targetToName([...parent, key]);
-                                    let color = keyToValue(_value, bi?.color);
+                                    let color = keyToValue(_value, bi);
                                     return (
                                         <li
                                             key={fullKey}

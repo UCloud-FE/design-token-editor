@@ -8,9 +8,8 @@ import {
     keyToValue,
     parseColorKey,
     stringifyColorKey,
-    get,
 } from '../utils';
-import { toRGBA } from '../utils/color';
+import { isGradient, toRGBA } from '../utils/color';
 import EditContext from '../EditContext';
 import Pop from '../Pop';
 import Alpha from './Alpha';
@@ -62,13 +61,9 @@ const ColorChooser = ({
     const goBIPanel = useCallback(() => {
         setPanel('bi');
     }, [setPanel]);
-    const color = biKeyToValue(colorKey, bi?.color);
-    const rgbaColor = toRGBA(color);
-    const colorKeyType = useMemo(() => {
-        const info = get(bi?.color, colorKey.split('.'));
-        return info?.type;
-    }, [bi?.color, colorKey]);
-    const result = biKeyToValue(value, bi?.color);
+    const color = biKeyToValue(colorKey, bi);
+    const isGradientColor = isGradient(color);
+    const result = biKeyToValue(value, bi);
 
     return (
         <Pop
@@ -89,7 +84,7 @@ const ColorChooser = ({
                                             } = s;
                                             const fullKey = [...parent, key].join('.');
                                             const active = colorKey === fullKey;
-                                            let color = keyToValue(_value, bi?.color);
+                                            let color = keyToValue(_value, bi);
                                             return (
                                                 <li
                                                     key={fullKey}
@@ -107,7 +102,7 @@ const ColorChooser = ({
                             );
                         })}
                     </ul>
-                    {colorKeyType !== 'gradient' && (
+                    {!isGradientColor && (
                         <div className={cls['transparent-wrapper']}>
                             <div className={cls['title']}>
                                 <span>透明度调整:</span>
@@ -116,7 +111,7 @@ const ColorChooser = ({
                             <Alpha
                                 alpha={alpha}
                                 onChange={handleAlphaChange}
-                                color={rgbaColor}
+                                color={toRGBA(color)}
                             />
                         </div>
                     )}

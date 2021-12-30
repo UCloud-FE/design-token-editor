@@ -46,14 +46,14 @@ const Gradient = ({
 
     const { angle, start, end } = gradient;
 
-    const gradientStr = keyToValue(stringifyGradient(gradient), bi?.color);
+    const gradientStr = keyToValue(stringifyGradient(gradient), bi);
 
     return (
-        <div className={cls['shadow-wrapper']}>
+        <div className={cls['gradient-wrapper']}>
             <ColorChooser value={start} onChange={handleStartChange} />
             <ColorChooser value={end} onChange={handleEndChange} />
             <NumberInput value={angle} onChange={handleAngleChange} />
-            <div className={cls['shadow-square']} style={{ background: gradientStr }} />
+            <div className={cls['gradient-square']} style={{ background: gradientStr }} />
         </div>
     );
 };

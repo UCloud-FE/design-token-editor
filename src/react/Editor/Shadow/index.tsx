@@ -87,7 +87,7 @@ const Shadow = ({
         [onChange],
     );
 
-    const boxShadow = keyToValue(stringifyShadows(shadows), bi?.color);
+    const boxShadow = keyToValue(stringifyShadows(shadows), bi);
 
     return (
         <div className={cls['shadow-wrapper']}>

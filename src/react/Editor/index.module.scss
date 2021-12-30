@@ -166,3 +166,11 @@
         margin-top: 16px;
     }
 }
+
+.gradient-wrapper {
+    display: flex;
+    .gradient-square {
+        margin-left: 8px;
+        width: 30px;
+    }
+}

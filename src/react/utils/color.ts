@@ -55,4 +55,8 @@ const isValidColor = (color: string) => {
     }
 };
 
-export { isValidColor, toRGBA, toStringColor, transparent };
+const isGradient = (color: string) => {
+    return /^linear-gradient\(/.test(color);
+};
+
+export { isValidColor, toRGBA, toStringColor, transparent, isGradient };

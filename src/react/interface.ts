@@ -11,6 +11,7 @@ export interface RGBA {
 
 export interface ColorInfo {
     key: string;
+    notAKey?: boolean;
     transparent?: {
         alpha: number;
     };

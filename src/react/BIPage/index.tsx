@@ -11,11 +11,13 @@ import Arrow from '../Icons/Arrow';
 
 const BIPage = ({ onBack }: { onBack: () => void }) => {
     const { bi } = useContext(EditContext);
-    const [currentBI, setBI] = useState<string>('base,environment');
+    const [currentBI, setBI] = useState<string>('color,base,environment');
     const [update, setUpdate] = useState(0);
     const currentBIInfo = useMemo(() => {
-        return get(bi?.color, nameToTarget(currentBI));
-    }, [bi?.color, currentBI]);
+        console.log(bi, currentBI, get(bi, nameToTarget(currentBI)));
+
+        return get(bi, nameToTarget(currentBI));
+    }, [bi, currentBI]);
     const handleBIChange = useCallback((bi: string[]) => {
         setBI(targetToName(bi));
     }, []);
