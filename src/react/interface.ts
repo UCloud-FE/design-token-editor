@@ -43,10 +43,10 @@ export interface MetaDefine {
     group?: string;
 }
 
-export interface ComponentTokensDefine {
+export type ComponentTokenDefine = {
     _meta?: MetaDefine;
-    [key: string]: TokenDefine | MetaDefine | ComponentTokensDefine | void;
-}
+    [key: string]: TokenDefine | MetaDefine | ComponentTokenDefine | void;
+};
 
 export interface Token {
     value: string;
@@ -75,19 +75,10 @@ export interface IGradient {
 }
 
 export interface Tokens {
-    builtin?: {
-        color: ComponentTokensDefine;
-        [key: string]: ComponentTokensDefine;
-    };
-    common?: {
-        [key: string]: ComponentTokensDefine;
-    };
-    component?: {
-        [key: string]: ComponentTokensDefine;
-    };
-    external?: {
-        [key: string]: ComponentTokensDefine;
-    };
+    builtin?: ComponentTokenDefine;
+    common?: ComponentTokenDefine;
+    component?: ComponentTokenDefine;
+    external?: ComponentTokenDefine;
 }
 
 export type RenderComponentDemosWrap = (props: {

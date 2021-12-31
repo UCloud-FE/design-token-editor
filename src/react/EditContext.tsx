@@ -16,11 +16,8 @@ const EditContext = React.createContext<{
     handleImport: (tk: Tokens, fileName: string) => void;
     fileName: string;
     setPanel: (panel: string) => void;
-    origin: Tokens;
-    bi: Tokens['builtin'];
-    dt: Tokens['component'];
-    dtc: Tokens['common'];
-    external: Tokens['external'];
+    originTokens: Tokens;
+    currentTokens: Tokens;
     componentDemos?: ComponentDemos;
     renderComponentDemosWrap?: RenderComponentDemosWrap;
     outputTokens: OutputTokens;
@@ -32,11 +29,8 @@ const EditContext = React.createContext<{
     handleImport: () => {},
     fileName: 'design_tokens',
     setPanel: () => {},
-    origin: defaultTokens,
-    bi: defaultTokens['builtin'],
-    dt: defaultTokens['component'],
-    dtc: defaultTokens['common'],
-    external: defaultTokens['external'],
+    originTokens: defaultTokens,
+    currentTokens: defaultTokens,
     outputTokens: {},
 });
 

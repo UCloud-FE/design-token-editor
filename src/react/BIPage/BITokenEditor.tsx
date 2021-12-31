@@ -107,7 +107,7 @@ const BITokenEditor = ({
     onChange: () => void;
 }) => {
     const [sValue, setSValue] = useState(value);
-    const { handleBIValueChange, dtc, dt } = useContext(EditContext);
+    const { handleBIValueChange, currentTokens } = useContext(EditContext);
     const handleChange = useCallback(
         (v: string) => {
             const success = handleBIValueChange(nameToTarget(target), v);
@@ -117,8 +117,12 @@ const BITokenEditor = ({
         [handleBIValueChange, onChange, target],
     );
     const relevantToken = useMemo(() => {
-        return getRelevantToken(nameToTarget(target), dtc, dt);
-    }, [dt, dtc, target]);
+        return getRelevantToken(
+            nameToTarget(target),
+            currentTokens.common,
+            currentTokens.component,
+        );
+    }, [currentTokens.common, currentTokens.component, target]);
     if (isGradient(value)) type = 'gradient';
     return (
         <div className={cls['bi-token-editor']}>

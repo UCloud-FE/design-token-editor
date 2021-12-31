@@ -6,7 +6,7 @@ import { OutputTokens } from '../interface';
 import { output } from '../utils';
 import EditContext from '../EditContext';
 import Modal from '../Modal';
-import Exporter from '../Exporter';
+import Exporter, { PatchExporter } from '../Exporter';
 import Importer, { ImporterRef } from '../Importer';
 import Demo from '../Demo';
 import TokenEditor from './TokenEditor';
@@ -19,32 +19,19 @@ const Main = () => {
         output: OutputTokens;
         origin: OutputTokens;
     } | null>(null);
+    const [patchModal, setPatchModal] = useState(false);
     const importerRef = useRef<ImporterRef>(null);
 
     const handleComponentChange = useCallback((component: string) => {
         return setComponent(component);
     }, []);
-    const { bi, dt, dtc, external, origin, handleImport } = useContext(EditContext);
+    const { originTokens, currentTokens, handleImport } = useContext(EditContext);
     const exportTokens = useCallback(() => {
         setOutputModal({
-            output: output(bi, dt, dtc, external),
-            origin: output(
-                origin.builtin,
-                origin.component,
-                origin.common,
-                origin.external,
-            ),
+            output: output(currentTokens),
+            origin: output(originTokens),
         });
-    }, [
-        bi,
-        dt,
-        dtc,
-        external,
-        origin.builtin,
-        origin.common,
-        origin.component,
-        origin.external,
-    ]);
+    }, [currentTokens, originTokens]);
     const importTokens = useCallback(() => {
         importerRef.current?.trigger();
     }, []);
@@ -59,9 +46,17 @@ const Main = () => {
                     <Import />
                     导入主题
                 </span>
-                <span onClick={exportTokens} className={cls['button']}>
-                    <Export />
-                    导出主题
+                <span className={cls['button']}>
+                    <span>
+                        <Export />
+                        导出主题
+                    </span>
+                    <div className={cls['menu']}>
+                        <ul>
+                            <li onClick={exportTokens}>导出 tokens</li>
+                            <li onClick={() => setPatchModal(true)}>导出补丁</li>
+                        </ul>
+                    </div>
                 </span>
             </div>
             <div className={cls['wrapper']}>
@@ -73,8 +68,13 @@ const Main = () => {
                 </div>
             </div>
             {outputModal && (
-                <Modal header={'EXPORT TOKENS'} onClose={handleOutputModalClose}>
+                <Modal header="导出 token" onClose={handleOutputModalClose}>
                     <Exporter {...outputModal} />
+                </Modal>
+            )}
+            {patchModal && (
+                <Modal header="导出补丁" onClose={() => setPatchModal(false)}>
+                    <PatchExporter />
                 </Modal>
             )}
             <Importer ref={importerRef} onChange={handleImport} />

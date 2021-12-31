@@ -1,9 +1,10 @@
 @import '../variables.scss';
 
-.exporter {
-    .download {
-        margin-bottom: 16px;
-    }
+.download {
+    margin-bottom: 16px;
+}
+.exporter,
+.exporter-patch {
     ul {
         border-top: 1px solid $color-border;
     }
@@ -11,25 +12,31 @@
         display: flex;
         border-bottom: 1px solid $color-border;
         padding: 8px 0;
-        .name {
-            width: 400px;
-            flex-shrink: 0;
-        }
-        .origin {
-            color: $color-font-disabled;
-            text-decoration: line-through;
-        }
-        .diff {
-            display: flex;
-            flex-direction: column;
-        }
+        justify-content: space-between;
+    }
+}
+
+.exporter {
+    li {
         &.changed {
-            box-shadow: inset green 3px 3px 10px 0px;
-            .name {
-                // color: $color-font-primary;
-            }
-            .value {
+            box-shadow: inset #ff9800 0px -5px 0px 0px;
+            .to {
                 color: green;
+            }
+        }
+    }
+}
+.exporter,
+.exporter-patch {
+    li {
+        .diff {
+            text-align: right;
+            .from {
+                color: $color-font-disabled;
+                text-decoration: line-through;
+            }
+            span + span {
+                margin-left: 4px;
             }
         }
     }

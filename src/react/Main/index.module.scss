@@ -25,6 +25,34 @@
     .button + .button {
         margin-left: 16px;
     }
+    .button {
+        position: relative;
+        > span {
+            display: inline-flex;
+        }
+        .menu {
+            display: none;
+            position: absolute;
+            width: 100%;
+            top: 100%;
+            @include card;
+            padding: 12px;
+            cursor: default;
+            li {
+                cursor: pointer;
+                line-height: 24px;
+                color: $color-font-remark;
+                &:hover {
+                    color: $color-font-primary;
+                }
+            }
+        }
+        &:hover {
+            .menu {
+                display: block;
+            }
+        }
+    }
 }
 
 .wrapper {

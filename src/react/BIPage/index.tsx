@@ -10,14 +10,12 @@ import BITokenEditor from './BITokenEditor';
 import Arrow from '../Icons/Arrow';
 
 const BIPage = ({ onBack }: { onBack: () => void }) => {
-    const { bi } = useContext(EditContext);
+    const { currentTokens } = useContext(EditContext);
     const [currentBI, setBI] = useState<string>('color,base,environment');
     const [update, setUpdate] = useState(0);
     const currentBIInfo = useMemo(() => {
-        console.log(bi, currentBI, get(bi, nameToTarget(currentBI)));
-
-        return get(bi, nameToTarget(currentBI));
-    }, [bi, currentBI]);
+        return get(currentTokens.builtin, nameToTarget(currentBI));
+    }, [currentTokens.builtin, currentBI]);
     const handleBIChange = useCallback((bi: string[]) => {
         setBI(targetToName(bi));
     }, []);

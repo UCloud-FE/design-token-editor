@@ -118,30 +118,33 @@ const PanelWithoutMemo = ({
 const Panel = React.memo(PanelWithoutMemo);
 
 const ComponentPanelWithoutMemo = ({ component }: { component: string }) => {
-    const { dt = {}, handleComponentTokenChange } = useContext(EditContext);
+    const { currentTokens, handleComponentTokenChange } = useContext(EditContext);
     const items = useMemo(() => {
-        return groupItems(dt[component as keyof typeof dt], component, component);
-    }, [component, dt]);
+        return groupItems(
+            currentTokens.component?.[component as keyof typeof currentTokens.component],
+            component,
+            component,
+        );
+    }, [component, currentTokens]);
     return <Panel items={items} onChange={handleComponentTokenChange} />;
 };
 const ComponentPanel = React.memo(ComponentPanelWithoutMemo);
 
 const CommonPanelWithoutMemo = () => {
-    const { dtc, handleCommonTokenChange } = useContext(EditContext);
+    const { currentTokens, handleCommonTokenChange } = useContext(EditContext);
     const items = useMemo(() => {
-        return groupItems(dtc);
-    }, [dtc]);
-    console.log(items);
-    
+        return groupItems(currentTokens.common);
+    }, [currentTokens.common]);
+
     return <Panel items={items} onChange={handleCommonTokenChange} />;
 };
 const CommonPanel = React.memo(CommonPanelWithoutMemo);
 
 const ExternalPanelWithoutMemo = () => {
-    const { external, handleExternalTokenChange } = useContext(EditContext);
+    const { currentTokens, handleExternalTokenChange } = useContext(EditContext);
     const items = useMemo(() => {
-        return groupItems(external, 'external');
-    }, [external]);
+        return groupItems(currentTokens.external, 'external');
+    }, [currentTokens.external]);
 
     return <Panel items={items} onChange={handleExternalTokenChange} />;
 };
@@ -149,8 +152,11 @@ const ExternalPanel = React.memo(ExternalPanelWithoutMemo);
 
 const TokenEditor = ({ component }: { component: string }) => {
     const [tab, setTab] = useState<TabType>('component');
-    const { dt = {} } = useContext(EditContext);
-    const isComponentValid = useMemo(() => component in dt, [component, dt]);
+    const { currentTokens } = useContext(EditContext);
+    const isComponentValid = useMemo(
+        () => component in (currentTokens.component || {}),
+        [component, currentTokens.component],
+    );
     useEffect(() => {
         if (isComponentValid) {
             setTab('component');

@@ -38,50 +38,42 @@ function DesignTokenEditor({
     const [key, setKey] = useState(0);
     const [fileName, setFileName] = useState('design_tokens');
     const [loading, setLoading] = useState(false);
-    const [fullToken, setFullToken] = useState(token);
-    const [currentFullToken, setCurrentFullToken, currentFullTokenRef] = useRefState(() =>
-        clone(fullToken),
+    const [originTokens, setOriginTokens] = useState(token);
+    const [currentTokens, setCurrentTokens, currentTokensRef] = useRefState(() =>
+        clone(originTokens),
     );
+
     const [panel, setPanel] = useState('default');
     const [outputTokens, setOutputTokens] = useState(() => {
-        return output(
-            fullToken.builtin,
-            fullToken.common,
-            fullToken.component,
-            fullToken.external,
-        );
+        return output(originTokens);
     });
 
     const handleChange = useCallback(() => {
         if (!onChange || !renderComponentDemosWrap) return;
-        const bi = currentFullTokenRef.current.builtin;
-        const dt = currentFullTokenRef.current.component;
-        const dtc = currentFullTokenRef.current.common;
-        const external = currentFullTokenRef.current.external;
-        const tokens = output(bi, dtc, dt, external);
-        onChange?.(tokens);
-        setOutputTokens(tokens);
-    }, [currentFullTokenRef, onChange, renderComponentDemosWrap]);
+        const outputTokens = output(currentTokens);
+        onChange?.(outputTokens);
+        setOutputTokens(outputTokens);
+    }, [currentTokens, onChange, renderComponentDemosWrap]);
 
     const handleImport = useCallback(
         async (fullToken: Tokens, fileName: string) => {
             setLoading(true);
             await sleep(1);
             fullToken = merge(token, fullToken);
-            setFullToken(fullToken);
-            setCurrentFullToken(clone(fullToken));
+            setOriginTokens(fullToken);
+            setCurrentTokens(clone(fullToken));
             setKey((key) => key + 1);
             setFileName(fileName);
             await sleep(1);
             setLoading(false);
             handleChange();
         },
-        [handleChange, setCurrentFullToken, token],
+        [handleChange, setCurrentTokens, token],
     );
 
     const handleCommonTokenChange = useCallback(
         (target: string[], value: string) => {
-            const to = get(currentFullTokenRef.current.common, target);
+            const to = get(currentTokensRef.current.common, target);
             if (!to) {
                 console.error(`Can't change value for ${target}`);
                 return false;
@@ -90,11 +82,11 @@ function DesignTokenEditor({
             handleChange();
             return true;
         },
-        [currentFullTokenRef, handleChange],
+        [currentTokensRef, handleChange],
     );
     const handleComponentTokenChange = useCallback(
         (target: string[], value: string) => {
-            const to = get(currentFullTokenRef.current.component, target);
+            const to = get(currentTokensRef.current.component, target);
             if (!to) {
                 console.error(`Can't change value for ${target}`);
                 return false;
@@ -103,11 +95,11 @@ function DesignTokenEditor({
             handleChange();
             return true;
         },
-        [currentFullTokenRef, handleChange],
+        [currentTokensRef, handleChange],
     );
     const handleExternalTokenChange = useCallback(
         (target: string[], value: string) => {
-            const to = get(currentFullTokenRef.current.external, target);
+            const to = get(currentTokensRef.current.external, target);
             if (!to) {
                 console.error(`Can't change value for ${target}`);
                 return false;
@@ -116,11 +108,11 @@ function DesignTokenEditor({
             handleChange();
             return true;
         },
-        [currentFullTokenRef, handleChange],
+        [currentTokensRef, handleChange],
     );
     const handleBIValueChange = useCallback(
         (target: string[], value: string) => {
-            const to = get(currentFullTokenRef.current.builtin, target);
+            const to = get(currentTokensRef.current.builtin, target);
             if (!to) {
                 console.error(`Can't change value for ${target}`);
                 return false;
@@ -129,7 +121,7 @@ function DesignTokenEditor({
             handleChange();
             return true;
         },
-        [currentFullTokenRef, handleChange],
+        [currentTokensRef, handleChange],
     );
     const handleBIBack = useCallback(() => {
         setPanel('default');
@@ -149,11 +141,8 @@ function DesignTokenEditor({
                         fileName,
                         handleImport,
                         setPanel,
-                        origin: fullToken,
-                        bi: currentFullToken.builtin,
-                        dt: currentFullToken.component,
-                        dtc: currentFullToken.common,
-                        external: currentFullToken.external,
+                        originTokens,
+                        currentTokens,
                         componentDemos,
                         renderComponentDemosWrap,
                         outputTokens,

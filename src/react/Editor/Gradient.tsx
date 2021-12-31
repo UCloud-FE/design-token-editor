@@ -15,7 +15,7 @@ const Gradient = ({
     value: string;
     onChange: (v: string) => void;
 }) => {
-    const { bi } = useContext(EditContext);
+    const { currentTokens } = useContext(EditContext);
     const gradient = useMemo(() => parseGradient(value), [value]);
     const gradientRef = useRef(gradient);
     useEffect(() => {
@@ -46,7 +46,7 @@ const Gradient = ({
 
     const { angle, start, end } = gradient;
 
-    const gradientStr = keyToValue(stringifyGradient(gradient), bi);
+    const gradientStr = keyToValue(stringifyGradient(gradient), currentTokens.builtin);
 
     return (
         <div className={cls['gradient-wrapper']}>

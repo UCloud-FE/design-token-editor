@@ -12,9 +12,12 @@ const BIList = ({
     update: number;
     onChange: (value: string[]) => void;
 }) => {
-    const { bi } = useContext(EditContext);
+    const { currentTokens } = useContext(EditContext);
     /** use update to force update */
-    const groups = useMemo(() => biToGroups(bi), [bi, update]);
+    const groups = useMemo(
+        () => biToGroups(currentTokens.builtin),
+        [currentTokens.builtin, update],
+    );
     const handleColorChange = useCallback(
         (e) => {
             const dataset = (e.target as HTMLElement).dataset;
@@ -36,7 +39,7 @@ const BIList = ({
                                 {info.map((s, i) => {
                                     const { value: _value, comment, parent, key } = s;
                                     const fullKey = targetToName([...parent, key]);
-                                    let color = keyToValue(_value, bi);
+                                    let color = keyToValue(_value, currentTokens.builtin);
                                     return (
                                         <li
                                             key={fullKey}

@@ -24,11 +24,14 @@ const ColorChooser = ({
     onChange: (v: string) => void;
     showValue?: boolean;
 }) => {
-    const { bi, setPanel } = useContext(EditContext);
+    const { currentTokens, setPanel } = useContext(EditContext);
     const { key: colorKey, transparent: { alpha } = { alpha: 1 } } = useMemo(() => {
         return parseColorKey(value);
     }, [value]);
-    const groups = useMemo(() => biToGroups(bi), [bi]);
+    const groups = useMemo(
+        () => biToGroups(currentTokens.builtin),
+        [currentTokens.builtin],
+    );
     const handleChange = useCallback(
         (e: MouseEvent) => {
             const target = e.target as HTMLLIElement;
@@ -61,9 +64,9 @@ const ColorChooser = ({
     const goBIPanel = useCallback(() => {
         setPanel('bi');
     }, [setPanel]);
-    const color = biKeyToValue(colorKey, bi);
+    const color = biKeyToValue(colorKey, currentTokens.builtin);
     const isGradientColor = isGradient(color);
-    const result = biKeyToValue(value, bi);
+    const result = biKeyToValue(value, currentTokens.builtin);
 
     return (
         <Pop
@@ -84,7 +87,10 @@ const ColorChooser = ({
                                             } = s;
                                             const fullKey = [...parent, key].join('.');
                                             const active = colorKey === fullKey;
-                                            let color = keyToValue(_value, bi);
+                                            let color = keyToValue(
+                                                _value,
+                                                currentTokens.builtin,
+                                            );
                                             return (
                                                 <li
                                                     key={fullKey}

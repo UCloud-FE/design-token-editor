@@ -1,4 +1,11 @@
-import { BIToken, BITokenGroup, ColorInfo, IGradient, IShadow } from '../interface';
+import {
+    BIToken,
+    BITokenGroup,
+    ColorInfo,
+    IGradient,
+    IShadow,
+    Tokens,
+} from '../interface';
 import { transparent } from './color';
 
 // 获得 token 的值
@@ -267,34 +274,39 @@ export const sortKey = <T>(obj: T) => {
     return _obj as T;
 };
 
-export const output = (bi: any, dtc: any, dt: any, external: any) => {
+export const output = (tokens: Tokens) => {
+    let { builtin, common, component, external } = tokens;
     const map: any = {};
-    bi = JSON.parse(JSON.stringify(bi));
-    const gobi = (builtin: typeof bi) => {
-        for (const key in builtin) {
-            const info = builtin[key];
-            if (key === '_meta') continue;
-            if (info.value) {
+    builtin = JSON.parse(JSON.stringify(builtin));
+    const parseBuiltinToken = (bi: any) => {
+        for (const key in bi) {
+            const info = bi[key];
+            if (!info || key === '_meta') continue;
+            if ('value' in info && info?.value && typeof info.value === 'string') {
                 if (/{.*}/.test(info.value)) {
-                    info.value = keyToValue(info.value, bi);
+                    info.value = keyToValue(info.value, builtin);
                 }
             } else if (typeof info === 'object') {
-                gobi(info);
+                parseBuiltinToken(info);
             } else {
                 console.error(info);
             }
         }
     };
-    gobi(bi);
+    if (builtin) {
+        for (const key in builtin) {
+            if (builtin[key]) parseBuiltinToken(builtin[key]);
+        }
+    }
 
-    const go = (_dt: typeof dt, prefix: string) => {
+    const go = (_dt: any, prefix: string) => {
         for (const key in _dt) {
             const info = _dt[key];
             if (key === '_meta') continue;
             const fullKey = `${prefix}_${key}`.toUpperCase();
             if (info.value) {
                 if (/{.*}/.test(info.value)) {
-                    map[fullKey] = keyToValue(info.value, bi);
+                    map[fullKey] = keyToValue(info.value, builtin);
                 } else {
                     map[fullKey] = info.value;
                 }
@@ -307,8 +319,8 @@ export const output = (bi: any, dtc: any, dt: any, external: any) => {
             }
         }
     };
-    go(dt, 'T');
-    go(dtc, 'T');
+    go(component, 'T');
+    go(common, 'T');
     go(external, 'T');
     return sortKey(map);
 };

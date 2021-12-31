@@ -25,12 +25,7 @@ yargs(hideBin(process.argv))
             console.log(`read token define from ${argv.input}`);
 
             const tokenDefine = require(path.join(process.cwd(), argv.input));
-            const tokens = output(
-                tokenDefine.builtin,
-                tokenDefine.common,
-                tokenDefine.component,
-                tokenDefine.external,
-            );
+            const tokens = output(tokenDefine);
 
             console.log(`write tokens to ${argv.outDir}`);
             const dir = path.join(process.cwd(), argv.outDir);

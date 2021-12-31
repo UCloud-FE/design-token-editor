@@ -20,7 +20,7 @@ const Shadow = ({
     value: string;
     onChange: (v: string) => void;
 }) => {
-    const { bi } = useContext(EditContext);
+    const { currentTokens } = useContext(EditContext);
     const shadows: IShadow[] = useMemo(() => parseShadows(value), [value]);
     const shadowsRef = useRef(shadows);
     useEffect(() => {
@@ -87,7 +87,7 @@ const Shadow = ({
         [onChange],
     );
 
-    const boxShadow = keyToValue(stringifyShadows(shadows), bi);
+    const boxShadow = keyToValue(stringifyShadows(shadows), currentTokens.builtin);
 
     return (
         <div className={cls['shadow-wrapper']}>
