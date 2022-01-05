@@ -13,3 +13,7 @@
         color: $color-font-primary;
     }
 }
+
+.button + .button {
+    margin-left: 16px;
+}

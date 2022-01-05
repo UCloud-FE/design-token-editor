@@ -18,11 +18,17 @@
 
 .exporter {
     li {
-        &.changed {
-            box-shadow: inset #ff9800 0px -5px 0px 0px;
+        &.change {
+            border-bottom: 5px solid #ff9800;
             .to {
                 color: green;
             }
+        }
+        &.add {
+            border-bottom: 5px solid #2bd11c;
+        }
+        &.remove {
+            border-bottom: 5px solid #e00e18;
         }
     }
 }

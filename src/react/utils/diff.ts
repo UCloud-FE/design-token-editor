@@ -49,5 +49,4 @@ const diff = <T>(
 
 export default diff;
 
-
 window.diff = diff;

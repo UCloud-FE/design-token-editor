@@ -276,7 +276,7 @@ export const sortKey = <T>(obj: T) => {
 
 export const output = (tokens: Tokens) => {
     let { builtin, common, component, external } = tokens;
-    const map: any = {};
+    const map: Record<string, { value: string; comment: 'string' }> = {};
     builtin = JSON.parse(JSON.stringify(builtin));
     const parseBuiltinToken = (bi: any) => {
         for (const key in bi) {
@@ -306,9 +306,12 @@ export const output = (tokens: Tokens) => {
             const fullKey = `${prefix}_${key}`.toUpperCase();
             if (info.value) {
                 if (/{.*}/.test(info.value)) {
-                    map[fullKey] = keyToValue(info.value, builtin);
+                    map[fullKey] = {
+                        ...info,
+                        value: keyToValue(info.value, builtin),
+                    };
                 } else {
-                    map[fullKey] = info.value;
+                    map[fullKey] = { ...info };
                 }
             } else {
                 if (typeof info === 'object') {
@@ -323,6 +326,15 @@ export const output = (tokens: Tokens) => {
     go(common, 'T');
     go(external, 'T');
     return sortKey(map);
+};
+
+export const outputTokenMap = (tokens: Tokens) => {
+    const result: Record<string, string> = {};
+    const outputTokens = output(tokens);
+    for (const key in outputTokens) {
+        result[key] = outputTokens[key].value;
+    }
+    return result;
 };
 
 export const sleep = async (time: number) => {

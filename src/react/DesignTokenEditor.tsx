@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 
 import cls from './index.module.scss';
 
-import { clone, get, merge, sleep, output } from './utils';
+import { clone, get, merge, sleep, outputTokenMap } from './utils';
 import EditContext from './EditContext';
 import BIPage from './BIPage';
 import Main from './Main';
@@ -45,12 +45,12 @@ function DesignTokenEditor({
 
     const [panel, setPanel] = useState('default');
     const [outputTokens, setOutputTokens] = useState(() => {
-        return output(originTokens);
+        return outputTokenMap(originTokens);
     });
 
     const handleChange = useCallback(() => {
         if (!onChange || !renderComponentDemosWrap) return;
-        const outputTokens = output(currentTokens);
+        const outputTokens = outputTokenMap(currentTokens);
         onChange?.(outputTokens);
         setOutputTokens(outputTokens);
     }, [currentTokens, onChange, renderComponentDemosWrap]);
