@@ -1,6 +1,6 @@
 // #!/usr/bin/env node
 
-import { output, outputTokenMap } from '../react/utils';
+import { output, outputTokenMap, merge } from '../react/utils';
 const path = require('path');
 const fs = require('fs');
 const yargs = require('yargs/yargs');
@@ -47,6 +47,10 @@ yargs(hideBin(process.argv))
                     describe: 'build output dir',
                     default: './output',
                 })
+                .positional('outFile', {
+                    describe: 'build output file name',
+                    default: 'token',
+                })
                 .positional('input', {
                     describe: 'origin file name',
                     default: 'default.json',
@@ -54,13 +58,24 @@ yargs(hideBin(process.argv))
                 .positional('format', {
                     describe: 'emit file format',
                     default: ['ts', 'js', 'json', 'scss'],
+                })
+                .positional('patch', {
+                    desc: 'path file name',
                 });
         },
         (argv: any) => {
             console.log(`read token define from ${argv.input}`);
 
-            const tokenDefine = require(path.join(process.cwd(), argv.input));
+            let tokenDefine = require(path.join(process.cwd(), argv.input));
+            if (argv.patch) {
+                console.log(`patch token define from ${argv.patch}`);
+                const tokenPatch = require(path.join(process.cwd(), argv.patch));
+                tokenDefine = merge(tokenDefine, tokenPatch);
+            }
+
             const tokens = output(tokenDefine);
+
+            const fileName = argv.outFile;
 
             console.log(`write tokens to ${argv.outDir}`);
             const dir = path.join(process.cwd(), argv.outDir);
@@ -70,7 +85,7 @@ yargs(hideBin(process.argv))
                 switch (f) {
                     case 'scss': {
                         fs.writeFileSync(
-                            path.join(dir, `token.scss`),
+                            path.join(dir, `${fileName}.scss`),
                             tokenToSCSSString(tokens),
                         );
                         break;
@@ -78,7 +93,7 @@ yargs(hideBin(process.argv))
                     case 'ts':
                     case 'js': {
                         fs.writeFileSync(
-                            path.join(dir, `token.${f}`),
+                            path.join(dir, `${fileName}.${f}`),
                             tokenToJSString(tokens),
                         );
                         break;
@@ -86,7 +101,7 @@ yargs(hideBin(process.argv))
                     case 'json':
                     default: {
                         fs.writeFileSync(
-                            path.join(dir, 'token.json'),
+                            path.join(dir, `${fileName}.json`),
                             JSON.stringify(outputTokenMap(tokenDefine), null, 4),
                         );
                         break;
