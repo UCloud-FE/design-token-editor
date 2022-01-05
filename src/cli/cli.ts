@@ -3,8 +3,8 @@
 import { output, outputTokenMap } from '../react/utils';
 const path = require('path');
 const fs = require('fs');
-const yargs = require('yargs/yargs');
-const { hideBin } = require('yargs/helpers');
+import yargs from 'yargs/yargs';
+import { hideBin } from 'yargs/helpers';
 
 const getFileComment = () => `// Do not edit directly
 // Generated with design-token-editor on ${new Date().toLocaleString()}
@@ -41,7 +41,7 @@ yargs(hideBin(process.argv))
     .command(
         'build',
         'build the designToken to tokens',
-        (yargs: any) => {
+        (yargs) => {
             return yargs
                 .positional('outDir', {
                     describe: 'build output dir',
@@ -54,7 +54,6 @@ yargs(hideBin(process.argv))
                 .positional('format', {
                     describe: 'emit file format',
                     default: ['ts', 'js', 'json', 'scss'],
-                    type: 'array',
                 });
         },
         (argv: any) => {
@@ -96,4 +95,5 @@ yargs(hideBin(process.argv))
             });
         },
     )
+    .array('format')
     .parse();
