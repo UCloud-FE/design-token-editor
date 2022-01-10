@@ -1,10 +1,11 @@
+import { vitePluginCommonjs } from 'vite-plugin-commonjs';
 import reactRefresh from '@vitejs/plugin-react-refresh';
 import { defineConfig } from 'vite';
 import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [reactRefresh()],
+    plugins: [reactRefresh(), vitePluginCommonjs()],
     build: {
         lib: {
             entry: path.resolve(__dirname, 'src/react/DesignTokenEditor.tsx'),

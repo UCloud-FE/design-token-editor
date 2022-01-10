@@ -1,5 +1,5 @@
 // utils for color transform
-import Color from 'color';
+const Color = require('color');
 
 import { RGBA } from '../interface';
 
@@ -13,6 +13,8 @@ const toRGBA = (color: string) => {
             a: rgbColor.alpha === undefined ? 1 : rgbColor.alpha,
         };
     } catch (error) {
+        console.error(error);
+
         return {
             r: 0,
             g: 0,
