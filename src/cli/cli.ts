@@ -5,6 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const yargs = require('yargs/yargs');
 const { hideBin } = require('yargs/helpers');
+const Color = require('color');
 
 const getFileComment = () => `// Do not edit directly
 // Generated with design-token-editor on ${new Date().toLocaleString()}
@@ -33,6 +34,32 @@ const tokenToSCSSString = (token: ReturnType<typeof output>) => {
         const { value = '', comment = '' } = token[key];
         string += `
 $${snakeName(key)}: ${value}; // ${comment}`;
+    }
+    return string;
+};
+
+const getImage = (color: string) => {
+    if (/^#[0-9a-fA-F]{2,8}$/.test(color)) {
+        const pColor = color.replace('#', '');
+        const tColor = Color(color).negate().hex().replace('#', '');
+        return `![${color}](https://dummyimage.com/50/${pColor}/${tColor}.png&text=${pColor})`;
+    }
+    return '';
+};
+
+const tokenToMarkdownString = (token: ReturnType<typeof output>) => {
+    let string = `
+> Do not edit directly
+> Generated with design-token-editor on ${new Date().toLocaleString()}
+
+|  token name  |  value  |  display  |  comment  |
+|---|---|---|---|
+`;
+
+    for (const key in token) {
+        const { value = '', comment = '' } = token[key];
+        string += `|  ${key}  |  ${value}  |  ${getImage(value)}  |  ${comment}  |
+`;
     }
     return string;
 };
@@ -95,6 +122,14 @@ yargs(hideBin(process.argv))
                         fs.writeFileSync(
                             path.join(dir, `${fileName}.${f}`),
                             tokenToJSString(tokens),
+                        );
+                        break;
+                    }
+                    case 'md':
+                    case 'markdown': {
+                        fs.writeFileSync(
+                            path.join(dir, `${fileName}.md`),
+                            tokenToMarkdownString(tokens),
                         );
                         break;
                     }

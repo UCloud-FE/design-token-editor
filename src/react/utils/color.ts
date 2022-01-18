@@ -1,5 +1,5 @@
 // utils for color transform
-const Color = require('color');
+import * as Color from 'color';
 
 import { RGBA } from '../interface';
 
@@ -23,7 +23,6 @@ const toRGBA = (color: string) => {
         };
     }
 };
-
 const transparent = (color: string, transparent: number) => {
     const rgba = toRGBA(color);
     rgba.a = transparent / 100;
