@@ -11,6 +11,7 @@ import { output, outputTokenMap } from '../utils';
 import { OutputTokens } from '../interface';
 import Modal from '../Modal';
 import Importer, { ImporterRef } from '../Importer';
+import { remove } from '../utils/storage';
 
 const DiffLocal = React.memo(function DiffLocal({
     localOutputTokens,
@@ -77,6 +78,7 @@ const Exporter = () => {
     const exportOutput = useCallback(() => {
         save(outputTokenMap(currentTokens), `${fileName}.json`);
         save(currentTokens, 'tokens.json');
+        remove();
     }, [currentTokens, fileName]);
     const [localOutputTokens, setLocalDiff] = useState<OutputTokens | null>(null);
     const handleModalClose = useCallback(() => setLocalDiff(null), []);
@@ -139,6 +141,7 @@ const PatchExporter = React.memo(function PathExporter() {
     const diffs = diff(originTokens, currentTokens);
     const exportPatch = useCallback(() => {
         save(patch, `${fileName}.json`);
+        remove();
     }, [fileName, patch]);
     return (
         <div className={cls['exporter-patch']}>

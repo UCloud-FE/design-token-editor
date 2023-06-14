@@ -6,15 +6,17 @@ const Modal = ({
     children,
     header,
     onClose,
+    style,
 }: {
     children: ReactNode;
     header: ReactNode;
     onClose: () => void;
+    style?: React.CSSProperties;
 }) => {
     return (
         <div className={cls['modal']}>
             <div className={cls['mask']} onClick={onClose} />
-            <div className={cls['body']}>
+            <div className={cls['body']} style={style}>
                 <div className={cls['header']}>
                     <header>{header}</header>
                     <div className={cls['closer']} onClick={onClose}>
