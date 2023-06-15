@@ -1,14 +1,47 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import store from 'store2';
 
 import { Tokens, HandleImportType } from '../interface';
 import Modal from '../Modal';
 import Button from '../Editor/Button';
 
+type StoreData = string | number | boolean | null | object;
+const store = {
+    stringify(data: StoreData): string {
+        return data === undefined || typeof data === 'function'
+            ? data + ''
+            : JSON.stringify(data);
+    },
+    parse(s: string): StoreData {
+        try {
+            return JSON.parse(s);
+        } catch (e) {
+            return s;
+        }
+    },
+    get(key: string): StoreData {
+        const s = localStorage.getItem(key);
+        return s !== null ? this.parse(s) : s;
+    },
+    set(key: string, data: StoreData): void {
+        return localStorage.setItem(key, this.stringify(data));
+    },
+    remove(key: string): StoreData {
+        const d = this.get(key);
+        localStorage.removeItem(key);
+        return d;
+    },
+    has(key: string): boolean {
+        if (typeof key !== 'string') {
+            key = this.stringify(key);
+        }
+        return !!(key in localStorage);
+    },
+};
+
 export const storageKey = 'UN_SAVED_STORAGE';
 
 export const save = (data: Tokens) => {
-    store(storageKey, data);
+    store.set(storageKey, data);
 };
 
 export const remove = () => {
@@ -28,7 +61,7 @@ export const useStorage = ({ onImport }: { onImport: HandleImportType }) => {
     }, [handleUnSavedModalClose]);
 
     const handleImport = useCallback(() => {
-        onImport && onImport(store.get(storageKey));
+        onImport && onImport(store.get(storageKey) as Tokens);
         handleRemove();
     }, [handleRemove]);
 

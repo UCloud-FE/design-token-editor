@@ -43,7 +43,6 @@
     "dependencies": {
         "color": "^4.1.0",
         "react-colorful": "^5.4.0",
-        "store2": "^2.14.2",
         "ts-node": "^10.4.0",
         "yargs": "^17.3.1"
     },
