@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import store from 'store2';
+import * as store from 'store2';
 
 import { Tokens, HandleImportType } from '../interface';
 import Modal from '../Modal';
