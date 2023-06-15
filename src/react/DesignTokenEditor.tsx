@@ -6,7 +6,12 @@ import EditContext from './EditContext';
 import BIPage from './BIPage';
 import Main from './Main';
 import useRefState from './hooks/useRefState';
-import { ComponentDemos, RenderComponentDemosWrap, Tokens } from './interface';
+import {
+    ComponentDemos,
+    RenderComponentDemosWrap,
+    Tokens,
+    HandleImportType,
+} from './interface';
 import defaultTokens from './defaultTokens';
 import { save, useStorage } from './utils/storage';
 
@@ -55,8 +60,8 @@ function DesignTokenEditor({
         setOutputTokens(outputTokens);
     }, [currentTokens, onChange, renderComponentDemosWrap]);
 
-    const handleImport = useCallback(
-        async (fullToken: Tokens, fileName: string) => {
+    const handleImport: HandleImportType = useCallback(
+        async (fullToken: Tokens, fileName?: string) => {
             setLoading(true);
             await sleep(1);
             fullToken = merge(token, fullToken);

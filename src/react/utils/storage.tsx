@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import store from 'store2';
 
-import { Tokens } from '../interface';
+import { Tokens, HandleImportType } from '../interface';
 import Modal from '../Modal';
 import Button from '../Editor/Button';
 
@@ -15,7 +15,7 @@ export const remove = () => {
     store.remove(storageKey);
 };
 
-export const useStorage = ({ onImport }) => {
+export const useStorage = ({ onImport }: { onImport: HandleImportType }) => {
     const [unSavedModal, setUnSavedModal] = useState<null | JSX.Element>(null);
 
     const handleUnSavedModalClose = useCallback(() => {
