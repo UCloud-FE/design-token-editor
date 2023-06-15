@@ -24,5 +24,8 @@ export default defineConfig({
                 },
             },
         },
+        commonjsOptions: {
+            defaultIsModuleExports: false,
+        },
     },
 });
