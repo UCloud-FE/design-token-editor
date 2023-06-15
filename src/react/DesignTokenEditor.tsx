@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react';
-
 import cls from './index.module.scss';
 
 import { clone, get, merge, sleep, outputTokenMap } from './utils';
@@ -9,6 +8,7 @@ import Main from './Main';
 import useRefState from './hooks/useRefState';
 import { ComponentDemos, RenderComponentDemosWrap, Tokens } from './interface';
 import defaultTokens from './defaultTokens';
+import { save, useStorage } from './utils/storage';
 
 const Loading = ({ loading }: { loading: boolean }) => {
     return (
@@ -42,7 +42,6 @@ function DesignTokenEditor({
     const [currentTokens, setCurrentTokens, currentTokensRef] = useRefState(() =>
         clone(originTokens),
     );
-
     const [panel, setPanel] = useState('default');
     const [outputTokens, setOutputTokens] = useState(() => {
         return outputTokenMap(originTokens);
@@ -50,6 +49,7 @@ function DesignTokenEditor({
 
     const handleChange = useCallback(() => {
         if (!onChange || !renderComponentDemosWrap) return;
+        save(currentTokens);
         const outputTokens = outputTokenMap(currentTokens);
         onChange?.(outputTokens);
         setOutputTokens(outputTokens);
@@ -63,7 +63,7 @@ function DesignTokenEditor({
             setOriginTokens(fullToken);
             setCurrentTokens(clone(fullToken));
             setKey((key) => key + 1);
-            setFileName(fileName);
+            fileName && setFileName(fileName);
             await sleep(1);
             setLoading(false);
             handleChange();
@@ -127,6 +127,8 @@ function DesignTokenEditor({
         setPanel('default');
     }, [setPanel]);
 
+    const { unSavedModal } = useStorage({ onImport: handleImport });
+
     return (
         <div className={cls['max-wrap']}>
             <div className={cls['wrap']}>
@@ -153,6 +155,7 @@ function DesignTokenEditor({
                     </div>
                 </EditContext.Provider>
             </div>
+            {unSavedModal}
         </div>
     );
 }

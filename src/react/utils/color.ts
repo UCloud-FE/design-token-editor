@@ -1,5 +1,5 @@
 // utils for color transform
-import * as Color from 'color';
+import Color from 'color';
 
 import { RGBA } from '../interface';
 
