@@ -2,14 +2,15 @@ import React, { useCallback, useContext, useRef, useState } from 'react';
 
 import cls from './index.module.scss';
 
-import EditContext from '../EditContext';
-import Modal from '../Modal';
-import Exporter, { PatchExporter } from '../Exporter';
-import Importer, { ImporterRef } from '../Importer';
 import Demo from '../Demo';
-import TokenEditor from './TokenEditor';
-import Import from '../Icons/Import';
+import EditContext from '../EditContext';
+import Exporter, { PatchExporter } from '../Exporter';
 import Export from '../Icons/Export';
+import Import from '../Icons/Import';
+import Importer, { ImporterRef } from '../Importer';
+import Modal from '../Modal';
+import SwitchTheme, { psgRemoveSwitchTheme } from '../SwitchTheme';
+import TokenEditor from './TokenEditor';
 
 const Main = () => {
     const [component, setComponent] = useState('button');
@@ -30,6 +31,7 @@ const Main = () => {
     return (
         <>
             <div className={cls['header']}>
+                <SwitchTheme />
                 <span onClick={importTokens} className={cls['button']}>
                     <Import />
                     导入主题
@@ -65,7 +67,13 @@ const Main = () => {
                     <PatchExporter />
                 </Modal>
             )}
-            <Importer ref={importerRef} onChange={handleImport} />
+            <Importer
+                ref={importerRef}
+                onChange={(input, fileName) => {
+                    handleImport(input, fileName);
+                    psgRemoveSwitchTheme();
+                }}
+            />
         </>
     );
 };

@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { Tokens, HandleImportType } from '../interface';
-import Modal from '../Modal';
 import Button from '../Editor/Button';
+import Modal from '../Modal';
+import { psgRemoveSwitchTheme } from '../SwitchTheme';
+import { HandleImportType, Tokens } from '../interface';
 
 type StoreData = string | number | boolean | null | object;
 const store = {
@@ -84,7 +85,13 @@ export const useStorage = ({ onImport }: { onImport: HandleImportType }) => {
                             存在未完成的编辑记录，是否导入或清除？
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <Button onClick={handleRemove}>清除</Button>
+                            <Button
+                                onClick={() => {
+                                    handleRemove();
+                                    psgRemoveSwitchTheme();
+                                }}>
+                                清除
+                            </Button>
                             <Button onClick={handleImport}>导入</Button>
                         </div>
                     </div>

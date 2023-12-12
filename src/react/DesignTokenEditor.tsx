@@ -1,18 +1,19 @@
 import React, { useCallback, useState } from 'react';
 import cls from './index.module.scss';
 
-import { clone, get, merge, sleep, outputTokenMap } from './utils';
-import EditContext from './EditContext';
 import BIPage from './BIPage';
+import EditContext from './EditContext';
 import Main from './Main';
+import defaultTokens from './defaultTokens';
 import useRefState from './hooks/useRefState';
 import {
     ComponentDemos,
-    RenderComponentDemosWrap,
-    Tokens,
     HandleImportType,
+    RenderComponentDemosWrap,
+    ThemeMapType,
+    Tokens,
 } from './interface';
-import defaultTokens from './defaultTokens';
+import { clone, get, merge, outputTokenMap, sleep } from './utils';
 import { save, useStorage } from './utils/storage';
 
 const Loading = ({ loading }: { loading: boolean }) => {
@@ -32,11 +33,13 @@ function DesignTokenEditor({
     onChange,
     token = defaultTokens,
     componentDemos,
+    themeMap,
     renderComponentDemosWrap,
 }: {
     onChange?: (tokens: { [key: string]: string }) => void;
     token?: Tokens;
     componentDemos?: ComponentDemos;
+    themeMap?: ThemeMapType;
     renderComponentDemosWrap?: RenderComponentDemosWrap;
 }) {
     // use key to force control render
@@ -54,11 +57,11 @@ function DesignTokenEditor({
 
     const handleChange = useCallback(() => {
         if (!onChange || !renderComponentDemosWrap) return;
-        save(currentTokens);
-        const outputTokens = outputTokenMap(currentTokens);
+        save(currentTokensRef.current);
+        const outputTokens = outputTokenMap(currentTokensRef.current);
         onChange?.(outputTokens);
         setOutputTokens(outputTokens);
-    }, [currentTokens, onChange, renderComponentDemosWrap]);
+    }, [currentTokensRef, onChange, renderComponentDemosWrap]);
 
     const handleImport: HandleImportType = useCallback(
         async (fullToken: Tokens, fileName?: string) => {
@@ -153,6 +156,7 @@ function DesignTokenEditor({
                         componentDemos,
                         renderComponentDemosWrap,
                         outputTokens,
+                        themeMap,
                     }}>
                     <div className={cls['main']}>
                         {panel === 'default' && <Main />}

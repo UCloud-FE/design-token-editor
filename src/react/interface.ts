@@ -1,4 +1,3 @@
-import { type } from 'os';
 import { ReactNode } from 'react';
 
 export type Override<T1, T2> = Omit<T1, keyof T2> & T2;
@@ -94,3 +93,5 @@ export type ComponentDemos = {
 }[];
 
 export type HandleImportType = (fullToken: Tokens, fileName?: string) => Promise<void>;
+
+export type ThemeMapType = Map<string, { label: string; value: any }>;
