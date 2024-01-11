@@ -5,6 +5,7 @@ import {
     ComponentDemos,
     OutputTokens,
     RenderComponentDemosWrap,
+    ThemeMapType,
     Tokens,
 } from './interface';
 
@@ -21,6 +22,7 @@ const EditContext = React.createContext<{
     componentDemos?: ComponentDemos;
     renderComponentDemosWrap?: RenderComponentDemosWrap;
     outputTokens: OutputTokens;
+    themeMap?: ThemeMapType;
 }>({
     handleCommonTokenChange: () => false,
     handleComponentTokenChange: () => false,
